@@ -41,7 +41,7 @@ Numbers from `web/public/data/headroom.json`, data as of 12 Nov 2026: 5,648 main
 | Sampled blocks with one shard more than half full | 493, of which 478 stayed at the floor price |
 | Sampled blocks priced above the floor | 15, all from 29 Nov 2023 to 29 Dec 2023, up to 20× the floor |
 | Sampled blocks with delayed receipts (congestion control at work) | 151 of 5,648 |
-| Sampling check (one block per 30 min, same 30 days) | use 0.58% dense vs 0.68% sampled; busiest-shard p95 4.77% vs 7.54% |
+| Sampling check (one block per 30 min, 13 Oct 2026 to 12 Nov 2026) | use 0.58% dense vs 0.68% sampled; busiest-shard p95 4.77% vs 7.54% |
 | Frozen predictions | 6, made 12 Nov 2026; backtest over the last window: 5 of 6 would have held |
 <!-- findings:end -->
 
