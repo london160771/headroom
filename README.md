@@ -1,97 +1,150 @@
 # Headroom
 
-**How much room does NEAR have left?**
+**How much room does NEAR have left, and can that room ever pay for the chain?**
 
-Headroom is a re-runnable census of NEAR's blockspace. Shard by shard, it shows how full NEAR is and how much growth fits before fees move. Every number comes from public mainnet block data, and one command rebuilds it.
+Headroom is a re-runnable census of NEAR's blockspace. Shard by shard, it measures how full NEAR is, how much growth fits before fees move, and whether gas burn could ever offset the NEAR the protocol mints. Every number comes from public mainnet block data, and one command rebuilds it.
 
 Built for NEAR HACKATHON, **Investment Thesis** track. Sister project by the same builder: **[AgentGate](https://github.com/london160771/agentgate)**, spending limits for AI agents on NEAR (Function Call Keys + a vault contract).
 
-[Live page](#) · [Demo video](#) · [X post](#) · ![Tests](https://img.shields.io/badge/tests-15%20passing-10b981)
+[Live page](#) · [Demo video](#) · [X post](#) · [THESIS.md](THESIS.md) · [![ci](https://github.com/london160771/headroom/actions/workflows/ci.yml/badge.svg)](https://github.com/london160771/headroom/actions/workflows/ci.yml) · MIT
 
 ```
-SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → STRESS IT (×N) → RE-RUN IT YOURSELF
+SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → PRICE IT AGAINST ISSUANCE → FREEZE PREDICTIONS → RE-RUN IT YOURSELF
 ```
+
+## For reviewers: check it in this order
+
+| Do this | You should see | Where |
+|---|---|---|
+| Read the thesis | Claim, evidence for, evidence against, what would change my mind | [THESIS.md](THESIS.md) (generated from the data) |
+| Open the live page | Headline with 90% intervals, live shard gauges, 3-year chart | `web/` |
+| `npm install && npm test` | All tests pass, including "the page data rebuilds exactly from `evidence/`" and "THESIS.md matches the data" | `test/` |
+| `npm run check` | 20 random sampled blocks re-read from mainnet match `evidence/` field by field | `scripts/check.js` |
+| `sha256sum predictions/predictions.json` | The hash in `predictions/SHA256` and in the git tag `predictions-v1` | `predictions/` |
+| `ots verify predictions/predictions.json.ots` | A Bitcoin timestamp for that hash (OpenTimestamps) | `predictions/` |
+| Open the Actions tab | `ci` on every push; `daily` adds new mainnet slots each day at 00:30 UTC | `.github/workflows/` |
 
 ## What we found
 
-Numbers from `web/public/data/headroom.json`, built 2026-11-12 from 5,647 mainnet blocks (one every 6 hours, 1 Jan 2023 to 12 Nov 2026).
+<!-- findings:start -->
+Numbers from `web/public/data/headroom.json`, data as of 12 Nov 2026: 5,647 mainnet blocks, one every 6 hours since 1 Jan 2023. This table is written by `npm run thesis`.
 
 | | |
 |---|---|
-| Capacity used, last 30 days | **0.59%** (10 shards × 1,000 Tgas per chunk) |
-| Peak month since 2023 | 20.8% (Mar 2024) |
-| Gas price at the floor, last 30 days | 100% of sampled blocks |
-| Growth before NEAR's fee rule raises the price | **about 84×** (50% ÷ 0.59%) |
-| Growth before the busiest shard is full at its busy hours | **about 28×** (100% ÷ shard 8's 95th percentile, 3.58%) |
-| Sampled blocks with one shard more than half full | 417, of which 403 stayed at the floor price |
-| Sampled blocks priced above the floor | 14, all from 29 Nov to 29 Dec 2023 (the `inscription.near` rush), up to 20× the floor |
+| Capacity used, last 30 days | **0.55%** (90%: 0.39% to 0.77%), 10 shards × 1,000 Tgas per chunk |
+| Growth before NEAR's fee rule raises the price | **about 92×** (90%: 65× to 129×) |
+| Growth before the busiest shard is full at its busy hours | about 31× (shard 12, p95 3.27%; 90%: 18× to 35×) |
+| NEAR minted per year (from total_supply + burn) | 32,186,065 NEAR (2.51% of supply) |
+| Gas burn as a share of issuance | **0.72%** today; 65.6% at the 50% fee trigger; 131.1% with every block full |
+| Growth needed for burn to match issuance | about 140× (90%: 99× to 196×) |
+| Peak month since 2023 | 19.1% (Mar 2024) |
+| Sampled blocks with one shard more than half full | 405, of which 392 stayed at the floor price |
+| Sampled blocks priced above the floor | 14, all from 29 Nov 2023 to 29 Dec 2023, up to 20× the floor |
+| Sampled blocks with delayed receipts (congestion control at work) | 120 of 5,647 |
+| Sampling check (one block per 30 min, same 30 days) | use 0.58% dense vs 0.55% sampled; busiest-shard p95 4.77% vs 3.27% |
+| Frozen predictions | 6, made 12 Nov 2026; backtest over the last window: 5 of 6 would have held |
+<!-- findings:end -->
 
 **Why one full shard doesn't move the price:** nearcore sets the next gas price from gas used **summed over all chunks** against the summed limit. It rises only when the whole block is more than half full ([`compute_next_gas_price`](https://github.com/near/nearcore/blob/master/core/primitives/src/block.rs)). In Dec 2023 NEAR had 4 shards, and 2 full ones raised the price. With 10 shards it would take about 5 full shards at once.
 
-## The thesis, both ways
+**Why it matters for an investor:** NEAR's token can't draw value from scarce blockspace any time soon. It is a bet on transaction volume at the floor price, plus the option that whole blocks fill and the price, and burn, rise. Full argument, both sides, in [THESIS.md](THESIS.md).
 
-- **Bull:** the scaling is built and paid for. NEAR went from 4 shards to 10 and could take about 84× today's load before anyone pays more.
-- **Bear:** blockspace is not scarce, so it can't carry the token's value. Fees can't rise from demand pressure for years; value has to come from volume or other sinks.
-- **Dated statements (12 Nov 2026), checkable by re-running:**
-  1. Through 31 Dec 2027, the gas price stays at the floor in at least 99% of sampled blocks.
-  2. No month in 2027 averages more than 20.8% of capacity.
-  3. In every month of 2027, the busiest shard in a block stays under 50% at the 95th percentile.
+## How it is built
 
-## Judge path, 60 seconds
+```
+mainnet archival RPC ──► scripts/sample.js ──► evidence/samples.jsonl ──┐
+  (one block / 6 h)        lib/block.js                                 │
+mainnet archival RPC ──► scripts/dense.js ──► evidence/dense-30d.jsonl ─┤
+  (one block / 30 min, 30 days)                                         │
+mainnet RPC chunk ─────► scripts/culprits.js ► evidence/culprits.json ──┼─► lib/report.js ─► web/public/data/headroom.json ─► web/ (React page)
+NearBlocks charts ─────► scripts/nearblocks.js ► evidence/nearblocks-daily.json (cross-check only) │                         └─► THESIS.md + README table
+predictions/predictions.json (frozen, hashed, timestamped) ─────────────┘
+```
 
-1. Open the live page. The headline and the live shard gauges load with no wallet.
-2. Look at the 3-year chart: the whole chain (green) and the busiest shard (orange) on a log scale.
-3. Drag the ×N slider to see which shard fills first and when the fee rule would move.
-4. Read the hot-shard table and "The only time the price moved".
-5. Optional: run `npm run check` to re-read 20 random sampled blocks and compare them with `evidence/`.
+| File | What it does |
+|---|---|
+| `lib/block.js` | One RPC block → one record (only chunks included at that height; a missing chunk is skipped, never 0%) |
+| `lib/metrics.js` | Capacity use, per-shard p95, fee and shard multiples, hot-shard events, price rises, congestion, the ×N model |
+| `lib/economics.js` | Blocks per day (from `block_ordinal`), burn per Tgas, issuance from `total_supply`, the burn-vs-issuance bridge |
+| `lib/stats.js` | Seeded PRNG and day-clustered bootstrap (90% intervals) |
+| `lib/predictions.js` | Scores frozen predictions and a backtest |
+| `lib/report.js` | Builds the page data from evidence (pure, tested) |
+| `lib/thesis.js` | Renders THESIS.md and the README findings table from the page data |
 
 ## How it uses NEAR
 
 | NEAR piece | What it does | File |
 |---|---|---|
-| Archival RPC `block` (chunk headers: `gas_used`, `gas_limit`, `shard_id`, `congestion_info`) | Per-shard gas use since 2023 | `scripts/sample.js`, `lib/block.js` |
-| Mainnet RPC `block` (final) | Live gauges in the browser | `web/src/lib/live.js` |
+| Archival RPC `block`: chunk `gas_used`, `gas_limit`, `shard_id`, `height_included`, `balance_burnt`, `congestion_info` | Per-shard gas use, burn and congestion since 2023 | `scripts/sample.js`, `lib/block.js` |
+| Archival RPC `block`: header `total_supply`, `block_ordinal`, `gas_price` | Issuance, blocks per day, price state | `lib/economics.js` |
+| RPC `chunk` | Which accounts fill the hot shard | `scripts/culprits.js` |
+| Mainnet RPC `block` (final), from the browser | Live shard gauges | `web/src/lib/live.js` |
 | nearcore fee rule (sums all chunks, 50% trigger) | The fee multiple | `lib/metrics.js` |
 | NearBlocks daily charts (third-party indexer) | Cross-check only | `scripts/nearblocks.js` |
 
-## Is the sample good enough? (Gate 0)
+## How we know the numbers hold
 
-Our sampled gas per block vs NearBlocks' daily totals, per month: **median ratio 0.96; 42 of 47 months within 0.8 to 1.2.** The furthest months are May 2023 (0.67), Jan 2023 (0.70), Nov 2026 (0.74, a partial month), Sep 2026 (0.78) and May 2026 (0.79). One block per 6 hours misses short spikes, so low months lean low.
+- **Gate 0 cross-check:** our sampled gas per block vs NearBlocks' every-block daily totals, per month (shown on the page and in THESIS.md).
+- **Sampling check:** a 12× denser read of the last 30 days compared with the 6-hour sample over the same window.
+- **90% intervals:** day-clustered bootstrap, fixed seed, so anyone gets the same interval.
+- **Evidence check:** `npm run check` re-reads random stored blocks from mainnet and diffs every field.
+- **Frozen predictions:** six dated, numeric statements that would prove the thesis wrong, hashed, tagged and timestamped before their windows open; scored on every build, with a backtest that shows where they would have failed in the past.
+- **Daily refresh:** a GitHub Action adds new mainnet slots, re-checks old ones, rebuilds everything and commits with a SHA-256 manifest (`evidence/MANIFEST.sha256`).
 
 ## What's real
 
-Everything. No mocked numbers, no demo mode. The ×N slider is a model on real data (it scales each shard's measured load evenly) and says so. See [REAL_VS_MOCKED.md](REAL_VS_MOCKED.md).
+Everything. No mocked numbers, no demo mode. The ×N slider is a model on real data (it scales each shard's measured load evenly) and says so. Test fixtures and the mock `fetch` in `test/rpc.test.js` stay in `test/` and are named as such. See [REAL_VS_MOCKED.md](REAL_VS_MOCKED.md).
 
 ## Run it
 
 ```bash
 git clone https://github.com/london160771/headroom && cd headroom
 npm install
-npm run check        # re-read 20 random sampled blocks, compare every field with evidence/
+npm test             # unit tests + data-rebuild test + THESIS test, then vitest
+npm run check        # re-read 20 random sampled blocks from mainnet, compare every field
 npm run sample       # add new 6-hour slots up to now (resumable)
+npm run dense        # the 30-minute sampling check (resumable)
+npm run culprits     # read chunks for hot-shard blocks
 npm run nearblocks   # refresh the NearBlocks series
 npm run data         # rebuild web/public/data/headroom.json
-npm test             # 11 metric tests (node:test) + 4 format tests (vitest)
+npm run thesis       # rebuild THESIS.md and the README findings table
 npm run dev          # the page at http://localhost:5173
 ```
 
-Node 20+. No keys, no wallet, no `.env`.
+Node 20+. No keys, no wallet, no `.env`. `ots` (Python `opentimestamps-client`) is only needed to verify the timestamp.
 
 ## Tested, not claimed
 
-`npm test`: 15 passing (11 in `test/metrics.test.js` on hand-written fixture blocks: missing chunks, block and shard use, percentiles, monthly grouping, multiples, recent window, hot-shard events, price rises, cross-check, the ×N model, sample slots; 4 in `web/src/lib/format.test.js`). `npm run check` on 2026-11-12: 20 of 20 random blocks matched `evidence/` exactly.
+`npm test` on 2026-11-12: **45 passing** (41 with `node:test`, 4 with vitest). They cover:
+
+- Block records: missing chunks are skipped, never 0%; burn is not double-counted from repeated chunk headers.
+- Metrics: block and shard use, percentiles, monthly grouping, multiples, recent window, hot-shard events, price rises, congestion, the ×N model, cross-check.
+- Economics: blocks per day from `block_ordinal`, burn per Tgas, issuance with burn added back, the bridge.
+- Statistics: seeded PRNG, day-clustered bootstrap is reproducible.
+- Predictions: waiting / holding / failed / passed rules, backtest windows, unknown metrics rejected, the frozen file still matches its SHA-256.
+- RPC and evidence check, against a mock `fetch`: skipped heights, retry after HTTP 429, block-at-time correction, a tampered stored row is caught field by field.
+- Whole pipeline: the committed page data is rebuilt exactly from `evidence/`; THESIS.md and this README's findings table match the data; no typed-in % or × in page components.
+
+`npm run check` re-reads random stored blocks from mainnet and compares every field (result in PROJECT_STATE.md).
 
 ## Known limits
 
 - Gas is not NEAR's only limit. State size, chunk and witness size, and receipt bandwidth can bind first. Headroom measures gas only.
-- One block per 6 hours, not every block. Short spikes between samples are missed.
+- One block per 6 hours, not every block. Short spikes between samples are missed (the sampling check measures how much that matters).
+- A chunk header's `gas_used` describes the shard's previous execution step, so each sampled block is one step behind its timestamp. Over months this does not matter.
+- Burn and issuance assume the sampled burn per block is typical of the blocks in between. Governance can change the inflation rate.
+- Culprit counts are receipts and transactions, not gas: a chunk does not list gas per receipt.
 - The ×N model scales load evenly; real growth lands on some shards more than others.
 - The shard layout changed (4 → 6 → 8 → 9 → 10), so the page compares shares of capacity, not raw gas.
 
 ## Roadmap
 
-1. Who fills the hottest shard (relayers and gas sponsors).
-2. Daily auto-refresh of the evidence.
-3. Other capacity limits (state, witness size, bandwidth).
+1. Other capacity limits (state size, witness size, receipt bandwidth) next to gas.
+2. Per-account gas from execution outcomes, not receipt counts.
+3. Every-block reads for the hottest days.
 
 More in [ROADMAP.md](ROADMAP.md).
+
+## License
+
+MIT, see [LICENSE](LICENSE).

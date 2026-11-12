@@ -3,7 +3,7 @@
 import { day, pct } from '../lib/format.js';
 
 export default function HotEvents({ events, floor, rises }) {
-  if (!events.length) return <p className="small hr-muted">No sampled block had a shard above 50%.</p>;
+  if (!events.length) return <p className="small hr-muted">No sampled block had a shard more than half full.</p>;
   const quiet = events.filter((e) => e.gasPrice === floor);
   const top = [...quiet].sort((a, b) => b.use - a.use || b.ts - a.ts).slice(0, 6);
   const atFloor = events.filter((e) => e.gasPrice === floor).length;

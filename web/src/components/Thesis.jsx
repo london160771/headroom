@@ -1,5 +1,5 @@
-// The thesis: the same numbers read both ways, plus dated statements anyone can re-check later.
-import { day, month, pct, times } from '../lib/format.js';
+// The thesis: the same numbers read both ways.
+import { month, pct, times } from '../lib/format.js';
 
 export default function Thesis({ d }) {
   const r = d.recent;
@@ -21,6 +21,7 @@ export default function Thesis({ d }) {
               anyone pays a higher gas price, and about <b>{times(r.shardMultiple)}</b> before even the busiest shard is full at its busy hours. In the{' '}
               {month(new Date(d.price_rises[0]?.ts ?? 0).toISOString().slice(0, 7))} inscription rush NEAR had {d.price_rises[0]?.shards} shards, and 2 full ones
               were enough to raise the price. With {r.shards} shards it would take about {Math.ceil(r.shards / 2)} full shards at once.
+              {d.economics && <> At every block full, burn would be {pct(d.economics.coverageFull)} of issuance at the floor price, more once the price rises.</>}
             </p>
           </div>
         </div>
@@ -30,20 +31,19 @@ export default function Thesis({ d }) {
             <h3 className="h6 mt-1">Blockspace is not scarce, so it cannot carry the token's value.</h3>
             <p className="small mb-0">
               In the last {r.days} days NEAR used <b>{pct(r.use)}</b> of its capacity, down from {pct(pk.use)} in {month(pk.month)}. The gas price was at the
-              floor in {pct(r.atFloor)} of sampled blocks. With this much room, fees cannot rise from demand pressure for years. Value has to come from volume
-              (many more transactions at the floor price) or from other sinks, not from scarce blockspace.
+              floor in {pct(r.atFloor)} of sampled blocks, and gas burn offset {d.economics ? pct(d.economics.coverageToday) : '–'} of new NEAR. With this much room,
+              fees cannot rise from demand pressure for years. Value has to come from volume (many more transactions at the floor price) or from other sinks,
+              not from scarce blockspace.
             </p>
           </div>
         </div>
       </div>
 
-      <h3 className="h6 mt-4">Dated statements (made {day(d.generated_at)}). Re-run the sampler later to check them.</h3>
-      <ol className="small">
-        <li>Through 31 Dec 2027, NEAR's gas price stays at the floor in at least 99% of sampled blocks. <span className="hr-muted">(So far: {d.above_floor_blocks} of {d.sampling.blocks.toLocaleString('en-US')} sampled blocks above the floor.)</span></li>
-        <li>No calendar month in 2027 averages more than {pct(pk.use)} of capacity, the highest month since 2023 ({month(pk.month)}).</li>
-        <li>In every month of 2027, the busiest shard in a block stays under 50% at the 95th percentile (the orange line in the chart).</li>
-      </ol>
-      <p className="small hr-muted mb-0">If statement 1 or 2 fails, the bear reading is wrong: blockspace is getting scarce. If 3 fails while 1 holds, NEAR has a hot shard problem that its fee rule cannot see.</p>
+      <p className="small mt-3 mb-0">
+        The full thesis (claim, evidence for, evidence against, what would change my mind) is in{' '}
+        <a href="https://github.com/london160771/headroom/blob/main/THESIS.md" target="_blank" rel="noreferrer">THESIS.md</a>, generated from the same data as this page. The
+        statements that would prove it wrong are the frozen predictions above.
+      </p>
     </section>
   );
 }

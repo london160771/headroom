@@ -144,6 +144,15 @@ SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → STRESS IT (×N
 | FR-WEB-004 | P0 | ×N slider: scales the recent per-shard p95 loads; shows first shard to fill and when the fee rule would move | Pure function, unit tested |
 | FR-WEB-005 | P0 | Thesis section: bull, bear, dated testable statements, limits | Every number in it is read from `headroom.json` |
 | FR-WEB-006 | P0 | Method section: sources, sampling, formulas, re-run commands | Commands match README |
+| FR-ECO-001 | P0 | Bridge from capacity to value: NEAR minted per year (Δ total_supply + burn, last 365 days), burn per Tgas (Σ balance_burnt ÷ Σ gas used), burn as a share of issuance today / at the 50% trigger / at 100%, load needed for burn = issuance | `lib/economics.js` unit tests; shown with its formula |
+| FR-STA-001 | P0 | 90% intervals for the headline numbers and each month, by a day-clustered bootstrap with a fixed seed | Deterministic (same seed, same result); unit tested |
+| FR-DEN-001 | P0 | Sampling check: read one block every 30 min over the last 30 days; compare with the 6-hour sample over the same window | `evidence/dense-30d.jsonl`; result on the page |
+| FR-PRD-001 | P0 | Frozen predictions: `predictions/predictions.json` with metric, window, operator, value; SHA-256 in `predictions/SHA256` and git tag `predictions-v1`; OpenTimestamps proof; scored on every build, plus a backtest over the most recent window | `lib/predictions.js` unit tests; scoreboard on the page |
+| FR-THS-001 | P0 | `THESIS.md` (claim, evidence for, evidence against, what would change my mind) generated from `headroom.json` | Test fails if THESIS.md and the data disagree |
+| FR-CUL-001 | P0 | Hot-shard culprits: for each hot-shard block, read that chunk and rank receiving accounts | `evidence/culprits.json`; ranking unit tested |
+| FR-CON-001 | P0 | Congestion: count sampled blocks with delayed receipts in any shard, per month | Unit test |
+| FR-CI-001 | P0 | GitHub Actions: CI on push (tests + build); daily refresh at 00:30 UTC (sample, check 10, culprits, data, thesis, test, evidence manifest, commit) with only GITHUB_TOKEN | Workflows in `.github/workflows/` |
+| FR-WEB-007 | P0 | Page: "Can blockspace pay for NEAR?", interval bands, predictions scoreboard, culprits + congestion, a "Show the source" note per chart, data-as-of date | Every number read from `headroom.json`; test rejects typed-in % or × in components |
 
 ---
 
@@ -208,6 +217,11 @@ web (React + Vite + Bootstrap) ──> headroom.json + live mainnet RPC read
 | 2026-11-12 | One block per 6 h instead of 3 consecutive | Archival RPC rate limits; more independent moments for the same budget. archival-rpc.mainnet.near.org returns 429 under load, so FastNEAR is primary |
 | 2026-11-12 | Shard multiple uses each shard's own p95 (not the per-block busiest shard) | Keeps the headline and the ×N slider consistent |
 | 2026-11-12 | The price DID rise in 14 sampled blocks (29 Nov to 29 Dec 2023, inscription.near rush, up to 20×) | Shown on the page; confirms the fee rule |
+| 2026-11-12 | Phase 3 "depth" scope added (FR-ECO/STA/DEN/PRD/THS/CUL/CON/CI, FR-WEB-007) | Adesope approved the plan to beat stronger rivals in the track ("give it all your best"); strict rival review found Headroom thin on investment link, rigor and freshness |
+| 2026-11-12 | Re-sampled every slot with `block_ordinal`, `total_supply`, chunk `balance_burnt` | Needed for issuance and burn; v1 samples lacked them |
+| 2026-11-12 | Issuance from headers, not from a stated inflation rate | Δ total_supply + burn is measured; a stated rate can be stale |
+| 2026-11-12 | Bootstrap resamples whole UTC days | Blocks on one day are correlated; resampling blocks would understate the interval |
+| 2026-11-12 | OpenTimestamps (Python `opentimestamps-client`, used once by hand) for the predictions hash | Keyless, free, anchors in Bitcoin; not a runtime dependency |
 
 ---
 
@@ -287,7 +301,8 @@ Commit `phase-N: <what>` and push to `main` after each phase. Don't stop between
 - **Phase 0, docs + Gate 0:** these docs; sampler + NearBlocks fetch; evidence committed; Gate 0 result in §16.
 - **Phase 1, metrics:** `lib/metrics.js` + tests; `build.js` → `headroom.json`; `check.js`.
 - **Phase 2, page:** React + Vite + Bootstrap page per §21; live panel; vitest.
-- **Phase 3, ship:** README (both projects named), REAL_VS_MOCKED, video script, X post draft. ⛔ MANUAL STOP: Adesope deploys to Vercel, records, posts, submits.
+- **Phase 3, depth:** re-sample with burn + supply; economics bridge; intervals; dense sampling check; frozen predictions; THESIS.md; culprits; congestion; CI + daily workflow; page sections; LICENSE.
+- **Phase 4, ship:** README for machine readers (both projects named), REAL_VS_MOCKED, video script, X post draft. ⛔ MANUAL STOP: Adesope deploys to Vercel, records, posts, submits.
 
 ---
 

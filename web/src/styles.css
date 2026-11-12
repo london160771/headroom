@@ -32,3 +32,13 @@ body { background: var(--hr-bg); color: var(--hr-ink); }
 .hr-card-bear { border-left: 4px solid var(--hr-hot); }
 .form-range::-webkit-slider-thumb { background: var(--hr-ink); }
 .form-range::-moz-range-thumb { background: var(--hr-ink); }
+.hr-source summary { cursor: pointer; color: var(--hr-muted); }
+.hr-source dl { display: grid; grid-template-columns: max-content 1fr; gap: .25rem .75rem; }
+.hr-source dt { font-weight: 600; color: var(--hr-muted); }
+.hr-source dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.hr-bar-row { display: grid; grid-template-columns: minmax(0, 14rem) 1fr 4.5rem; gap: .75rem; align-items: center; margin-bottom: .5rem; }
+.hr-bar-track { position: relative; height: 18px; background: #f1f5f9; border-radius: 4px; }
+.hr-bar-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--hr-used); border-radius: 4px; min-width: 2px; }
+.hr-bar-band { position: absolute; top: 5px; bottom: 5px; background: var(--hr-ink); opacity: .35; border-radius: 2px; min-width: 2px; }
+.hr-bar-line { position: absolute; top: -4px; bottom: -4px; border-left: 2px dashed var(--hr-ink); }
+@media (max-width: 575px) { .hr-bar-row { grid-template-columns: 1fr 4rem; } .hr-bar-row > :first-child { grid-column: 1 / -1; } }

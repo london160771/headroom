@@ -14,7 +14,10 @@
     "test": "node --test test/*.test.js && vitest run",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "thesis": "node scripts/thesis.js",
+    "dense": "NODE_NO_WARNINGS=1 node scripts/dense.js",
+    "culprits": "NODE_NO_WARNINGS=1 node scripts/culprits.js"
   },
   "dependencies": {
     "bootstrap": "5.3.8",

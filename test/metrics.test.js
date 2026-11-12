@@ -16,12 +16,14 @@ const DAY = 86_400_000;
 const T0 = Date.UTC(2026, 9, 1);
 
 test('toRecord keeps only chunks included at this height (missing chunks are not 0%)', () => {
-  const chunk = (shard, inc, gas) => ({ shard_id: shard, height_included: inc, gas_used: String(gas), gas_limit: '1000000000000000', congestion_info: { delayed_receipts_gas: '0' } });
-  const rpcBlock = { header: { height: 100, timestamp: String(T0 * 1e6), gas_price: FLOOR }, chunks: [chunk(0, 100, 5e12), chunk(1, 99, 9e14), chunk(2, 100, 0)] };
+  const chunk = (shard, inc, gas) => ({ shard_id: shard, height_included: inc, gas_used: String(gas), gas_limit: '1000000000000000', balance_burnt: '5', congestion_info: { delayed_receipts_gas: '0' } });
+  const rpcBlock = { header: { height: 100, block_ordinal: 90, timestamp: String(T0 * 1e6), gas_price: FLOOR, total_supply: '7' }, chunks: [chunk(0, 100, 5e12), chunk(1, 99, 9e14), chunk(2, 100, 0)] };
   const r = toRecord(rpcBlock);
   assert.deepEqual(r.shard_ids, [0, 2]);
   assert.deepEqual(r.used, [5000, 0]);
   assert.equal(r.shards, 3);
+  assert.equal(r.burnt, '10'); // the repeated (missing) chunk's burn is not counted again
+  assert.equal(r.ordinal, 90);
   const s = blockStats(r);
   assert.equal(s.missing, 1);
   assert.equal(s.use, 5000 / (2 * LIMIT));

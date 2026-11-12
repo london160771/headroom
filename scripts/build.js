@@ -1,49 +1,46 @@
 // Build the page data from evidence/: web/public/data/headroom.json.
 //   node scripts/build.js
+// All formulas live in lib/; this file only reads evidence and writes the result.
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { blocksOf, crossCheck, floorPrice, hotShardEvents, monthly, priceRises, recent } from '../lib/metrics.js';
+import { buildReport } from '../lib/report.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-const read = (f) => fs.readFileSync(path.join(ROOT, 'evidence', f), 'utf8');
+const file = (...p) => path.join(ROOT, ...p);
+const jsonl = (f) => fs.readFileSync(f, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
+const maybe = (f, parse) => (fs.existsSync(f) ? parse(f) : null);
+export const sha256 = (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 
-const rows = read('samples.jsonl').split('\n').filter(Boolean).map((l) => JSON.parse(l));
-const blocks = blocksOf(rows);
-const nb = JSON.parse(read('nearblocks-daily.json'));
-const floor = floorPrice(blocks);
-const last = blocks.at(-1);
-
-const out = {
-  generated_at: new Date().toISOString(),
-  sources: {
-    samples: 'evidence/samples.jsonl (NEAR mainnet archival RPC, scripts/sample.js)',
-    nearblocks: `evidence/nearblocks-daily.json (${nb.source}, fetched ${nb.fetched_at})`,
-  },
-  sampling: {
-    slots: rows.length,
-    blocks: blocks.length,
-    first: new Date(blocks[0].ts).toISOString(),
-    last: new Date(last.ts).toISOString(),
-    rule: 'one block every 6 hours (UTC) since 2023-01-01',
-  },
-  floor_gas_price: floor.toString(),
-  chunk_gas_limit_tgas: Math.max(...rows.at(-1).blocks[0].limit) / 1000,
-  recent: recent(blocks, last.ts, 30, floor),
-  monthly: monthly(blocks, floor),
-  peak_month: monthly(blocks, floor).reduce((a, b) => (b.use > a.use ? b : a)),
-  hot_shard_events: hotShardEvents(blocks, 0.5),
-  above_floor_blocks: blocks.filter((b) => b.gasPrice !== floor).length,
-  price_rises: priceRises(blocks, floor),
-  cross_check: crossCheck(blocks, nb.rows),
-  nearblocks_monthly_txns: Object.entries(
-    nb.rows.reduce((m, r) => ((m[r.date.slice(0, 7)] = (m[r.date.slice(0, 7)] || 0) + r.txns), m), {}),
-  ).filter(([m]) => m >= '2023-01').map(([month, txns]) => ({ month, txns })),
+const report = buildReport({
+  rows: jsonl(file('evidence', 'samples.jsonl')),
+  nb: JSON.parse(fs.readFileSync(file('evidence', 'nearblocks-daily.json'), 'utf8')),
+  denseRows: maybe(file('evidence', 'dense-30d.jsonl'), jsonl),
+  culprits: maybe(file('evidence', 'culprits.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
+  predictions: maybe(file('predictions', 'predictions.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
+  predictionsSha256: maybe(file('predictions', 'predictions.json'), sha256),
+});
+const nb = JSON.parse(fs.readFileSync(file('evidence', 'nearblocks-daily.json'), 'utf8'));
+report.sources = {
+  samples: 'evidence/samples.jsonl (NEAR mainnet archival RPC, scripts/sample.js)',
+  dense: report.dense_check ? 'evidence/dense-30d.jsonl (scripts/dense.js)' : null,
+  culprits: report.culprits ? 'evidence/culprits.json (scripts/culprits.js)' : null,
+  nearblocks: `evidence/nearblocks-daily.json (${nb.source}, fetched ${nb.fetched_at})`,
+  predictions: report.predictions ? 'predictions/predictions.json (frozen; SHA-256 in predictions/SHA256)' : null,
 };
 
-const file = path.join(ROOT, 'web', 'public', 'data', 'headroom.json');
-fs.mkdirSync(path.dirname(file), { recursive: true });
-fs.writeFileSync(file, JSON.stringify(out, null, 1) + '\n');
-const r = out.recent;
-console.log(`${out.sampling.blocks} blocks, ${out.sampling.first.slice(0, 10)} to ${out.sampling.last.slice(0, 10)}`);
-console.log(`last 30 days: use ${(r.use * 100).toFixed(2)}%, busiest shard ${r.busiest.shard} p95 ${(r.busiest.p95 * 100).toFixed(2)}%, fee x${r.feeMultiple?.toFixed(0)}, shard x${r.shardMultiple?.toFixed(0)}, at floor ${(r.atFloor * 100).toFixed(1)}%`);
-console.log(`peak month ${out.peak_month.month}: ${(out.peak_month.use * 100).toFixed(2)}%; hot-shard events ${out.hot_shard_events.length}; blocks above floor ${out.above_floor_blocks}`);
+const out = file('web', 'public', 'data', 'headroom.json');
+fs.mkdirSync(path.dirname(out), { recursive: true });
+fs.writeFileSync(out, JSON.stringify(report, (k, v) => (typeof v === 'bigint' ? v.toString() : v), 1) + '\n');
+
+const pc = (x) => `${(x * 100).toFixed(2)}%`;
+const r = report.recent;
+const iv = report.intervals;
+console.log(`${report.sampling.blocks} blocks, ${report.sampling.first.slice(0, 10)} to ${report.sampling.last.slice(0, 10)}`);
+console.log(`last 30 days: use ${pc(r.use)} [${pc(iv.use[0])}, ${pc(iv.use[1])}], busiest shard ${r.busiest.shard} p95 ${pc(r.busiest.p95)} [${pc(iv.busiestP95[0])}, ${pc(iv.busiestP95[1])}]`);
+console.log(`fee x${r.feeMultiple.toFixed(0)} [${iv.feeMultiple.map((x) => x.toFixed(0)).join(', ')}], shard x${r.shardMultiple.toFixed(0)} [${iv.shardMultiple.map((x) => x.toFixed(0)).join(', ')}], at floor ${pc(r.atFloor)}`);
+console.log(`peak month ${report.peak_month.month}: ${pc(report.peak_month.use)}; hot-shard events ${report.hot_shard_events.length}; above floor ${report.above_floor_blocks}; congested blocks ${report.congestion.congestedBlocks}`);
+const e = report.economics;
+if (e) console.log(`economics: ${e.blocksPerDay.toFixed(0)} blocks/day, burn ${e.burnPerTgasNear.toExponential(3)} NEAR/Tgas, minted ${e.issuance.mintedPerYear.toFixed(0)} NEAR/yr (${pc(e.issuance.ratePerYear)}), burn covers ${pc(e.coverageToday)} today, ${pc(e.coverageAtTrigger)} at 50%, ${pc(e.coverageFull)} full; load needed x${e.loadNeeded.toFixed(0)}`);
+if (report.dense_check) console.log('dense check:', JSON.stringify(report.dense_check));
+if (report.predictions) for (const p of report.predictions.scored) console.log(`${p.id} ${p.status} (${p.metric} ${p.value_so_far ?? '-'} ${p.op} ${p.value})`);

@@ -1,0 +1,47 @@
+# Daily refresh at 00:30 UTC: read the new 6-hour slots from NEAR mainnet, re-check 10 random
+# old blocks, rebuild the page data and THESIS.md, re-score the frozen predictions, and commit
+# with a SHA-256 manifest of evidence/. Uses only the built-in GITHUB_TOKEN: no keys.
+name: daily
+on:
+  schedule:
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: daily
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Sample new slots from mainnet
+        run: npm run sample
+      - name: Refresh NearBlocks cross-check series
+        run: npm run nearblocks
+      - name: Re-read 10 random stored blocks and compare every field
+        run: node scripts/check.js --k 10
+      - name: Read chunks for new hot-shard blocks
+        run: npm run culprits
+      - name: Rebuild page data and THESIS.md
+        run: npm run data && npm run thesis
+      - run: npm test
+      - name: Upgrade the OpenTimestamps proof once Bitcoin has confirmed it
+        run: pip install -q opentimestamps-client && (ots upgrade predictions/predictions.json.ots || true) && rm -f predictions/*.bak
+      - name: Evidence manifest
+        run: (cd evidence && sha256sum anchors.json samples.jsonl nearblocks-daily.json culprits.json dense-30d.jsonl 2>/dev/null) > evidence/MANIFEST.sha256
+      - name: Commit if anything changed
+        run: |
+          git config user.name "headroom-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence web/public/data/headroom.json THESIS.md README.md predictions/predictions.json.ots
+          git diff --cached --quiet && echo "no change" && exit 0
+          git commit -m "data: daily refresh $(date -u +%F)"
+          git push

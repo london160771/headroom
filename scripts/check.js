@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { toRecord } from '../lib/block.js';
 import { rpc } from '../lib/rpc.js';
+import { diffRecord } from '../lib/verify.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const args = process.argv.slice(2);
@@ -21,9 +22,10 @@ while (picks.length < Math.min(k, stored.length)) {
 let bad = 0;
 for (const want of picks) {
   const got = toRecord(await rpc('block', { block_id: want.height }));
-  const same = JSON.stringify(got) === JSON.stringify(want);
+  const diff = diffRecord(got, want);
+  const same = diff.length === 0;
   if (!same) bad++;
-  console.log(`${same ? 'OK  ' : 'DIFF'} block ${want.height} ${new Date(want.ts).toISOString().slice(0, 16)} gas ${want.used.join(',')}${same ? '' : `\n     chain: ${JSON.stringify(got)}\n     file:  ${JSON.stringify(want)}`}`);
+  console.log(`${same ? 'OK  ' : 'DIFF'} block ${want.height} ${new Date(want.ts).toISOString().slice(0, 16)} gas ${want.used.join(',')}${same ? '' : `\n     fields: ${diff.join(', ')}\n     chain: ${JSON.stringify(got)}\n     file:  ${JSON.stringify(want)}`}`);
 }
 console.log(bad ? `${bad} of ${picks.length} blocks differ from evidence/` : `${picks.length} of ${picks.length} random blocks match evidence/ exactly`);
 process.exit(bad ? 1 : 0);

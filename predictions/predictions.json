@@ -1,0 +1,43 @@
+{
+ "made_at": "2026-11-12",
+ "author": "Headroom (github.com/london160771/headroom)",
+ "rules": "Frozen. This file is never edited after it is committed. Its SHA-256 is in predictions/SHA256 and in the git tag predictions-v1, and predictions/predictions.json.ots is an OpenTimestamps proof that anchors that hash in Bitcoin. Each prediction is scored by lib/predictions.js on every build, from sampled mainnet blocks inside its window. Thresholds are shares of capacity (0 to 1).",
+ "predictions": [
+  {
+   "id": "P1",
+   "text": "NEAR's gas price stays at the floor in at least 99% of sampled blocks.",
+   "metric": "at_floor_share", "op": ">=", "value": 0.99, "from": "2026-11-13", "to": "2027-12-31",
+   "if_wrong": "Blockspace is getting scarce. The bear reading (fees can't rise from demand) is wrong."
+  },
+  {
+   "id": "P2",
+   "text": "No calendar month averages more than 20% of NEAR's gas capacity.",
+   "metric": "max_month_use", "op": "<=", "value": 0.2, "from": "2026-11-13", "to": "2027-12-31",
+   "if_wrong": "Demand has returned to the March 2024 peak or beyond, with 10 shards instead of 4."
+  },
+  {
+   "id": "P3",
+   "text": "In every month, the hottest shard in a block stays under 50% of its limit at the 95th percentile.",
+   "metric": "max_month_hottest_p95", "op": "<", "value": 0.5, "from": "2026-11-13", "to": "2027-12-31",
+   "if_wrong": "If P1 still holds, NEAR has a hot-shard problem its fee rule can't see, and congestion control is doing the work."
+  },
+  {
+   "id": "P4",
+   "text": "No sampled block crosses NEAR's 50% fee trigger (gas used summed over all chunks vs the summed limit).",
+   "metric": "max_block_use", "op": "<=", "value": 0.5, "from": "2026-11-13", "to": "2027-12-31",
+   "if_wrong": "Whole blocks are filling. The fee multiple is not a far-off number any more."
+  },
+  {
+   "id": "P5",
+   "text": "Gas burn offsets less than 5% of the new NEAR minted over the window.",
+   "metric": "burn_to_issuance", "op": "<", "value": 0.05, "from": "2026-11-13", "to": "2027-12-31",
+   "if_wrong": "Usage is starting to pay for security. Burn is becoming a real sink, which is bullish for the token."
+  },
+  {
+   "id": "P6",
+   "text": "In June 2027, NEAR uses less than 5% of its gas capacity.",
+   "metric": "use", "op": "<", "value": 0.05, "from": "2027-06-01", "to": "2027-06-30",
+   "if_wrong": "Load grew about 9x or more in seven months. The headroom is being used up faster than the thesis says."
+  }
+ ]
+}
