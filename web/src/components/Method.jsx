@@ -38,7 +38,8 @@ export default function Method({ d }) {
             <h3 className="h6">Limits, stated plainly</h3>
             <ul className="ps-3 mb-3">
               <li>Gas is not NEAR's only limit. State size, chunk and witness size, and receipt bandwidth can bind first. Headroom measures gas only.</li>
-              <li>It samples one block per 6 hours, not every block. Short spikes between samples are missed.</li>
+              <li>It samples one block per 6-hour slot, not every block. Short spikes between samples are missed.</li>
+              <li>A 95th percentile from 120 blocks is a noisy tail number. Where the sampling check disagrees with it, trust the denser read.</li>
               <li>A chunk header's gas used describes the shard's previous execution step, so a sampled block's numbers are one block behind its timestamp. Over months this does not matter.</li>
               <li>Burn and issuance assume the sampled burn per block is typical of the blocks in between.</li>
               <li>The ×N slider scales today's load evenly. Real growth lands on some shards more than others.</li>

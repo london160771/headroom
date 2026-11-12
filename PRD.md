@@ -115,7 +115,7 @@ SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → STRESS IT (×N
 
 ## 9. Core flow
 
-1. `scripts/sample.js` reads one block every 6 hours from 2023-01-01 to now (fixed UTC sample times) from the archival RPC. Resumable.
+1. `scripts/sample.js` reads one block in every 6-hour UTC slot from 2023-01-01 to now, at a seeded random moment inside each slot (`lib/slots.js` `targetTime`), from the archival RPC. Resumable.
 2. `scripts/nearblocks.js` saves the NearBlocks daily chart series (gas used, blocks, txns).
 3. `scripts/build.js` turns both into `web/public/data/headroom.json`: monthly capacity use, hottest-shard use, gas price, events, multiples, and the Gate 0 cross-check.
 4. `scripts/check.js` re-samples K random published sample times and checks they match `evidence/` exactly (same heights, same gas).
@@ -206,7 +206,7 @@ web (React + Vite + Bootstrap) ──> headroom.json + live mainnet RPC read
 - Option A: sample blocks every 6 h, compare monthly gas per block with NearBlocks.
 - Option B: if they disagree by more than 20%, use NearBlocks for the average and keep samples only for per-shard shape, and say so.
 - Acceptance: monthly ratio within 0.8–1.2 for most months; outliers explained.
-- **Result:** PASSED 2026-11-12. Median monthly ratio 0.96; 42 of 47 months within 0.8–1.2 (outliers: 2023-01 0.70, 2023-05 0.67, 2026-05 0.79, 2026-09 0.78, 2026-11 0.74 partial). `npm run check`: 20 of 20 random blocks match.
+- **Result:** PASSED 2026-11-12. v1 (fixed times): median 0.96, 42 of 47 months within 0.8–1.2. v3 (seeded random moment per slot): **median 0.99, 45 of 47 within** (outliers 2025-12 1.29, 2023-06 1.22). `npm run check`: 20 of 20 random blocks match.
 
 | Date | Decision | Reason / evidence |
 |---|---|---|
@@ -221,6 +221,7 @@ web (React + Vite + Bootstrap) ──> headroom.json + live mainnet RPC read
 | 2026-11-12 | Re-sampled every slot with `block_ordinal`, `total_supply`, chunk `balance_burnt` | Needed for issuance and burn; v1 samples lacked them |
 | 2026-11-12 | Issuance from headers, not from a stated inflation rate | Δ total_supply + burn is measured; a stated rate can be stale |
 | 2026-11-12 | Bootstrap resamples whole UTC days | Blocks on one day are correlated; resampling blocks would understate the interval |
+| 2026-11-12 | Sample at a seeded random moment inside each 6-hour slot, not at 00/06/12/18 UTC | Fixed clock times saw the same 4 hours every day: the 30-min dense read showed the fixed-time sample read low (Gate 0 median fell to 0.89 once slot times were exact). Random moments cover all 24 hours and stay reproducible |
 | 2026-11-12 | OpenTimestamps (Python `opentimestamps-client`, used once by hand) for the predictions hash | Keyless, free, anchors in Bitcoin; not a runtime dependency |
 
 ---

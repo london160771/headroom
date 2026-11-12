@@ -11,6 +11,7 @@
 3. Send the live URL; Claude fills it into README.
 4. Record the video (script: /mnt/project-files/headroom/VIDEO-SCRIPT.md) and post on X (draft: /mnt/project-files/headroom/X-POST.md).
 5. Submit (track `thesis`) once README links are filled.
+6. **Push the predictions tag** (the cloud session could not push tags): `git clone https://github.com/london160771/headroom ~/headroom; cd ~/headroom && git pull && git tag -a predictions-v1 d3c0f60 -m "Frozen Headroom predictions" && git push origin predictions-v1`
 
 ## 1. Right now
 
@@ -31,7 +32,7 @@
 
 | Check | Command | Result |
 |---|---|---|
-| Node tests | `node --test test/*.test.js` | 41 of 41 pass |
+| Node tests | `node --test test/*.test.js` | 42 of 42 pass |
 | Web tests | `vitest run` | 4 of 4 pass |
 | Build | `npm run build` | pass |
 | Re-check vs mainnet | `npm run check` | 20 of 20 random blocks match evidence/ field by field |
@@ -39,13 +40,13 @@
 | THESIS.md + README table match data | `test/thesis.test.js` | pass |
 | Predictions hash | `sha256sum predictions/predictions.json` | `8229c89e7f27f92f8e59b2c6aa6d2e8747a8d5917839579f793df4f5a4b2c933` (= `predictions/SHA256`, tag `predictions-v1`) |
 | OpenTimestamps | `ots stamp` | submitted to 4 calendars; the proof is pending until Bitcoin confirms; the daily workflow runs `ots upgrade` |
-| Gate 0 | `npm run data` (cross_check) | see THESIS.md "Evidence against" 4 |
-| Sampling check | `npm run dense` + `npm run data` | dense and sampled use inside each other's 90% interval (numbers in headroom.json `dense_check`) |
+| Gate 0 | `npm run data` (cross_check) | median monthly ratio 0.99; 45 of 47 months within 0.8–1.2 |
+| Sampling check | `npm run dense` + `npm run data` | use: dense 0.58% vs sampled 0.68%, inside the sampled 90% interval; busiest-shard p95: dense 4.77% vs sampled 7.54%, outside it (stated on the page as a limit) |
 | UI at 1280 px and 390 px | Playwright screenshot | no horizontal scroll, no console errors |
 
 ## 4. What works (verified)
 
-- Sampler v2: 5,648 slots with `block_ordinal`, `total_supply`, chunk `balance_burnt`, 2023-01-01 to 2026-11-12. Slots more than 60 s from their time were re-read with the iterative locator (`--refix`).
+- Sampler v3: 5,648 slots with `block_ordinal`, `total_supply`, chunk `balance_burnt`, 2023-01-01 to 2026-11-12, one block at a seeded random moment in each 6-hour slot (all 24 hours covered). `--refix` re-reads any slot more than 60 s from its target.
 - Economics: issuance from total_supply + burn; burn per Tgas; the burn-vs-issuance bridge with intervals.
 - Dense check: 1,440 blocks (one per 30 min) over the last 30 days.
 - Culprits: chunk reads for all 417 hot-shard blocks.
@@ -70,7 +71,7 @@ All real. Slider is a labelled model. Test fixtures and the mock `fetch` stay in
 
 - archival-rpc.mainnet.near.org rate-limits (HTTP 429); FastNEAR archival is primary.
 - 1 of 5,648 sampled blocks had no included chunk; it is skipped, never counted as 0%.
-- Prediction P3 would have failed its backtest (a month in late 2025 had a hottest-shard p95 just over 50%). It is kept as a real forecast and the failure is shown.
+- Prediction P3 would have failed its backtest (a month in the last year had a hottest-shard p95 above 50%). It is kept as a real forecast and the failure is shown.
 
 ## 9. Handoff notes
 
@@ -81,6 +82,7 @@ All real. Slider is a labelled model. Test fixtures and the mock `fetch` stay in
 
 ## 10. Build log
 
-- **2026-11-12** phase-3: depth (see PRD §10 FR-ECO … FR-WEB-007, §16 decisions).
+- **2026-11-12** phase-3b: seeded random moment per slot (Gate 0 median 0.96 → 0.99), full re-sample, mobile predictions cards.
+- **2026-11-12** `d3c0f60` phase-3: depth (see PRD §10 FR-ECO … FR-WEB-007, §16 decisions).
 - **2026-11-12** `4cda730` phases 1–2: full sample, data, page, README.
 - **2026-11-12** `0e9ae99` phase-0: docs, sampler, metrics, page skeleton.

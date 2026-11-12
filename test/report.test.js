@@ -6,6 +6,7 @@ import path from 'node:path';
 import { test } from 'node:test';
 import { buildReport, busiestP95, headlineIntervals, offsets } from '../lib/report.js';
 import { blockStats } from '../lib/metrics.js';
+import { targetTime } from '../lib/slots.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const DAY = 86_400_000;
@@ -91,6 +92,7 @@ test('no typed-in percentages or multiples in page components (numbers come from
 });
 
 test('slot offsets: median and max gap between slot time and stored block', () => {
-  const rows = [{ t: 0, blocks: [{ ts: 1000 }] }, { t: 0, blocks: [{ ts: 3000 }] }, { t: 0, blocks: [{ ts: 120_000 }] }];
+  const at = targetTime(0);
+  const rows = [{ t: 0, blocks: [{ ts: at + 1000 }] }, { t: 0, blocks: [{ ts: at - 3000 }] }, { t: 0, blocks: [{ ts: at + 120_000 }] }];
   assert.deepEqual(offsets(rows), { median: 3, max: 120, over60: 1 });
 });

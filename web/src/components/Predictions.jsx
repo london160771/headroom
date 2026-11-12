@@ -14,7 +14,7 @@ export default function Predictions({ p }) {
         Made {day(p.made_at)} and frozen: the file's SHA-256 is <span className="hr-mono text-break">{p.sha256}</span>, also stamped in Bitcoin with OpenTimestamps.
         The page re-scores them every time the data is rebuilt.
       </p>
-      <div className="table-responsive">
+      <div className="table-responsive d-none d-md-block">
         <table className="table table-sm small align-middle mb-0">
           <thead><tr><th>#</th><th>Prediction</th><th>Window</th><th>Now</th><th>Backtest*</th></tr></thead>
           <tbody>
@@ -32,6 +32,22 @@ export default function Predictions({ p }) {
             })}
           </tbody>
         </table>
+      </div>
+      <div className="d-md-none">
+        {p.scored.map((s, i) => {
+          const b = p.backtest[i];
+          return (
+            <div key={s.id} className="border rounded p-2 mb-2 small">
+              <div className="d-flex justify-content-between gap-2 mb-1">
+                <span className="hr-mono fw-semibold">{s.id}</span>
+                <span className="text-nowrap">Now <span className={`badge text-bg-${BADGE[s.status]}`}>{s.status}</span> · Backtest* <span className={`badge text-bg-${BADGE[b.status]}`}>{b.status}</span></span>
+              </div>
+              <div>{s.text}</div>
+              <div className="hr-muted">{day(s.from)} to {day(s.to)}. Backtest value {fmt(b, b.value_so_far)}.</div>
+              <div className="hr-muted">If wrong: {s.if_wrong}</div>
+            </div>
+          );
+        })}
       </div>
       <p className="small hr-muted mt-1 mb-0">*Backtest: the same statement over the window of the same length that ends on the last full day of data. It shows how the thesis would have scored in the recent past, including where it would have been wrong.</p>
       <Source code={['predictions/predictions.json', 'lib/predictions.js']} plain="Each prediction names a metric, a window, an operator and a value. The build recomputes the metric from sampled blocks inside the window. A running maximum that breaks its bound fails at once; anything else is final when its window closes." />

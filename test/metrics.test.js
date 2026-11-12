@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { toRecord } from '../lib/block.js';
 import { blockStats, blocksOf, crossCheck, floorPrice, hotShardEvents, monthly, multiples, percentile, priceRises, recent, stress } from '../lib/metrics.js';
-import { heightAt, slots } from '../lib/slots.js';
+import { heightAt, slots, STEP_MS, targetTime } from '../lib/slots.js';
 
 const LIMIT = 1_000_000; // 1,000 Tgas in Ggas
 const FLOOR = '100000000';
@@ -114,4 +114,14 @@ test('price rises: blocks above the floor, with how many shards were full', () =
   assert.equal(r[0].priceMultiple, 20);
   assert.equal(r[0].fullShards, 2);
   assert.equal(r[0].blockUse, 0.525);
+});
+
+test('each slot is sampled at a fixed pseudo-random moment that covers all hours of the day', () => {
+  const ts = slots(Date.UTC(2024, 0, 1));
+  assert.equal(targetTime(ts[5]), targetTime(ts[5])); // same moment on every run
+  const offs = ts.map((t) => targetTime(t) - t);
+  assert.ok(offs.every((o) => o >= 0 && o < STEP_MS));
+  // Hours of day covered by the sampled moments (fixed times would give only 4).
+  const hours = new Set(ts.map((t) => new Date(targetTime(t)).getUTCHours()));
+  assert.equal(hours.size, 24);
 });

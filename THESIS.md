@@ -1,28 +1,28 @@
 # THESIS: NEAR is a volume bet, not a scarcity bet
 
-Generated from `web/public/data/headroom.json` by `npm run thesis`. Data as of 12 Nov 2026 (5,647 sampled mainnet blocks since 1 Jan 2023). Do not edit by hand: `npm test` fails if this file and the data disagree.
+Generated from `web/public/data/headroom.json` by `npm run thesis`. Data as of 12 Nov 2026 (5,648 sampled mainnet blocks since 1 Jan 2023). Do not edit by hand: `npm test` fails if this file and the data disagree.
 
 ## Claim
 
-NEAR has built far more blockspace than it sells. Over the 30 days to 12 Nov 2026 it used **0.55%** of its gas capacity (90% interval 0.39% to 0.77%), so load can grow about **92×** (65× to 129×) before NEAR's fee rule raises the gas price.
+NEAR has built far more blockspace than it sells. Over the 30 days to 12 Nov 2026 it used **0.67%** of its gas capacity (90% interval 0.54% to 0.84%), so load can grow about **74×** (59× to 93×) before NEAR's fee rule raises the gas price.
 
-So for the next one to two years, the token's value cannot come from scarce blockspace. NEAR mints about 32,186,065 NEAR a year (2.51% of supply), and gas burn offsets **0.72%** of it. For burn alone to match issuance, load would have to grow about **140×**, past the point where fees start to rise (92×). Even at that trigger, burn covers 65.6% of issuance.
+So for the next one to two years, the token's value cannot come from scarce blockspace. NEAR mints about 32,246,942 NEAR a year (2.52% of supply), and gas burn offsets **0.87%** of it. For burn alone to match issuance, load would have to grow about **116×**, past the point where fees start to rise (74×). Even at that trigger, burn covers 64.2% of issuance.
 
 **Investment reading.** Holding NEAR is a bet on transaction volume at the floor price, plus the option that whole blocks fill and the price (and burn) rise. The signal to watch is whole-block use crossing 50%, not any single busy shard or app.
 
 ## Evidence for
 
-1. **Capacity is mostly empty.** 0.55% used in the last 30 days, across 10 shards of 1,000 Tgas per chunk. The gas price was at the floor (0.0001 NEAR per Tgas) in 100.0% of recent sampled blocks. Source: `evidence/samples.jsonl`, `lib/metrics.js`.
-2. **The scaling is built.** NEAR went from 4 shards (Jan 2023) to 10. Even the busiest shard (shard 12, 95th percentile 3.27%) could take about 31× more before it is full at its busy hours (90%: 18× to 35×).
-3. **One hot shard cannot move the price.** nearcore's `compute_next_gas_price` sums gas over all chunks. 405 sampled blocks had a shard more than half full; 392 of them stayed at the floor price. With 10 shards, about 5 full shards at once are needed.
-4. **Burn grows faster than use once fees move.** At every block full and the floor price, burn would be 131.1% of issuance. Past the 50% trigger the price rises each block, and burn per Tgas with it. Burn per Tgas today: 0.0000788 NEAR, measured from `balance_burnt`.
+1. **Capacity is mostly empty.** 0.67% used in the last 30 days, across 10 shards of 1,000 Tgas per chunk. The gas price was at the floor (0.0001 NEAR per Tgas) in 100.0% of recent sampled blocks. Source: `evidence/samples.jsonl`, `lib/metrics.js`.
+2. **The scaling is built.** NEAR went from 4 shards (Jan 2023) to 10. Even the busiest shard (shard 8, 95th percentile 7.03%) could take about 14× more before it is full at its busy hours (90%: 12× to 17×).
+3. **One hot shard cannot move the price.** nearcore's `compute_next_gas_price` sums gas over all chunks. 493 sampled blocks had a shard more than half full; 478 of them stayed at the floor price. With 10 shards, about 5 full shards at once are needed.
+4. **Burn grows faster than use once fees move.** At every block full and the floor price, burn would be 128.4% of issuance. Past the 50% trigger the price rises each block, and burn per Tgas with it. Burn per Tgas today: 0.0000773 NEAR, measured from `balance_burnt`.
 
 ## Evidence against
 
-1. **Demand can arrive fast.** Use peaked at 19.1% in Mar 2024. From 29 Nov 2023 to 29 Dec 2023 (the `inscription.near` rush), 14 sampled blocks were priced above the floor, up to 20× it, with 2 of 4 shards full. The 92× headroom is large, not infinite.
-2. **Local scarcity is real.** 120 of 5,647 sampled blocks (2.13%) had delayed receipts in some shard: congestion control was holding back work the price never showed. In 2026, the account leading the most hot-shard chunks was `hotwallet.kaiching`. Apps on a hot shard can feel full while the chain is empty.
+1. **Demand can arrive fast.** Use peaked at 20.6% in Mar 2024. From 29 Nov 2023 to 29 Dec 2023 (the `inscription.near` rush), 15 sampled blocks were priced above the floor, up to 20× it, with 2 of 4 shards full. The 74× headroom is large, not infinite.
+2. **Local scarcity is real.** 151 of 5,648 sampled blocks (2.67%) had delayed receipts in some shard: congestion control was holding back work the price never showed. In 2026, the account leading the most hot-shard chunks was `earn.kaiching`. Apps on a hot shard can feel full while the chain is empty.
 3. **Gas is not the only limit.** State size, chunk and state-witness size, and receipt bandwidth can bind before gas. If one of them binds first, real headroom is smaller than these multiples.
-4. **It is a sample.** One block per 6 hours. Against NearBlocks' every-block daily totals the monthly median ratio is 0.89 (35 of 47 months within 0.8 to 1.2). A 12× denser read of the last 30 days gave 0.58% use (sampled: 0.55%) and a busiest-shard p95 of 4.77% (sampled: 3.27%).
+4. **It is a sample.** One block per 6-hour slot, at a seeded random moment so every hour of the day is covered. Against NearBlocks' every-block daily totals the monthly median ratio is 0.99 (45 of 47 months within 0.8 to 1.2). A 12× denser read of the last 30 days gave 0.58% use (sampled: 0.68%) and a busiest-shard p95 of 4.77% (sampled: 7.54%).
 5. **Issuance is not fixed.** Governance can change the inflation rate, which moves the burn-to-issuance bar without any change in use.
 
 ## What would change my mind

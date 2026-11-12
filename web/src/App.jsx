@@ -44,7 +44,7 @@ export default function App() {
               <Source
                 rpc="block {block_id} → chunks[].gas_used, chunks[].gas_limit, chunks[].height_included"
                 code={['scripts/sample.js', 'lib/block.js', 'lib/metrics.js', 'lib/report.js']}
-                plain={`One block every 6 hours since 1 Jan 2023 (${d.sampling.blocks.toLocaleString('en-US')} blocks). Each month: gas used ÷ gas limit over all included chunks. The band resamples whole days 500 times.`}
+                plain={`One block in every 6-hour slot since 1 Jan 2023, at a seeded random moment inside the slot (${d.sampling.blocks.toLocaleString('en-US')} blocks). Each month: gas used ÷ gas limit over all included chunks. The band resamples whole days 500 times.`}
               />
             </div>
           </section>

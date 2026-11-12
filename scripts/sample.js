@@ -1,14 +1,15 @@
-// Sample NEAR mainnet blocks: one block every 6 hours (UTC) since 2023-01-01.
+// Sample NEAR mainnet blocks: one block in every 6-hour UTC slot since 2023-01-01, at a seeded
+// random moment inside the slot (lib/slots.js targetTime).
 // Output: evidence/samples.jsonl, one line per slot: { t, blocks: [record] }.
 // Resumable: slots already in the file are skipped. Run again to add new slots.
 //   node scripts/sample.js [--dry-run] [--limit N] [--refix]
-// --refix re-reads stored slots whose block is more than 60 s from the slot time.
+// --refix re-reads stored slots whose block is more than 60 s from its target time.
 import fs from 'node:fs';
 import path from 'node:path';
 import { toRecord } from '../lib/block.js';
 import { anchors, blockAt } from '../lib/locate.js';
 import { blockFrom, errors } from '../lib/rpc.js';
-import { BLOCKS_PER_SLOT, slots } from '../lib/slots.js';
+import { BLOCKS_PER_SLOT, slots, targetTime } from '../lib/slots.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUT = path.join(ROOT, 'evidence', 'samples.jsonl');
@@ -20,7 +21,7 @@ const PARALLEL = 8;
 
 async function slot(t, table) {
   const blocks = [];
-  let b = await blockAt(t, table);
+  let b = await blockAt(targetTime(t), table);
   blocks.push(toRecord(b));
   while (blocks.length < BLOCKS_PER_SLOT) {
     b = await blockFrom(b.header.height + 1);
@@ -33,7 +34,7 @@ const table = await anchors(ANCHORS, { write: !dryRun });
 
 if (args.includes('--refix')) {
   const lines = fs.readFileSync(OUT, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
-  const off = lines.filter((r) => Math.abs(r.blocks[0].ts - r.t) >= 60_000);
+  const off = lines.filter((r) => Math.abs(r.blocks[0].ts - targetTime(r.t)) >= 60_000);
   console.error(`${off.length} of ${lines.length} slots are 60 s or more from their slot time; re-reading`);
   const fixed = new Map();
   for (let i = 0; i < off.length; i += PARALLEL) {
@@ -41,7 +42,7 @@ if (args.includes('--refix')) {
     if (i % (PARALLEL * 50) === 0) console.error(new Date().toISOString(), `${i}/${off.length}`, JSON.stringify(errors));
   }
   const out = lines.map((r) => fixed.get(r.t) || r);
-  const still = out.filter((r) => Math.abs(r.blocks[0].ts - r.t) >= 60_000).length;
+  const still = out.filter((r) => Math.abs(r.blocks[0].ts - targetTime(r.t)) >= 60_000).length;
   if (!dryRun) fs.writeFileSync(OUT, out.map((r) => JSON.stringify(r)).join('\n') + '\n');
   console.error(`done; ${still} slots still 60 s or more off`);
   process.exit(0);

@@ -27,21 +27,21 @@ SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → PRICE IT AGAIN
 ## What we found
 
 <!-- findings:start -->
-Numbers from `web/public/data/headroom.json`, data as of 12 Nov 2026: 5,647 mainnet blocks, one every 6 hours since 1 Jan 2023. This table is written by `npm run thesis`.
+Numbers from `web/public/data/headroom.json`, data as of 12 Nov 2026: 5,648 mainnet blocks, one in every 6-hour slot (at a seeded random moment) since 1 Jan 2023. This table is written by `npm run thesis`.
 
 | | |
 |---|---|
-| Capacity used, last 30 days | **0.55%** (90%: 0.39% to 0.77%), 10 shards × 1,000 Tgas per chunk |
-| Growth before NEAR's fee rule raises the price | **about 92×** (90%: 65× to 129×) |
-| Growth before the busiest shard is full at its busy hours | about 31× (shard 12, p95 3.27%; 90%: 18× to 35×) |
-| NEAR minted per year (from total_supply + burn) | 32,186,065 NEAR (2.51% of supply) |
-| Gas burn as a share of issuance | **0.72%** today; 65.6% at the 50% fee trigger; 131.1% with every block full |
-| Growth needed for burn to match issuance | about 140× (90%: 99× to 196×) |
-| Peak month since 2023 | 19.1% (Mar 2024) |
-| Sampled blocks with one shard more than half full | 405, of which 392 stayed at the floor price |
-| Sampled blocks priced above the floor | 14, all from 29 Nov 2023 to 29 Dec 2023, up to 20× the floor |
-| Sampled blocks with delayed receipts (congestion control at work) | 120 of 5,647 |
-| Sampling check (one block per 30 min, same 30 days) | use 0.58% dense vs 0.55% sampled; busiest-shard p95 4.77% vs 3.27% |
+| Capacity used, last 30 days | **0.67%** (90%: 0.54% to 0.84%), 10 shards × 1,000 Tgas per chunk |
+| Growth before NEAR's fee rule raises the price | **about 74×** (90%: 59× to 93×) |
+| Growth before the busiest shard is full at its busy hours | about 14× (shard 8, p95 7.03%; 90%: 12× to 17×) |
+| NEAR minted per year (from total_supply + burn) | 32,246,942 NEAR (2.52% of supply) |
+| Gas burn as a share of issuance | **0.87%** today; 64.2% at the 50% fee trigger; 128.4% with every block full |
+| Growth needed for burn to match issuance | about 116× (90%: 92× to 145×) |
+| Peak month since 2023 | 20.6% (Mar 2024) |
+| Sampled blocks with one shard more than half full | 493, of which 478 stayed at the floor price |
+| Sampled blocks priced above the floor | 15, all from 29 Nov 2023 to 29 Dec 2023, up to 20× the floor |
+| Sampled blocks with delayed receipts (congestion control at work) | 151 of 5,648 |
+| Sampling check (one block per 30 min, same 30 days) | use 0.58% dense vs 0.68% sampled; busiest-shard p95 4.77% vs 7.54% |
 | Frozen predictions | 6, made 12 Nov 2026; backtest over the last window: 5 of 6 would have held |
 <!-- findings:end -->
 
@@ -115,7 +115,7 @@ Node 20+. No keys, no wallet, no `.env`. `ots` (Python `opentimestamps-client`) 
 
 ## Tested, not claimed
 
-`npm test` on 2026-11-12: **45 passing** (41 with `node:test`, 4 with vitest). They cover:
+`npm test` on 2026-11-12: **46 passing** (42 with `node:test`, 4 with vitest). They cover:
 
 - Block records: missing chunks are skipped, never 0%; burn is not double-counted from repeated chunk headers.
 - Metrics: block and shard use, percentiles, monthly grouping, multiples, recent window, hot-shard events, price rises, congestion, the ×N model, cross-check.
@@ -130,7 +130,8 @@ Node 20+. No keys, no wallet, no `.env`. `ots` (Python `opentimestamps-client`) 
 ## Known limits
 
 - Gas is not NEAR's only limit. State size, chunk and witness size, and receipt bandwidth can bind first. Headroom measures gas only.
-- One block per 6 hours, not every block. Short spikes between samples are missed (the sampling check measures how much that matters).
+- A 95th percentile from 120 blocks (the busiest-shard number) is noisy; the denser sampling check is the better estimate for it.
+- One block per 6-hour slot, not every block. Short spikes between samples are missed (the sampling check measures how much that matters).
 - A chunk header's `gas_used` describes the shard's previous execution step, so each sampled block is one step behind its timestamp. Over months this does not matter.
 - Burn and issuance assume the sampled burn per block is typical of the blocks in between. Governance can change the inflation rate.
 - Culprit counts are receipts and transactions, not gas: a chunk does not list gas per receipt.
