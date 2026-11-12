@@ -1,0 +1,34 @@
+:root {
+  --hr-ink: #0f172a;
+  --hr-muted: #64748b;
+  --hr-line: #e2e8f0;
+  --hr-bg: #f8fafc;
+  --hr-used: #10b981;
+  --hr-hot: #f97316;
+  --hr-trigger: #f59e0b;
+  --hr-full: #ef4444;
+}
+body { background: var(--hr-bg); color: var(--hr-ink); }
+.hr-wrap { max-width: 1040px; }
+.hr-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.hr-muted { color: var(--hr-muted); }
+.hr-panel { background: #fff; border: 1px solid var(--hr-line); border-radius: 12px; padding: 1.25rem; }
+.hr-kicker { font-size: .8rem; font-weight: 600; color: var(--hr-muted); letter-spacing: .02em; }
+.hr-big { font-size: clamp(2.6rem, 8vw, 4.2rem); font-weight: 700; line-height: 1; letter-spacing: -.02em; }
+.hr-stat { font-size: 1.6rem; font-weight: 700; line-height: 1.1; }
+.hr-gauges { display: flex; gap: 6px; align-items: flex-end; height: 160px; position: relative; }
+.hr-gauge { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; }
+.hr-gauge-tube { position: relative; width: 100%; max-width: 44px; flex: 1; background: #f1f5f9; border: 1px solid var(--hr-line); border-radius: 6px; overflow: hidden; }
+.hr-gauge-fill { position: absolute; left: 0; right: 0; bottom: 0; background: var(--hr-used); transition: height .25s ease; }
+.hr-gauge-fill.is-hot { background: var(--hr-hot); }
+.hr-gauge-fill.is-full { background: var(--hr-full); }
+.hr-gauge-mark { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--hr-trigger); }
+.hr-gauge-label { font-size: .7rem; color: var(--hr-muted); white-space: nowrap; }
+.hr-chart text { font-size: 11px; fill: var(--hr-muted); }
+.hr-legend { display: inline-flex; align-items: center; gap: .35rem; font-size: .85rem; }
+.hr-swatch { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+.hr-code { background: #0f172a; color: #e2e8f0; border-radius: 8px; padding: .75rem 1rem; font-size: .8rem; overflow-x: auto; white-space: pre; }
+.hr-card-bull { border-left: 4px solid var(--hr-used); }
+.hr-card-bear { border-left: 4px solid var(--hr-hot); }
+.form-range::-webkit-slider-thumb { background: var(--hr-ink); }
+.form-range::-moz-range-thumb { background: var(--hr-ink); }

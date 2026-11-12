@@ -1,0 +1,29 @@
+{
+  "name": "headroom",
+  "private": true,
+  "type": "module",
+  "description": "How much room does NEAR have left? A re-runnable census of NEAR's blockspace.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "sample": "node scripts/sample.js",
+    "nearblocks": "node scripts/nearblocks.js",
+    "data": "node scripts/build.js",
+    "check": "node scripts/check.js",
+    "test": "node --test test/*.test.js && vitest run",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "bootstrap": "5.3.8",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "6.3.0",
+    "vite": "8.3.8",
+    "vitest": "5.1.0"
+  }
+}
