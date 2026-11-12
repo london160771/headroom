@@ -42,7 +42,7 @@ export default function App() {
 
           <section className="mb-5">
             <h2 className="h4">One full shard, no fee change</h2>
-            <div className="hr-panel"><HotEvents events={d.hot_shard_events} floor={d.floor_gas_price} /></div>
+            <div className="hr-panel"><HotEvents events={d.hot_shard_events} floor={d.floor_gas_price} rises={d.price_rises} /></div>
           </section>
 
           <Thesis d={d} />
@@ -67,7 +67,7 @@ function Headline({ d }) {
       <h1 className="hr-big mb-2">NEAR used {pct(r.use)} of its blockspace.</h1>
       <p className="lead mb-3" style={{ maxWidth: 760 }}>
         Its peak month since 2023 was {month(d.peak_month.month)} at {pct(d.peak_month.use)}. The gas price sat at the floor ({gasPrice(d.floor_gas_price)}) in{' '}
-        {pct(r.atFloor)} of recent blocks.
+        {pct(r.atFloor)} of recent sampled blocks.
       </p>
       <div className="row g-3" style={{ maxWidth: 760 }}>
         <div className="col-6">

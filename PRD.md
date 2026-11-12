@@ -115,7 +115,7 @@ SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → STRESS IT (×N
 
 ## 9. Core flow
 
-1. `scripts/sample.js` reads 3 consecutive blocks every 6 hours from 2023-01-01 to now (fixed UTC sample times) from the archival RPC. Resumable.
+1. `scripts/sample.js` reads one block every 6 hours from 2023-01-01 to now (fixed UTC sample times) from the archival RPC. Resumable.
 2. `scripts/nearblocks.js` saves the NearBlocks daily chart series (gas used, blocks, txns).
 3. `scripts/build.js` turns both into `web/public/data/headroom.json`: monthly capacity use, hottest-shard use, gas price, events, multiples, and the Gate 0 cross-check.
 4. `scripts/check.js` re-samples K random published sample times and checks they match `evidence/` exactly (same heights, same gas).
@@ -130,11 +130,11 @@ SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → STRESS IT (×N
 
 | ID | Pri | Requirement | Acceptance |
 |---|---|---|---|
-| FR-SMP-001 | P0 | Sampler reads 3 consecutive blocks per 6-hour UTC slot since 2023-01-01, stores per-chunk gas used, gas limit, shard id, delayed-receipts gas, gas price, height, time | `evidence/samples.jsonl` has one line per slot; re-running skips done slots |
+| FR-SMP-001 | P0 | Sampler reads one block per 6-hour UTC slot since 2023-01-01, stores per-chunk gas used, gas limit, shard id, delayed-receipts gas, gas price, height, time | `evidence/samples.jsonl` has one line per slot; re-running skips done slots |
 | FR-SMP-002 | P0 | Only chunks included at that block height count; missing chunks are recorded as missing | Unit test with a fixture block with one missing chunk |
 | FR-NBK-001 | P0 | Save the NearBlocks daily series | `evidence/nearblocks-daily.json` with date, gas_used, blocks, txns |
 | FR-BLD-001 | P0 | Monthly: average capacity use (sum used / sum limit), hottest shard median and p95, share of blocks at floor gas price, shard count | Unit tests on fixture samples |
-| FR-BLD-002 | P0 | Headroom multiples: (a) fee multiple = 0.5 / recent average use; (b) hottest-shard multiple = 1 / recent p95 hottest-shard use. "Recent" = last 30 days | Unit tests; values shown with their formula |
+| FR-BLD-002 | P0 | Headroom multiples: (a) fee multiple = 0.5 / recent average use; (b) shard multiple = 1 / the busiest shard's own p95 use. "Recent" = last 30 days | Unit tests; values shown with their formula |
 | FR-BLD-003 | P0 | Hot-shard events: sampled blocks where any one shard used more than 50% | List with date, shard, use, gas price |
 | FR-BLD-004 | P0 | Gate 0 cross-check: our monthly gas per day vs NearBlocks, as a ratio | Shown on the page and in PROJECT_STATE |
 | FR-CHK-001 | P0 | `check.js` re-reads K random sample slots and compares with `evidence/` | Exit 0 on match; prints each mismatch |
@@ -194,10 +194,10 @@ web (React + Vite + Bootstrap) ──> headroom.json + live mainnet RPC read
 ## 16. Decisions log and Gate 0
 
 **Gate 0, riskiest premise:** sampled blocks give the same picture as full daily totals.
-- Option A: sample 3 blocks every 6 h, compare monthly gas per day with NearBlocks.
+- Option A: sample blocks every 6 h, compare monthly gas per block with NearBlocks.
 - Option B: if they disagree by more than 20%, use NearBlocks for the average and keep samples only for per-shard shape, and say so.
 - Acceptance: monthly ratio within 0.8–1.2 for most months; outliers explained.
-- **Result:** [pending]
+- **Result:** PASSED 2026-11-12. Median monthly ratio 0.96; 42 of 47 months within 0.8–1.2 (outliers: 2023-01 0.70, 2023-05 0.67, 2026-05 0.79, 2026-09 0.78, 2026-11 0.74 partial). `npm run check`: 20 of 20 random blocks match.
 
 | Date | Decision | Reason / evidence |
 |---|---|---|
@@ -205,6 +205,9 @@ web (React + Vite + Bootstrap) ──> headroom.json + live mainnet RPC read
 | 2026-11-12 | Static site, no backend, no DB | Nothing to store; judges need no setup |
 | 2026-11-12 | Gas price rule sums all chunks | nearcore `core/primitives/src/block.rs` |
 | 2026-11-12 | Chunk gas limit 1,000 Tgas | Read from live block headers |
+| 2026-11-12 | One block per 6 h instead of 3 consecutive | Archival RPC rate limits; more independent moments for the same budget. archival-rpc.mainnet.near.org returns 429 under load, so FastNEAR is primary |
+| 2026-11-12 | Shard multiple uses each shard's own p95 (not the per-block busiest shard) | Keeps the headline and the ×N slider consistent |
+| 2026-11-12 | The price DID rise in 14 sampled blocks (29 Nov to 29 Dec 2023, inscription.near rush, up to 20×) | Shown on the page; confirms the fee rule |
 
 ---
 
@@ -225,7 +228,7 @@ web (React + Vite + Bootstrap) ──> headroom.json + live mainnet RPC read
 |---|---|---|
 | 1 | `npm run check` re-reads K random slots | Same heights and gas as `evidence/` |
 | 2 | Edit one number in `evidence/` and run check | Mismatch printed, exit 1 |
-| 3 | Live panel vs RPC curl in the Method section | Same block height and shard values |
+| 3 | Live panel vs any explorer | Same block height and shard values |
 
 ---
 

@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { toRecord } from '../lib/block.js';
-import { blockStats, blocksOf, crossCheck, hotShardEvents, monthly, multiples, percentile, recent, stress } from '../lib/metrics.js';
+import { blockStats, blocksOf, crossCheck, floorPrice, hotShardEvents, monthly, multiples, percentile, priceRises, recent, stress } from '../lib/metrics.js';
 import { heightAt, slots } from '../lib/slots.js';
 
 const LIMIT = 1_000_000; // 1,000 Tgas in Ggas
@@ -66,6 +66,8 @@ test('recent window: per-shard p95 and multiples from the last N days only', () 
   assert.equal(r.blocks, 30);
   assert.equal(r.use, 0.025);
   assert.deepEqual(r.perShard.map((s) => s.p95), [0.01, 0.04]);
+  assert.equal(r.busiest.shard, 1);
+  assert.equal(r.busiest.p95, 0.04);
   assert.equal(r.feeMultiple, 20);
   assert.equal(r.shardMultiple, 25);
 });
@@ -101,4 +103,13 @@ test('slots are fixed 6-hour UTC times and heights interpolate between anchors',
   assert.equal(s.length, 4);
   assert.equal(new Date(s[1]).toISOString(), '2023-01-01T06:00:00.000Z');
   assert.equal(heightAt([[100, 0], [200, 1000]], 500), 150);
+});
+
+test('price rises: blocks above the floor, with how many shards were full', () => {
+  const bs = blocksOf([{ t: T0, blocks: [fixture(1, T0, [1_000_000, 0, 1_000_000, 100_000], { price: '2000000000' }), fixture(2, T0 + 1, [0, 0, 0, 0])] }]);
+  const r = priceRises(bs, floorPrice(bs));
+  assert.equal(r.length, 1);
+  assert.equal(r[0].priceMultiple, 20);
+  assert.equal(r[0].fullShards, 2);
+  assert.equal(r[0].blockUse, 0.525);
 });

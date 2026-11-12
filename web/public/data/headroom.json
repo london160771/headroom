@@ -1,0 +1,4545 @@
+{
+ "generated_at": "2026-11-12T20:03:34.128Z",
+ "sources": {
+  "samples": "evidence/samples.jsonl (NEAR mainnet archival RPC, scripts/sample.js)",
+  "nearblocks": "evidence/nearblocks-daily.json (https://api.nearblocks.io/v1/charts, fetched 2026-11-12T20:02:48.315Z)"
+ },
+ "sampling": {
+  "slots": 5648,
+  "blocks": 5647,
+  "first": "2023-01-01T00:03:35.710Z",
+  "last": "2026-11-12T18:00:37.970Z",
+  "rule": "one block every 6 hours (UTC) since 2023-01-01"
+ },
+ "floor_gas_price": "100000000",
+ "chunk_gas_limit_tgas": 1000,
+ "recent": {
+  "from": "2026-10-13T18:00:37.970Z",
+  "to": "2026-11-12T18:00:37.970Z",
+  "days": 30,
+  "blocks": 120,
+  "shards": 10,
+  "use": 0.005945245188284519,
+  "hottestP50": 0.014449,
+  "hottestP95": 0.09173,
+  "hottestMax": 0.884524,
+  "atFloor": 1,
+  "missingChunks": 5,
+  "perShard": [
+   {
+    "shard": 1,
+    "avg": 0.000184,
+    "p95": 0
+   },
+   {
+    "shard": 4,
+    "avg": 0.00816288333333333,
+    "p95": 0.022263
+   },
+   {
+    "shard": 6,
+    "avg": 0.0027546250000000014,
+    "p95": 0.009928
+   },
+   {
+    "shard": 7,
+    "avg": 0.006137866666666664,
+    "p95": 0.020493
+   },
+   {
+    "shard": 8,
+    "avg": 0.01055310000000001,
+    "p95": 0.035775
+   },
+   {
+    "shard": 9,
+    "avg": 0.01120755833333334,
+    "p95": 0.015049
+   },
+   {
+    "shard": 10,
+    "avg": 0.0051347142857142815,
+    "p95": 0.024079
+   },
+   {
+    "shard": 11,
+    "avg": 0.004784983333333332,
+    "p95": 0.023343
+   },
+   {
+    "shard": 12,
+    "avg": 0.00849308333333333,
+    "p95": 0.026944
+   },
+   {
+    "shard": 13,
+    "avg": 0.0018833247863247868,
+    "p95": 0.010193
+   }
+  ],
+  "busiest": {
+   "shard": 8,
+   "avg": 0.01055310000000001,
+   "p95": 0.035775
+  },
+  "feeMultiple": 84.10082076770888,
+  "shardMultiple": 27.95248078266946
+ },
+ "monthly": [
+  {
+   "month": "2023-01",
+   "blocks": 125,
+   "shards": 4,
+   "use": 0.014881929577464788,
+   "hottestP50": 0.024616,
+   "hottestP95": 0.122628,
+   "hottestMax": 0.61666,
+   "atFloor": 1,
+   "missingChunks": 3
+  },
+  {
+   "month": "2023-02",
+   "blocks": 111,
+   "shards": 4,
+   "use": 0.024250479545454545,
+   "hottestP50": 0.026763,
+   "hottestP95": 0.436363,
+   "hottestMax": 0.725222,
+   "atFloor": 1,
+   "missingChunks": 4
+  },
+  {
+   "month": "2023-03",
+   "blocks": 124,
+   "shards": 4,
+   "use": 0.022135683569979716,
+   "hottestP50": 0.021181,
+   "hottestP95": 0.390442,
+   "hottestMax": 0.860549,
+   "atFloor": 1,
+   "missingChunks": 3
+  },
+  {
+   "month": "2023-04",
+   "blocks": 121,
+   "shards": 4,
+   "use": 0.01933039876033058,
+   "hottestP50": 0.021453,
+   "hottestP95": 0.231783,
+   "hottestMax": 0.75152,
+   "atFloor": 1,
+   "missingChunks": 0
+  },
+  {
+   "month": "2023-05",
+   "blocks": 124,
+   "shards": 4,
+   "use": 0.014176145748987854,
+   "hottestP50": 0.02028,
+   "hottestP95": 0.114108,
+   "hottestMax": 0.500392,
+   "atFloor": 1,
+   "missingChunks": 2
+  },
+  {
+   "month": "2023-06",
+   "blocks": 119,
+   "shards": 4,
+   "use": 0.017942633684210528,
+   "hottestP50": 0.022868,
+   "hottestP95": 0.276605,
+   "hottestMax": 0.442586,
+   "atFloor": 1,
+   "missingChunks": 1
+  },
+  {
+   "month": "2023-07",
+   "blocks": 125,
+   "shards": 4,
+   "use": 0.015743956,
+   "hottestP50": 0.025625,
+   "hottestP95": 0.07915,
+   "hottestMax": 0.441643,
+   "atFloor": 1,
+   "missingChunks": 0
+  },
+  {
+   "month": "2023-08",
+   "blocks": 124,
+   "shards": 4,
+   "use": 0.026350233870967743,
+   "hottestP50": 0.035827,
+   "hottestP95": 0.344512,
+   "hottestMax": 0.45598,
+   "atFloor": 1,
+   "missingChunks": 0
+  },
+  {
+   "month": "2023-09",
+   "blocks": 120,
+   "shards": 4,
+   "use": 0.05132973839662447,
+   "hottestP50": 0.043037,
+   "hottestP95": 0.499836,
+   "hottestMax": 0.852005,
+   "atFloor": 1,
+   "missingChunks": 6
+  },
+  {
+   "month": "2023-10",
+   "blocks": 124,
+   "shards": 4,
+   "use": 0.055127012170385396,
+   "hottestP50": 0.044699,
+   "hottestP95": 0.644934,
+   "hottestMax": 0.866546,
+   "atFloor": 1,
+   "missingChunks": 3
+  },
+  {
+   "month": "2023-11",
+   "blocks": 119,
+   "shards": 4,
+   "use": 0.08584868723404256,
+   "hottestP50": 0.058654,
+   "hottestP95": 0.971679,
+   "hottestMax": 1.002331,
+   "atFloor": 0.957983193277311,
+   "missingChunks": 6
+  },
+  {
+   "month": "2023-12",
+   "blocks": 124,
+   "shards": 4,
+   "use": 0.1510185530612245,
+   "hottestP50": 0.213963,
+   "hottestP95": 1.001177,
+   "hottestMax": 1.00359,
+   "atFloor": 0.9274193548387096,
+   "missingChunks": 6
+  },
+  {
+   "month": "2024-01",
+   "blocks": 125,
+   "shards": 4,
+   "use": 0.12035791983967936,
+   "hottestP50": 0.169286,
+   "hottestP95": 0.761083,
+   "hottestMax": 0.818161,
+   "atFloor": 1,
+   "missingChunks": 1
+  },
+  {
+   "month": "2024-02",
+   "blocks": 116,
+   "shards": 4,
+   "use": 0.19533859347826088,
+   "hottestP50": 0.494241,
+   "hottestP95": 0.741523,
+   "hottestMax": 0.838321,
+   "atFloor": 1,
+   "missingChunks": 4
+  },
+  {
+   "month": "2024-03",
+   "blocks": 123,
+   "shards": 6,
+   "use": 0.20755342024013723,
+   "hottestP50": 0.566763,
+   "hottestP95": 0.754318,
+   "hottestMax": 0.884531,
+   "atFloor": 1,
+   "missingChunks": 25
+  },
+  {
+   "month": "2024-04",
+   "blocks": 120,
+   "shards": 6,
+   "use": 0.1497688895104895,
+   "hottestP50": 0.35248,
+   "hottestP95": 0.671495,
+   "hottestMax": 0.854043,
+   "atFloor": 1,
+   "missingChunks": 5
+  },
+  {
+   "month": "2024-05",
+   "blocks": 124,
+   "shards": 6,
+   "use": 0.11438409375,
+   "hottestP50": 0.253896,
+   "hottestP95": 0.552138,
+   "hottestMax": 0.600623,
+   "atFloor": 1,
+   "missingChunks": 8
+  },
+  {
+   "month": "2024-06",
+   "blocks": 121,
+   "shards": 6,
+   "use": 0.11439001383125864,
+   "hottestP50": 0.244483,
+   "hottestP95": 0.45846,
+   "hottestMax": 0.663815,
+   "atFloor": 1,
+   "missingChunks": 3
+  },
+  {
+   "month": "2024-07",
+   "blocks": 123,
+   "shards": 6,
+   "use": 0.09398631478968793,
+   "hottestP50": 0.216429,
+   "hottestP95": 0.494626,
+   "hottestMax": 0.694325,
+   "atFloor": 1,
+   "missingChunks": 1
+  },
+  {
+   "month": "2024-08",
+   "blocks": 125,
+   "shards": 6,
+   "use": 0.09108283512064343,
+   "hottestP50": 0.232391,
+   "hottestP95": 0.468526,
+   "hottestMax": 0.624627,
+   "atFloor": 1,
+   "missingChunks": 4
+  },
+  {
+   "month": "2024-09",
+   "blocks": 120,
+   "shards": 6,
+   "use": 0.0988919860529986,
+   "hottestP50": 0.258408,
+   "hottestP95": 0.495696,
+   "hottestMax": 0.633955,
+   "atFloor": 1,
+   "missingChunks": 3
+  },
+  {
+   "month": "2024-10",
+   "blocks": 123,
+   "shards": 6,
+   "use": 0.09273394965986395,
+   "hottestP50": 0.237076,
+   "hottestP95": 0.520919,
+   "hottestMax": 0.691533,
+   "atFloor": 1,
+   "missingChunks": 3
+  },
+  {
+   "month": "2024-11",
+   "blocks": 121,
+   "shards": 6,
+   "use": 0.09458112309820194,
+   "hottestP50": 0.255864,
+   "hottestP95": 0.52371,
+   "hottestMax": 0.815609,
+   "atFloor": 1,
+   "missingChunks": 3
+  },
+  {
+   "month": "2024-12",
+   "blocks": 123,
+   "shards": 6,
+   "use": 0.11035461956521739,
+   "hottestP50": 0.289199,
+   "hottestP95": 0.534148,
+   "hottestMax": 0.677527,
+   "atFloor": 1,
+   "missingChunks": 2
+  },
+  {
+   "month": "2025-01",
+   "blocks": 125,
+   "shards": 6,
+   "use": 0.09536993333333334,
+   "hottestP50": 0.239552,
+   "hottestP95": 0.485233,
+   "hottestMax": 0.705518,
+   "atFloor": 1,
+   "missingChunks": 0
+  },
+  {
+   "month": "2025-02",
+   "blocks": 111,
+   "shards": 6,
+   "use": 0.09167126126126127,
+   "hottestP50": 0.220761,
+   "hottestP95": 0.389435,
+   "hottestMax": 0.701136,
+   "atFloor": 1,
+   "missingChunks": 0
+  },
+  {
+   "month": "2025-03",
+   "blocks": 124,
+   "shards": 8,
+   "use": 0.09800311202830189,
+   "hottestP50": 0.244019,
+   "hottestP95": 0.529194,
+   "hottestMax": 0.705923,
+   "atFloor": 1,
+   "missingChunks": 3
+  },
+  {
+   "month": "2025-04",
+   "blocks": 119,
+   "shards": 8,
+   "use": 0.07197043519494205,
+   "hottestP50": 0.174974,
+   "hottestP95": 0.632219,
+   "hottestMax": 0.738111,
+   "atFloor": 1,
+   "missingChunks": 3
+  },
+  {
+   "month": "2025-05",
+   "blocks": 124,
+   "shards": 8,
+   "use": 0.03986627217741936,
+   "hottestP50": 0.082735,
+   "hottestP95": 0.462796,
+   "hottestMax": 0.803178,
+   "atFloor": 1,
+   "missingChunks": 0
+  },
+  {
+   "month": "2025-06",
+   "blocks": 121,
+   "shards": 8,
+   "use": 0.030941291191709845,
+   "hottestP50": 0.057162,
+   "hottestP95": 0.404363,
+   "hottestMax": 0.690648,
+   "atFloor": 1,
+   "missingChunks": 3
+  },
+  {
+   "month": "2025-07",
+   "blocks": 123,
+   "shards": 8,
+   "use": 0.030000795291709313,
+   "hottestP50": 0.050012,
+   "hottestP95": 0.347998,
+   "hottestMax": 0.720905,
+   "atFloor": 1,
+   "missingChunks": 7
+  },
+  {
+   "month": "2025-08",
+   "blocks": 124,
+   "shards": 9,
+   "use": 0.03351499808429119,
+   "hottestP50": 0.058898,
+   "hottestP95": 0.53204,
+   "hottestMax": 0.812069,
+   "atFloor": 1,
+   "missingChunks": 2
+  },
+  {
+   "month": "2025-09",
+   "blocks": 120,
+   "shards": 9,
+   "use": 0.024577535681186282,
+   "hottestP50": 0.042946,
+   "hottestP95": 0.383987,
+   "hottestMax": 0.603893,
+   "atFloor": 1,
+   "missingChunks": 1
+  },
+  {
+   "month": "2025-10",
+   "blocks": 124,
+   "shards": 9,
+   "use": 0.0240343201793722,
+   "hottestP50": 0.037513,
+   "hottestP95": 0.415844,
+   "hottestMax": 0.808645,
+   "atFloor": 1,
+   "missingChunks": 1
+  },
+  {
+   "month": "2025-11",
+   "blocks": 120,
+   "shards": 9,
+   "use": 0.02746415013901761,
+   "hottestP50": 0.04139,
+   "hottestP95": 0.515636,
+   "hottestMax": 0.814227,
+   "atFloor": 1,
+   "missingChunks": 1
+  },
+  {
+   "month": "2025-12",
+   "blocks": 124,
+   "shards": 9,
+   "use": 0.01967822502250225,
+   "hottestP50": 0.042495,
+   "hottestP95": 0.312622,
+   "hottestMax": 0.509765,
+   "atFloor": 1,
+   "missingChunks": 5
+  },
+  {
+   "month": "2026-01",
+   "blocks": 125,
+   "shards": 9,
+   "use": 0.018276986595174263,
+   "hottestP50": 0.027634,
+   "hottestP95": 0.303251,
+   "hottestMax": 0.743286,
+   "atFloor": 1,
+   "missingChunks": 6
+  },
+  {
+   "month": "2026-02",
+   "blocks": 112,
+   "shards": 9,
+   "use": 0.018878388059701493,
+   "hottestP50": 0.022059,
+   "hottestP95": 0.426855,
+   "hottestMax": 0.761184,
+   "atFloor": 1,
+   "missingChunks": 3
+  },
+  {
+   "month": "2026-03",
+   "blocks": 124,
+   "shards": 9,
+   "use": 0.020388448028673834,
+   "hottestP50": 0.021904,
+   "hottestP95": 0.453661,
+   "hottestMax": 0.757082,
+   "atFloor": 1,
+   "missingChunks": 0
+  },
+  {
+   "month": "2026-04",
+   "blocks": 120,
+   "shards": 9,
+   "use": 0.005285139017608897,
+   "hottestP50": 0.014779,
+   "hottestP95": 0.05275,
+   "hottestMax": 0.251085,
+   "atFloor": 1,
+   "missingChunks": 1
+  },
+  {
+   "month": "2026-05",
+   "blocks": 124,
+   "shards": 9,
+   "use": 0.005556893273542601,
+   "hottestP50": 0.018077,
+   "hottestP95": 0.06406,
+   "hottestMax": 0.098378,
+   "atFloor": 1,
+   "missingChunks": 1
+  },
+  {
+   "month": "2026-06",
+   "blocks": 120,
+   "shards": 9,
+   "use": 0.008319915584415584,
+   "hottestP50": 0.029224,
+   "hottestP95": 0.125461,
+   "hottestMax": 0.292034,
+   "atFloor": 1,
+   "missingChunks": 2
+  },
+  {
+   "month": "2026-07",
+   "blocks": 124,
+   "shards": 10,
+   "use": 0.006134392207792208,
+   "hottestP50": 0.020785,
+   "hottestP95": 0.08482,
+   "hottestMax": 0.207676,
+   "atFloor": 1,
+   "missingChunks": 5
+  },
+  {
+   "month": "2026-08",
+   "blocks": 124,
+   "shards": 10,
+   "use": 0.004729209377526273,
+   "hottestP50": 0.015023,
+   "hottestP95": 0.076593,
+   "hottestMax": 0.11884,
+   "atFloor": 1,
+   "missingChunks": 3
+  },
+  {
+   "month": "2026-09",
+   "blocks": 119,
+   "shards": 10,
+   "use": 0.005960475189234651,
+   "hottestP50": 0.022105,
+   "hottestP95": 0.053241,
+   "hottestMax": 0.213072,
+   "atFloor": 1,
+   "missingChunks": 1
+  },
+  {
+   "month": "2026-10",
+   "blocks": 124,
+   "shards": 10,
+   "use": 0.008078692556634305,
+   "hottestP50": 0.016403,
+   "hottestP95": 0.215927,
+   "hottestMax": 0.884524,
+   "atFloor": 1,
+   "missingChunks": 4
+  },
+  {
+   "month": "2026-11",
+   "blocks": 48,
+   "shards": 10,
+   "use": 0.0045261544885177455,
+   "hottestP50": 0.014038,
+   "hottestP95": 0.044946,
+   "hottestMax": 0.101819,
+   "atFloor": 1,
+   "missingChunks": 1
+  }
+ ],
+ "peak_month": {
+  "month": "2024-03",
+  "blocks": 123,
+  "shards": 6,
+  "use": 0.20755342024013723,
+  "hottestP50": 0.566763,
+  "hottestP95": 0.754318,
+  "hottestMax": 0.884531,
+  "atFloor": 1,
+  "missingChunks": 25
+ },
+ "hot_shard_events": [
+  {
+   "ts": 1672552937078,
+   "height": 81931409,
+   "shard": 3,
+   "use": 0.61666,
+   "blockUse": 0.15724425,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1675361038487,
+   "height": 84368712,
+   "shard": 3,
+   "use": 0.502254,
+   "blockUse": 0.13595,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1675900950228,
+   "height": 84801780,
+   "shard": 3,
+   "use": 0.580074,
+   "blockUse": 0.1463725,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1675987464648,
+   "height": 84875718,
+   "shard": 3,
+   "use": 0.725222,
+   "blockUse": 0.251599,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1679054361519,
+   "height": 87493095,
+   "shard": 3,
+   "use": 0.515126,
+   "blockUse": 0.13271625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1679551402695,
+   "height": 87923134,
+   "shard": 3,
+   "use": 0.74164,
+   "blockUse": 0.1882085,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1679572952958,
+   "height": 87940910,
+   "shard": 3,
+   "use": 0.860549,
+   "blockUse": 0.2181585,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1680631696187,
+   "height": 88817688,
+   "shard": 3,
+   "use": 0.747361,
+   "blockUse": 0.20743975,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1680696374903,
+   "height": 88875201,
+   "shard": 3,
+   "use": 0.75152,
+   "blockUse": 0.19437275,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1680739435511,
+   "height": 88913016,
+   "shard": 3,
+   "use": 0.729655,
+   "blockUse": 0.186742,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1683763300785,
+   "height": 91566713,
+   "shard": 3,
+   "use": 0.500392,
+   "blockUse": 0.1336605,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1694087864769,
+   "height": 100587736,
+   "shard": 2,
+   "use": 0.502875,
+   "blockUse": 0.17215475,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1694498316465,
+   "height": 100938720,
+   "shard": 2,
+   "use": 0.795694,
+   "blockUse": 0.2889655,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1694671188455,
+   "height": 101087552,
+   "shard": 2,
+   "use": 0.758561,
+   "blockUse": 0.2781495,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1694930467886,
+   "height": 101307525,
+   "shard": 2,
+   "use": 0.510075,
+   "blockUse": 0.1865045,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1695124887293,
+   "height": 101473287,
+   "shard": 2,
+   "use": 0.852005,
+   "blockUse": 0.32661075,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1695924002067,
+   "height": 102164632,
+   "shard": 2,
+   "use": 0.527549,
+   "blockUse": 0.2206805,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1696161479521,
+   "height": 102371120,
+   "shard": 2,
+   "use": 0.644934,
+   "blockUse": 0.248843,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1697133603938,
+   "height": 103220062,
+   "shard": 2,
+   "use": 0.866546,
+   "blockUse": 0.32696025,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1697155202971,
+   "height": 103239216,
+   "shard": 2,
+   "use": 0.619117,
+   "blockUse": 0.2274335,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1697414181062,
+   "height": 103469594,
+   "shard": 2,
+   "use": 0.688087,
+   "blockUse": 0.25110225,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1697479880577,
+   "height": 103525783,
+   "shard": 2,
+   "use": 0.802314,
+   "blockUse": 0.289644,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1697760353182,
+   "height": 103768639,
+   "shard": 2,
+   "use": 0.723066,
+   "blockUse": 0.27925525,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1697781546843,
+   "height": 103785182,
+   "shard": 2,
+   "use": 0.710787,
+   "blockUse": 0.2499405,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1697868024849,
+   "height": 103858662,
+   "shard": 2,
+   "use": 0.591893,
+   "blockUse": 0.2143925,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1698256744896,
+   "height": 104191915,
+   "shard": 2,
+   "use": 0.506753,
+   "blockUse": 0.16922475,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1698298972496,
+   "height": 104226406,
+   "shard": 2,
+   "use": 0.682361,
+   "blockUse": 0.22843975,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1698385727095,
+   "height": 104294666,
+   "shard": 2,
+   "use": 0.557906,
+   "blockUse": 0.21373166666666665,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1698494499665,
+   "height": 104385203,
+   "shard": 1,
+   "use": 0.604962,
+   "blockUse": 0.2367235,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1699099372573,
+   "height": 104915030,
+   "shard": 2,
+   "use": 0.57262,
+   "blockUse": 0.2757715,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1699164137077,
+   "height": 104972878,
+   "shard": 3,
+   "use": 0.571685,
+   "blockUse": 0.28587375,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1699509475560,
+   "height": 105274353,
+   "shard": 2,
+   "use": 0.655583,
+   "blockUse": 0.24901175,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1699703807706,
+   "height": 105450162,
+   "shard": 2,
+   "use": 0.819594,
+   "blockUse": 0.30243475,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1700028787996,
+   "height": 105733823,
+   "shard": 2,
+   "use": 0.647761,
+   "blockUse": 0.209355,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1700114483676,
+   "height": 105804756,
+   "shard": 2,
+   "use": 0.520359,
+   "blockUse": 0.2380105,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1700200885060,
+   "height": 105882267,
+   "shard": 2,
+   "use": 0.732701,
+   "blockUse": 0.29661675,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1700222375086,
+   "height": 105899808,
+   "shard": 2,
+   "use": 0.533358,
+   "blockUse": 0.236143,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1700460148608,
+   "height": 106105599,
+   "shard": 3,
+   "use": 0.599801,
+   "blockUse": 0.31202175,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1700633837483,
+   "height": 106256576,
+   "shard": 2,
+   "use": 0.64629,
+   "blockUse": 0.250422,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1700719339885,
+   "height": 106331820,
+   "shard": 2,
+   "use": 0.581254,
+   "blockUse": 0.27169975,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1700911702226,
+   "height": 106499182,
+   "shard": 2,
+   "use": 0.620275,
+   "blockUse": 0.246983,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1701236563420,
+   "height": 106786580,
+   "shard": 2,
+   "use": 0.783207,
+   "blockUse": 0.31702275,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1701261489855,
+   "height": 106806241,
+   "shard": 2,
+   "use": 0.971679,
+   "blockUse": 0.4702495,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1701286748662,
+   "height": 106823881,
+   "shard": 2,
+   "use": 0.998837,
+   "blockUse": 0.488077,
+   "gasPrice": "943351428"
+  },
+  {
+   "ts": 1701308412195,
+   "height": 106839606,
+   "shard": 2,
+   "use": 0.999717,
+   "blockUse": 0.5171596666666667,
+   "gasPrice": "100017160"
+  },
+  {
+   "ts": 1701328560830,
+   "height": 106854080,
+   "shard": 2,
+   "use": 1.000869,
+   "blockUse": 0.477902,
+   "gasPrice": "771680206"
+  },
+  {
+   "ts": 1701351169008,
+   "height": 106869442,
+   "shard": 2,
+   "use": 0.985168,
+   "blockUse": 0.372162,
+   "gasPrice": "585079488"
+  },
+  {
+   "ts": 1701372050631,
+   "height": 106884152,
+   "shard": 0,
+   "use": 1.002331,
+   "blockUse": 0.61006225,
+   "gasPrice": "788631991"
+  },
+  {
+   "ts": 1701391015070,
+   "height": 106898240,
+   "shard": 2,
+   "use": 1.00197,
+   "blockUse": 0.367948,
+   "gasPrice": "1433846388"
+  },
+  {
+   "ts": 1701413298074,
+   "height": 106913983,
+   "shard": 2,
+   "use": 1.001572,
+   "blockUse": 0.43608,
+   "gasPrice": "803714220"
+  },
+  {
+   "ts": 1701433735866,
+   "height": 106928622,
+   "shard": 2,
+   "use": 0.997023,
+   "blockUse": 0.5424625,
+   "gasPrice": "1404133997"
+  },
+  {
+   "ts": 1701454031113,
+   "height": 106943685,
+   "shard": 2,
+   "use": 1.002508,
+   "blockUse": 0.631385,
+   "gasPrice": "2000000000"
+  },
+  {
+   "ts": 1701475711250,
+   "height": 106960570,
+   "shard": 0,
+   "use": 1.001911,
+   "blockUse": 0.549923,
+   "gasPrice": "781579436"
+  },
+  {
+   "ts": 1701497024423,
+   "height": 106977067,
+   "shard": 0,
+   "use": 1.002843,
+   "blockUse": 0.55334925,
+   "gasPrice": "2000000000"
+  },
+  {
+   "ts": 1701518517961,
+   "height": 106993718,
+   "shard": 2,
+   "use": 1.000392,
+   "blockUse": 0.621626,
+   "gasPrice": "443687067"
+  },
+  {
+   "ts": 1701775101350,
+   "height": 107202670,
+   "shard": 2,
+   "use": 0.664831,
+   "blockUse": 0.316646,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1701797969946,
+   "height": 107221551,
+   "shard": 2,
+   "use": 0.834016,
+   "blockUse": 0.29498525,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1701885837415,
+   "height": 107299133,
+   "shard": 2,
+   "use": 0.733193,
+   "blockUse": 0.349265,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1702296784153,
+   "height": 107677108,
+   "shard": 2,
+   "use": 0.544148,
+   "blockUse": 0.225705,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1702318345764,
+   "height": 107697458,
+   "shard": 2,
+   "use": 0.876627,
+   "blockUse": 0.3961485,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1702361493797,
+   "height": 107738302,
+   "shard": 2,
+   "use": 0.864373,
+   "blockUse": 0.3011495,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1702404169833,
+   "height": 107778250,
+   "shard": 2,
+   "use": 0.699956,
+   "blockUse": 0.329785,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1702576946798,
+   "height": 107942348,
+   "shard": 3,
+   "use": 0.622914,
+   "blockUse": 0.280233,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1702878552016,
+   "height": 108227950,
+   "shard": 2,
+   "use": 0.603567,
+   "blockUse": 0.26666325,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1702943802654,
+   "height": 108287911,
+   "shard": 2,
+   "use": 0.660879,
+   "blockUse": 0.254166,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703030739294,
+   "height": 108364456,
+   "shard": 2,
+   "use": 0.695937,
+   "blockUse": 0.261982,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703095484098,
+   "height": 108422492,
+   "shard": 3,
+   "use": 0.569789,
+   "blockUse": 0.248508,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703139371399,
+   "height": 108460046,
+   "shard": 2,
+   "use": 0.503602,
+   "blockUse": 0.21780325,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703160605547,
+   "height": 108478246,
+   "shard": 3,
+   "use": 0.657869,
+   "blockUse": 0.36468175,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703204060903,
+   "height": 108514432,
+   "shard": 2,
+   "use": 0.779463,
+   "blockUse": 0.28413575,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703225904714,
+   "height": 108531823,
+   "shard": 2,
+   "use": 0.794769,
+   "blockUse": 0.3278815,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703246730178,
+   "height": 108549067,
+   "shard": 3,
+   "use": 0.509974,
+   "blockUse": 0.2396025,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703268123714,
+   "height": 108567812,
+   "shard": 3,
+   "use": 0.548484,
+   "blockUse": 0.27785875,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703419515715,
+   "height": 108701099,
+   "shard": 3,
+   "use": 0.578265,
+   "blockUse": 0.25471225,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703462637865,
+   "height": 108738966,
+   "shard": 2,
+   "use": 0.631223,
+   "blockUse": 0.30504025,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703505650229,
+   "height": 108778655,
+   "shard": 3,
+   "use": 0.517067,
+   "blockUse": 0.2003455,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703527423566,
+   "height": 108797208,
+   "shard": 2,
+   "use": 0.742414,
+   "blockUse": 0.34257725,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703548682518,
+   "height": 108816280,
+   "shard": 2,
+   "use": 0.5258,
+   "blockUse": 0.22103625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703592057265,
+   "height": 108854088,
+   "shard": 3,
+   "use": 0.580174,
+   "blockUse": 0.28588275,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703743243249,
+   "height": 108984647,
+   "shard": 2,
+   "use": 0.815386,
+   "blockUse": 0.2925645,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703829570861,
+   "height": 109062809,
+   "shard": 0,
+   "use": 0.512165,
+   "blockUse": 0.2537495,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703850492840,
+   "height": 109081808,
+   "shard": 0,
+   "use": 1.00359,
+   "blockUse": 0.52139575,
+   "gasPrice": "312614998"
+  },
+  {
+   "ts": 1703871664459,
+   "height": 109098257,
+   "shard": 0,
+   "use": 1.001177,
+   "blockUse": 0.5318995,
+   "gasPrice": "2000000000"
+  },
+  {
+   "ts": 1703891661395,
+   "height": 109114667,
+   "shard": 0,
+   "use": 0.814371,
+   "blockUse": 0.43276775,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1703937940730,
+   "height": 109152383,
+   "shard": 3,
+   "use": 0.565339,
+   "blockUse": 0.162869,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1704240218282,
+   "height": 109444585,
+   "shard": 2,
+   "use": 0.803695,
+   "blockUse": 0.3320885,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1704283176599,
+   "height": 109486592,
+   "shard": 2,
+   "use": 0.796629,
+   "blockUse": 0.29850125,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1704304723375,
+   "height": 109507263,
+   "shard": 2,
+   "use": 0.724414,
+   "blockUse": 0.3082865,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1704390863519,
+   "height": 109588605,
+   "shard": 2,
+   "use": 0.66686,
+   "blockUse": 0.26161,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1704564006637,
+   "height": 109753482,
+   "shard": 2,
+   "use": 0.614546,
+   "blockUse": 0.279467,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1704607202387,
+   "height": 109794720,
+   "shard": 2,
+   "use": 0.59639,
+   "blockUse": 0.2289435,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1704628851462,
+   "height": 109815706,
+   "shard": 2,
+   "use": 0.515846,
+   "blockUse": 0.23088325,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1704758388137,
+   "height": 109938545,
+   "shard": 2,
+   "use": 0.56911,
+   "blockUse": 0.21800725,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1704931181405,
+   "height": 110102059,
+   "shard": 2,
+   "use": 0.772456,
+   "blockUse": 0.27428925,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1704996019529,
+   "height": 110162677,
+   "shard": 2,
+   "use": 0.535818,
+   "blockUse": 0.24505025,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705060686639,
+   "height": 110222062,
+   "shard": 2,
+   "use": 0.738978,
+   "blockUse": 0.30919,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705125413317,
+   "height": 110282250,
+   "shard": 2,
+   "use": 0.73646,
+   "blockUse": 0.37075925,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705147175543,
+   "height": 110302608,
+   "shard": 2,
+   "use": 0.761083,
+   "blockUse": 0.35099175,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705211815535,
+   "height": 110362541,
+   "shard": 2,
+   "use": 0.651538,
+   "blockUse": 0.2734295,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705276904976,
+   "height": 110424725,
+   "shard": 3,
+   "use": 0.711032,
+   "blockUse": 0.3081595,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705427969378,
+   "height": 110565681,
+   "shard": 2,
+   "use": 0.61339,
+   "blockUse": 0.25969525,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705492967431,
+   "height": 110627416,
+   "shard": 2,
+   "use": 0.689991,
+   "blockUse": 0.3205395,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705579155835,
+   "height": 110711475,
+   "shard": 2,
+   "use": 0.686395,
+   "blockUse": 0.273289,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705600600577,
+   "height": 110730517,
+   "shard": 2,
+   "use": 0.59492,
+   "blockUse": 0.32954775,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705643964557,
+   "height": 110770666,
+   "shard": 2,
+   "use": 0.818161,
+   "blockUse": 0.2873695,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705752118508,
+   "height": 110872843,
+   "shard": 1,
+   "use": 0.575953,
+   "blockUse": 0.24673975,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705881672456,
+   "height": 110998094,
+   "shard": 2,
+   "use": 0.68298,
+   "blockUse": 0.2822605,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705902921077,
+   "height": 111015885,
+   "shard": 2,
+   "use": 0.57998,
+   "blockUse": 0.2416535,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705923894363,
+   "height": 111033864,
+   "shard": 2,
+   "use": 0.656197,
+   "blockUse": 0.27923725,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705946062749,
+   "height": 111052946,
+   "shard": 2,
+   "use": 0.637633,
+   "blockUse": 0.2470945,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1705968477243,
+   "height": 111073973,
+   "shard": 2,
+   "use": 0.612959,
+   "blockUse": 0.198045,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706183972848,
+   "height": 111279254,
+   "shard": 2,
+   "use": 0.588629,
+   "blockUse": 0.22390625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706378454644,
+   "height": 111459998,
+   "shard": 2,
+   "use": 0.764183,
+   "blockUse": 0.2755595,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706421618565,
+   "height": 111501984,
+   "shard": 2,
+   "use": 0.808962,
+   "blockUse": 0.2850145,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706508003202,
+   "height": 111585170,
+   "shard": 2,
+   "use": 0.748174,
+   "blockUse": 0.27992775,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706594465048,
+   "height": 111667491,
+   "shard": 2,
+   "use": 0.690527,
+   "blockUse": 0.26224075,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706616038281,
+   "height": 111687711,
+   "shard": 2,
+   "use": 0.744212,
+   "blockUse": 0.28982325,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706680940359,
+   "height": 111749854,
+   "shard": 3,
+   "use": 0.668277,
+   "blockUse": 0.32092325,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706702343276,
+   "height": 111769946,
+   "shard": 2,
+   "use": 0.7031,
+   "blockUse": 0.268886,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706767711431,
+   "height": 111830504,
+   "shard": 2,
+   "use": 0.701685,
+   "blockUse": 0.279552,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706788692796,
+   "height": 111850092,
+   "shard": 2,
+   "use": 0.541345,
+   "blockUse": 0.22312575,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706875809571,
+   "height": 111930832,
+   "shard": 2,
+   "use": 0.838321,
+   "blockUse": 0.37995575,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706918389199,
+   "height": 111968724,
+   "shard": 2,
+   "use": 0.702105,
+   "blockUse": 0.280388,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1706940057793,
+   "height": 111989406,
+   "shard": 2,
+   "use": 0.776636,
+   "blockUse": 0.273096,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707047914460,
+   "height": 112084977,
+   "shard": 2,
+   "use": 0.562839,
+   "blockUse": 0.2691515,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707134663894,
+   "height": 112157934,
+   "shard": 2,
+   "use": 0.613937,
+   "blockUse": 0.31199225,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707263679011,
+   "height": 112268055,
+   "shard": 2,
+   "use": 0.595864,
+   "blockUse": 0.27591275,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707328630093,
+   "height": 112323877,
+   "shard": 2,
+   "use": 0.686102,
+   "blockUse": 0.2811615,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707349998025,
+   "height": 112342288,
+   "shard": 2,
+   "use": 0.650438,
+   "blockUse": 0.24610625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707456141075,
+   "height": 112440568,
+   "shard": 2,
+   "use": 0.746037,
+   "blockUse": 0.283835,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707478892929,
+   "height": 112460499,
+   "shard": 2,
+   "use": 0.731285,
+   "blockUse": 0.30938575,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707521214284,
+   "height": 112498670,
+   "shard": 2,
+   "use": 0.735409,
+   "blockUse": 0.28283775,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707567478554,
+   "height": 112536702,
+   "shard": 2,
+   "use": 0.625592,
+   "blockUse": 0.24678275,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707588610873,
+   "height": 112553865,
+   "shard": 3,
+   "use": 0.741523,
+   "blockUse": 0.365654,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707610276277,
+   "height": 112571703,
+   "shard": 2,
+   "use": 0.771993,
+   "blockUse": 0.2945,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707675190366,
+   "height": 112626093,
+   "shard": 3,
+   "use": 0.505936,
+   "blockUse": 0.178154,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707783512374,
+   "height": 112711782,
+   "shard": 2,
+   "use": 0.74787,
+   "blockUse": 0.25368625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707827816180,
+   "height": 112745964,
+   "shard": 2,
+   "use": 0.649079,
+   "blockUse": 0.2836875,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707848468707,
+   "height": 112762070,
+   "shard": 2,
+   "use": 0.65351,
+   "blockUse": 0.27348375,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707891081284,
+   "height": 112795995,
+   "shard": 2,
+   "use": 0.645999,
+   "blockUse": 0.3050035,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707935531950,
+   "height": 112829900,
+   "shard": 2,
+   "use": 0.604785,
+   "blockUse": 0.2643635,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1707998977354,
+   "height": 112879809,
+   "shard": 2,
+   "use": 0.580885,
+   "blockUse": 0.300705,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708020301867,
+   "height": 112896730,
+   "shard": 3,
+   "use": 0.501194,
+   "blockUse": 0.22550625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708041879001,
+   "height": 112913475,
+   "shard": 2,
+   "use": 0.650214,
+   "blockUse": 0.34832825,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708063361498,
+   "height": 112931008,
+   "shard": 3,
+   "use": 0.708679,
+   "blockUse": 0.21832225,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708106516061,
+   "height": 112964725,
+   "shard": 3,
+   "use": 0.546181,
+   "blockUse": 0.26656975,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708171211632,
+   "height": 113015932,
+   "shard": 2,
+   "use": 0.651394,
+   "blockUse": 0.2750525,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708214440267,
+   "height": 113049328,
+   "shard": 2,
+   "use": 0.610582,
+   "blockUse": 0.26883275,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708322351922,
+   "height": 113134271,
+   "shard": 2,
+   "use": 0.676234,
+   "blockUse": 0.26212575,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708343847250,
+   "height": 113151577,
+   "shard": 2,
+   "use": 0.590715,
+   "blockUse": 0.2746,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708365740523,
+   "height": 113168522,
+   "shard": 3,
+   "use": 0.592424,
+   "blockUse": 0.31479925,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708386825402,
+   "height": 113185118,
+   "shard": 2,
+   "use": 0.698669,
+   "blockUse": 0.26918475,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708430645354,
+   "height": 113218470,
+   "shard": 3,
+   "use": 0.566383,
+   "blockUse": 0.204772,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708451977822,
+   "height": 113234762,
+   "shard": 2,
+   "use": 0.661303,
+   "blockUse": 0.3140965,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708473492866,
+   "height": 113251568,
+   "shard": 2,
+   "use": 0.682187,
+   "blockUse": 0.230898,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708559607923,
+   "height": 113319231,
+   "shard": 2,
+   "use": 0.685164,
+   "blockUse": 0.266819,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708581798041,
+   "height": 113336402,
+   "shard": 2,
+   "use": 0.696317,
+   "blockUse": 0.3132865,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708602905625,
+   "height": 113352279,
+   "shard": 2,
+   "use": 0.653778,
+   "blockUse": 0.25838575,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708624769353,
+   "height": 113369135,
+   "shard": 2,
+   "use": 0.644173,
+   "blockUse": 0.30873625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708646638749,
+   "height": 113385228,
+   "shard": 2,
+   "use": 0.718204,
+   "blockUse": 0.3208085,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708689785474,
+   "height": 113418848,
+   "shard": 2,
+   "use": 0.598126,
+   "blockUse": 0.22038425,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708711570913,
+   "height": 113434445,
+   "shard": 2,
+   "use": 0.578041,
+   "blockUse": 0.31287125,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708775788565,
+   "height": 113485009,
+   "shard": 2,
+   "use": 0.645681,
+   "blockUse": 0.276989,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708819150794,
+   "height": 113518169,
+   "shard": 2,
+   "use": 0.6344,
+   "blockUse": 0.3308836666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708862842428,
+   "height": 113551775,
+   "shard": 2,
+   "use": 0.604713,
+   "blockUse": 0.219375,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708884299483,
+   "height": 113566960,
+   "shard": 2,
+   "use": 0.641813,
+   "blockUse": 0.28659925,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708905362385,
+   "height": 113583781,
+   "shard": 2,
+   "use": 0.643529,
+   "blockUse": 0.27781175,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708927396461,
+   "height": 113600933,
+   "shard": 2,
+   "use": 0.684583,
+   "blockUse": 0.312974,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1708970514605,
+   "height": 113633607,
+   "shard": 3,
+   "use": 0.608482,
+   "blockUse": 0.2652345,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709035452569,
+   "height": 113683733,
+   "shard": 2,
+   "use": 0.620406,
+   "blockUse": 0.31729275,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709078136466,
+   "height": 113716329,
+   "shard": 2,
+   "use": 0.64895,
+   "blockUse": 0.2543785,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709100219502,
+   "height": 113733217,
+   "shard": 2,
+   "use": 0.614034,
+   "blockUse": 0.30227,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709143351597,
+   "height": 113766115,
+   "shard": 2,
+   "use": 0.640382,
+   "blockUse": 0.33885875,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709186489310,
+   "height": 113800471,
+   "shard": 2,
+   "use": 0.595658,
+   "blockUse": 0.2531405,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709208369094,
+   "height": 113816424,
+   "shard": 2,
+   "use": 0.622763,
+   "blockUse": 0.3180275,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709229710924,
+   "height": 113831976,
+   "shard": 2,
+   "use": 0.664388,
+   "blockUse": 0.32997725,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709251185936,
+   "height": 113848446,
+   "shard": 2,
+   "use": 0.612226,
+   "blockUse": 0.2723305,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709272826180,
+   "height": 113864746,
+   "shard": 2,
+   "use": 0.641421,
+   "blockUse": 0.216467,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709294440102,
+   "height": 113881028,
+   "shard": 2,
+   "use": 0.596229,
+   "blockUse": 0.23028825,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709316095166,
+   "height": 113897242,
+   "shard": 2,
+   "use": 0.61838,
+   "blockUse": 0.2383435,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709337528908,
+   "height": 113913519,
+   "shard": 2,
+   "use": 0.693056,
+   "blockUse": 0.269683,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709359279908,
+   "height": 113930426,
+   "shard": 2,
+   "use": 0.609717,
+   "blockUse": 0.2640625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709380874226,
+   "height": 113946348,
+   "shard": 2,
+   "use": 0.753928,
+   "blockUse": 0.3941343333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709402411899,
+   "height": 113962361,
+   "shard": 2,
+   "use": 0.661203,
+   "blockUse": 0.24463075,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709424084034,
+   "height": 113979292,
+   "shard": 2,
+   "use": 0.680619,
+   "blockUse": 0.279896,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709445614459,
+   "height": 113995183,
+   "shard": 2,
+   "use": 0.57435,
+   "blockUse": 0.2586165,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709467183846,
+   "height": 114011382,
+   "shard": 2,
+   "use": 0.662034,
+   "blockUse": 0.26254275,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709488817060,
+   "height": 114027420,
+   "shard": 2,
+   "use": 0.60288,
+   "blockUse": 0.2964855,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709510351970,
+   "height": 114043220,
+   "shard": 2,
+   "use": 0.880196,
+   "blockUse": 0.325166,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709553625176,
+   "height": 114075775,
+   "shard": 2,
+   "use": 0.57977,
+   "blockUse": 0.28188025,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709618437923,
+   "height": 114124121,
+   "shard": 2,
+   "use": 0.580266,
+   "blockUse": 0.2260345,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709639901438,
+   "height": 114140082,
+   "shard": 2,
+   "use": 0.601285,
+   "blockUse": 0.2925615,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709661698030,
+   "height": 114155984,
+   "shard": 2,
+   "use": 0.566458,
+   "blockUse": 0.257044,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709683257767,
+   "height": 114171096,
+   "shard": 2,
+   "use": 0.702236,
+   "blockUse": 0.27572675,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709704813110,
+   "height": 114186840,
+   "shard": 2,
+   "use": 0.51964,
+   "blockUse": 0.24602475,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709726548598,
+   "height": 114202419,
+   "shard": 3,
+   "use": 0.825293,
+   "blockUse": 0.42131725,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709748000642,
+   "height": 114217353,
+   "shard": 2,
+   "use": 0.577989,
+   "blockUse": 0.28482875,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709791216257,
+   "height": 114248482,
+   "shard": 2,
+   "use": 0.590241,
+   "blockUse": 0.251268,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709812820604,
+   "height": 114264052,
+   "shard": 2,
+   "use": 0.600379,
+   "blockUse": 0.3603283333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709855965152,
+   "height": 114295622,
+   "shard": 3,
+   "use": 0.884531,
+   "blockUse": 0.41676925,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709877543422,
+   "height": 114311846,
+   "shard": 2,
+   "use": 0.604955,
+   "blockUse": 0.202285,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709899225208,
+   "height": 114327839,
+   "shard": 2,
+   "use": 0.655568,
+   "blockUse": 0.3048485,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709920851632,
+   "height": 114343278,
+   "shard": 2,
+   "use": 0.600756,
+   "blockUse": 0.3025125,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709942360620,
+   "height": 114358900,
+   "shard": 2,
+   "use": 0.736995,
+   "blockUse": 0.3494325,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1709963991916,
+   "height": 114374812,
+   "shard": 2,
+   "use": 0.642668,
+   "blockUse": 0.301607,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710007109420,
+   "height": 114406868,
+   "shard": 2,
+   "use": 0.537262,
+   "blockUse": 0.220635,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710050325596,
+   "height": 114438832,
+   "shard": 2,
+   "use": 0.57774,
+   "blockUse": 0.206119,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710071971367,
+   "height": 114454958,
+   "shard": 2,
+   "use": 0.520928,
+   "blockUse": 0.21277475,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710093600708,
+   "height": 114470651,
+   "shard": 2,
+   "use": 0.612512,
+   "blockUse": 0.25160775,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710180035794,
+   "height": 114533347,
+   "shard": 2,
+   "use": 0.640648,
+   "blockUse": 0.34957825,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710220029903,
+   "height": 114555021,
+   "shard": 3,
+   "use": 0.631418,
+   "blockUse": 0.404587,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710237330606,
+   "height": 114564689,
+   "shard": 2,
+   "use": 0.672139,
+   "blockUse": 0.3047605,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710264642904,
+   "height": 114578916,
+   "shard": 2,
+   "use": 0.595836,
+   "blockUse": 0.2732775,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710288386996,
+   "height": 114594931,
+   "shard": 2,
+   "use": 0.589102,
+   "blockUse": 0.1628768,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710331536624,
+   "height": 114627107,
+   "shard": 2,
+   "use": 0.668416,
+   "blockUse": 0.247074,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710353177481,
+   "height": 114643162,
+   "shard": 2,
+   "use": 0.585879,
+   "blockUse": 0.2088734,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710375215356,
+   "height": 114659588,
+   "shard": 2,
+   "use": 0.711571,
+   "blockUse": 0.2342782,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710395912820,
+   "height": 114675289,
+   "shard": 2,
+   "use": 0.670256,
+   "blockUse": 0.185604,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710417767465,
+   "height": 114691189,
+   "shard": 2,
+   "use": 0.748637,
+   "blockUse": 0.3058756,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710438946179,
+   "height": 114706714,
+   "shard": 2,
+   "use": 0.517959,
+   "blockUse": 0.173424,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710504472916,
+   "height": 114754925,
+   "shard": 2,
+   "use": 0.524673,
+   "blockUse": 0.1910562,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710526499351,
+   "height": 114771529,
+   "shard": 2,
+   "use": 0.576837,
+   "blockUse": 0.2100816,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710612040986,
+   "height": 114840342,
+   "shard": 2,
+   "use": 0.692618,
+   "blockUse": 0.26426725,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710676790760,
+   "height": 114888577,
+   "shard": 2,
+   "use": 0.644108,
+   "blockUse": 0.1770506,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710720128528,
+   "height": 114920417,
+   "shard": 2,
+   "use": 0.687656,
+   "blockUse": 0.22687325,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710763435775,
+   "height": 114953275,
+   "shard": 2,
+   "use": 0.664658,
+   "blockUse": 0.2271686,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710849489943,
+   "height": 115020606,
+   "shard": 2,
+   "use": 0.860896,
+   "blockUse": 0.2961914,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710871175697,
+   "height": 115036722,
+   "shard": 2,
+   "use": 0.716181,
+   "blockUse": 0.2420628,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710892951345,
+   "height": 115054535,
+   "shard": 2,
+   "use": 0.549137,
+   "blockUse": 0.2775905,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1710957710522,
+   "height": 115112023,
+   "shard": 2,
+   "use": 0.566763,
+   "blockUse": 0.231911,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711001482874,
+   "height": 115147947,
+   "shard": 2,
+   "use": 0.779353,
+   "blockUse": 0.2446668,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711043207163,
+   "height": 115173625,
+   "shard": 2,
+   "use": 0.626727,
+   "blockUse": 0.19871225,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711151413117,
+   "height": 115263377,
+   "shard": 2,
+   "use": 0.706057,
+   "blockUse": 0.26818933333333334,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711194756814,
+   "height": 115301336,
+   "shard": 2,
+   "use": 0.722809,
+   "blockUse": 0.2888751666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711216727483,
+   "height": 115319343,
+   "shard": 2,
+   "use": 0.561747,
+   "blockUse": 0.2790576,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711324410988,
+   "height": 115405023,
+   "shard": 2,
+   "use": 0.754318,
+   "blockUse": 0.3532673333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711411159477,
+   "height": 115475524,
+   "shard": 2,
+   "use": 0.805893,
+   "blockUse": 0.248835,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711454358635,
+   "height": 115510186,
+   "shard": 3,
+   "use": 0.636091,
+   "blockUse": 0.3741292,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711518959808,
+   "height": 115561432,
+   "shard": 3,
+   "use": 0.59635,
+   "blockUse": 0.17527266666666666,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711626820924,
+   "height": 115648658,
+   "shard": 2,
+   "use": 0.735357,
+   "blockUse": 0.3117201666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711648875666,
+   "height": 115666237,
+   "shard": 3,
+   "use": 0.509327,
+   "blockUse": 0.157386,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711671012292,
+   "height": 115682893,
+   "shard": 3,
+   "use": 0.572557,
+   "blockUse": 0.17021983333333332,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711713961262,
+   "height": 115716523,
+   "shard": 3,
+   "use": 0.591724,
+   "blockUse": 0.22254283333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711735379078,
+   "height": 115733076,
+   "shard": 3,
+   "use": 0.5582,
+   "blockUse": 0.2332225,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711778395401,
+   "height": 115767009,
+   "shard": 2,
+   "use": 0.66334,
+   "blockUse": 0.32776916666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711800079542,
+   "height": 115784131,
+   "shard": 3,
+   "use": 0.682172,
+   "blockUse": 0.29721716666666664,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711822363592,
+   "height": 115800999,
+   "shard": 5,
+   "use": 0.640076,
+   "blockUse": 0.3448825,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711843487307,
+   "height": 115817089,
+   "shard": 3,
+   "use": 0.607688,
+   "blockUse": 0.2202165,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711864980661,
+   "height": 115834040,
+   "shard": 3,
+   "use": 0.614335,
+   "blockUse": 0.2851471666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711908324251,
+   "height": 115866799,
+   "shard": 3,
+   "use": 0.56039,
+   "blockUse": 0.2278555,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711929912082,
+   "height": 115883194,
+   "shard": 2,
+   "use": 0.599291,
+   "blockUse": 0.26185383333333334,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711951330181,
+   "height": 115899724,
+   "shard": 3,
+   "use": 0.580729,
+   "blockUse": 0.22913566666666665,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711973049990,
+   "height": 115916467,
+   "shard": 3,
+   "use": 0.594832,
+   "blockUse": 0.24494616666666666,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1711994796104,
+   "height": 115932550,
+   "shard": 5,
+   "use": 0.666234,
+   "blockUse": 0.38092783333333335,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712037730864,
+   "height": 115965127,
+   "shard": 2,
+   "use": 0.854043,
+   "blockUse": 0.4072131666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712059282472,
+   "height": 115981061,
+   "shard": 3,
+   "use": 0.56567,
+   "blockUse": 0.18076716666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712080808275,
+   "height": 115997341,
+   "shard": 3,
+   "use": 0.536099,
+   "blockUse": 0.28479133333333334,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712102275775,
+   "height": 116013579,
+   "shard": 3,
+   "use": 0.588795,
+   "blockUse": 0.16721583333333334,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712123752611,
+   "height": 116029650,
+   "shard": 3,
+   "use": 0.595922,
+   "blockUse": 0.19533683333333332,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712145296448,
+   "height": 116046200,
+   "shard": 3,
+   "use": 0.621516,
+   "blockUse": 0.2675575,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712166512869,
+   "height": 116062012,
+   "shard": 3,
+   "use": 0.734453,
+   "blockUse": 0.42191233333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712188365930,
+   "height": 116078441,
+   "shard": 2,
+   "use": 0.759698,
+   "blockUse": 0.3147916666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712209675566,
+   "height": 116094953,
+   "shard": 3,
+   "use": 0.638433,
+   "blockUse": 0.24579483333333332,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712231279898,
+   "height": 116111285,
+   "shard": 3,
+   "use": 0.512766,
+   "blockUse": 0.22449983333333334,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712252726441,
+   "height": 116127806,
+   "shard": 3,
+   "use": 0.562008,
+   "blockUse": 0.20688083333333335,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712273895550,
+   "height": 116143841,
+   "shard": 3,
+   "use": 0.643168,
+   "blockUse": 0.23373116666666666,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712296471816,
+   "height": 116160920,
+   "shard": 3,
+   "use": 0.561255,
+   "blockUse": 0.21974333333333335,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712316707095,
+   "height": 116176911,
+   "shard": 3,
+   "use": 0.64014,
+   "blockUse": 0.20531516666666666,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712338341132,
+   "height": 116192893,
+   "shard": 3,
+   "use": 0.563648,
+   "blockUse": 0.21252666666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712361000836,
+   "height": 116209947,
+   "shard": 3,
+   "use": 0.546819,
+   "blockUse": 0.176106,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712381052425,
+   "height": 116225799,
+   "shard": 3,
+   "use": 0.532487,
+   "blockUse": 0.17880766666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712405195955,
+   "height": 116243699,
+   "shard": 3,
+   "use": 0.583728,
+   "blockUse": 0.348468,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712599494906,
+   "height": 116409693,
+   "shard": 2,
+   "use": 0.614625,
+   "blockUse": 0.23791083333333332,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712685477152,
+   "height": 116483166,
+   "shard": 2,
+   "use": 0.715842,
+   "blockUse": 0.24920716666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712729243295,
+   "height": 116520326,
+   "shard": 2,
+   "use": 0.731316,
+   "blockUse": 0.23399883333333332,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1712772155613,
+   "height": 116556456,
+   "shard": 2,
+   "use": 0.523311,
+   "blockUse": 0.19493633333333332,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1713787286669,
+   "height": 117379980,
+   "shard": 2,
+   "use": 0.642526,
+   "blockUse": 0.2163625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1713808334767,
+   "height": 117396595,
+   "shard": 2,
+   "use": 0.561355,
+   "blockUse": 0.25796816666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1713851588501,
+   "height": 117431931,
+   "shard": 2,
+   "use": 0.624826,
+   "blockUse": 0.23399183333333334,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1713873307382,
+   "height": 117448336,
+   "shard": 2,
+   "use": 0.551934,
+   "blockUse": 0.2604936666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1714219207404,
+   "height": 117735912,
+   "shard": 2,
+   "use": 0.679535,
+   "blockUse": 0.2262925,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1714413884469,
+   "height": 117898535,
+   "shard": 2,
+   "use": 0.671495,
+   "blockUse": 0.2752536666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1714543214325,
+   "height": 117998712,
+   "shard": 2,
+   "use": 0.520843,
+   "blockUse": 0.177236,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1714564797700,
+   "height": 118015554,
+   "shard": 2,
+   "use": 0.593837,
+   "blockUse": 0.24196533333333334,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1714629316206,
+   "height": 118070252,
+   "shard": 2,
+   "use": 0.574442,
+   "blockUse": 0.24039833333333332,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1714932187680,
+   "height": 118312073,
+   "shard": 2,
+   "use": 0.552138,
+   "blockUse": 0.17896816666666668,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1714975045517,
+   "height": 118346737,
+   "shard": 2,
+   "use": 0.576227,
+   "blockUse": 0.25996,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1715709191189,
+   "height": 118915886,
+   "shard": 2,
+   "use": 0.577677,
+   "blockUse": 0.18569416666666666,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1715882333016,
+   "height": 119061989,
+   "shard": 2,
+   "use": 0.507115,
+   "blockUse": 0.25326983333333336,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1716314664559,
+   "height": 119433447,
+   "shard": 2,
+   "use": 0.519025,
+   "blockUse": 0.19070966666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1716357740963,
+   "height": 119469927,
+   "shard": 2,
+   "use": 0.587167,
+   "blockUse": 0.2179265,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1716617121450,
+   "height": 119688221,
+   "shard": 2,
+   "use": 0.544027,
+   "blockUse": 0.24668316666666668,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1716919440036,
+   "height": 119939878,
+   "shard": 2,
+   "use": 0.600623,
+   "blockUse": 0.207418,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1717113837123,
+   "height": 120097779,
+   "shard": 2,
+   "use": 0.552082,
+   "blockUse": 0.24977966666666668,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1717307381929,
+   "height": 120255231,
+   "shard": 2,
+   "use": 0.53181,
+   "blockUse": 0.20373916666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1717459437307,
+   "height": 120382186,
+   "shard": 2,
+   "use": 0.536205,
+   "blockUse": 0.16699,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1717502024984,
+   "height": 120418364,
+   "shard": 2,
+   "use": 0.544656,
+   "blockUse": 0.20683783333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1719122356785,
+   "height": 121795747,
+   "shard": 2,
+   "use": 0.513849,
+   "blockUse": 0.239998,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1719251948050,
+   "height": 121907679,
+   "shard": 5,
+   "use": 0.663815,
+   "blockUse": 0.28495183333333335,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1720677568729,
+   "height": 123118756,
+   "shard": 2,
+   "use": 0.676508,
+   "blockUse": 0.1963495,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1721066382104,
+   "height": 123468432,
+   "shard": 2,
+   "use": 0.694325,
+   "blockUse": 0.27459266666666665,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1721195973156,
+   "height": 123584195,
+   "shard": 2,
+   "use": 0.616025,
+   "blockUse": 0.20475116666666668,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1721303951017,
+   "height": 123680563,
+   "shard": 2,
+   "use": 0.694111,
+   "blockUse": 0.3381823333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1721541590987,
+   "height": 123895340,
+   "shard": 5,
+   "use": 0.517873,
+   "blockUse": 0.219858,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1722146419377,
+   "height": 124433666,
+   "shard": 2,
+   "use": 0.546552,
+   "blockUse": 0.2424135,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1722513622144,
+   "height": 124759587,
+   "shard": 2,
+   "use": 0.564574,
+   "blockUse": 0.18677183333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1723053294937,
+   "height": 125244073,
+   "shard": 2,
+   "use": 0.608546,
+   "blockUse": 0.21773633333333334,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1723139609956,
+   "height": 125322270,
+   "shard": 2,
+   "use": 0.534291,
+   "blockUse": 0.162816,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1723182810099,
+   "height": 125360423,
+   "shard": 2,
+   "use": 0.588224,
+   "blockUse": 0.17484333333333332,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1723874912876,
+   "height": 125950002,
+   "shard": 2,
+   "use": 0.624627,
+   "blockUse": 0.22048066666666666,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1725408013659,
+   "height": 127235518,
+   "shard": 2,
+   "use": 0.564615,
+   "blockUse": 0.18054816666666668,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1725559007003,
+   "height": 127364593,
+   "shard": 2,
+   "use": 0.510814,
+   "blockUse": 0.2003905,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1726250413352,
+   "height": 127972534,
+   "shard": 2,
+   "use": 0.508391,
+   "blockUse": 0.18440866666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1726575148109,
+   "height": 128261858,
+   "shard": 5,
+   "use": 0.550432,
+   "blockUse": 0.263656,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1726941622555,
+   "height": 128581727,
+   "shard": 2,
+   "use": 0.633955,
+   "blockUse": 0.18451533333333334,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1727265524294,
+   "height": 128860518,
+   "shard": 2,
+   "use": 0.516331,
+   "blockUse": 0.2529355,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1727784062488,
+   "height": 129312631,
+   "shard": 2,
+   "use": 0.504479,
+   "blockUse": 0.156546,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1727848785556,
+   "height": 129370326,
+   "shard": 2,
+   "use": 0.54588,
+   "blockUse": 0.15973783333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1727870430699,
+   "height": 129389551,
+   "shard": 2,
+   "use": 0.691533,
+   "blockUse": 0.19123483333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1728324004890,
+   "height": 129795073,
+   "shard": 2,
+   "use": 0.539826,
+   "blockUse": 0.2088305,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1728518418026,
+   "height": 129968515,
+   "shard": 5,
+   "use": 0.520919,
+   "blockUse": 0.21810733333333332,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1729101536333,
+   "height": 130494681,
+   "shard": 5,
+   "use": 0.511516,
+   "blockUse": 0.13317533333333334,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1729533721210,
+   "height": 130879629,
+   "shard": 2,
+   "use": 0.555557,
+   "blockUse": 0.2454275,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1729836032824,
+   "height": 131144104,
+   "shard": 2,
+   "use": 0.680982,
+   "blockUse": 0.29141816666666664,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1730138402019,
+   "height": 131414192,
+   "shard": 2,
+   "use": 0.52506,
+   "blockUse": 0.1624165,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1730570392299,
+   "height": 131801001,
+   "shard": 2,
+   "use": 0.523162,
+   "blockUse": 0.21123616666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1731261912800,
+   "height": 132395005,
+   "shard": 2,
+   "use": 0.56397,
+   "blockUse": 0.135797,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1731326509875,
+   "height": 132451932,
+   "shard": 5,
+   "use": 0.55337,
+   "blockUse": 0.13050466666666666,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1731413048153,
+   "height": 132525874,
+   "shard": 3,
+   "use": 0.676553,
+   "blockUse": 0.210297,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1731650615342,
+   "height": 132729796,
+   "shard": 3,
+   "use": 0.507427,
+   "blockUse": 0.18148433333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1731931245066,
+   "height": 132978144,
+   "shard": 5,
+   "use": 0.624625,
+   "blockUse": 0.2293394,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1732276763780,
+   "height": 133285645,
+   "shard": 2,
+   "use": 0.815609,
+   "blockUse": 0.29033966666666666,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1732644061513,
+   "height": 133612448,
+   "shard": 2,
+   "use": 0.52371,
+   "blockUse": 0.22228916666666668,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1732708748338,
+   "height": 133670296,
+   "shard": 2,
+   "use": 0.814252,
+   "blockUse": 0.29026766666666665,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1733594454489,
+   "height": 134451396,
+   "shard": 5,
+   "use": 0.527962,
+   "blockUse": 0.1673605,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1734156009123,
+   "height": 134942830,
+   "shard": 5,
+   "use": 0.57211,
+   "blockUse": 0.18251966666666666,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1734631411143,
+   "height": 135352659,
+   "shard": 5,
+   "use": 0.606793,
+   "blockUse": 0.21458633333333332,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1734825786199,
+   "height": 135525448,
+   "shard": 2,
+   "use": 0.536828,
+   "blockUse": 0.14379833333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1734890548591,
+   "height": 135581145,
+   "shard": 2,
+   "use": 0.534148,
+   "blockUse": 0.17930383333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1734976929695,
+   "height": 135658297,
+   "shard": 5,
+   "use": 0.677527,
+   "blockUse": 0.24770816666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1735063327551,
+   "height": 135735602,
+   "shard": 2,
+   "use": 0.559085,
+   "blockUse": 0.176694,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1735603212128,
+   "height": 136217763,
+   "shard": 2,
+   "use": 0.578929,
+   "blockUse": 0.16117783333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1735991977956,
+   "height": 136565828,
+   "shard": 2,
+   "use": 0.625034,
+   "blockUse": 0.18966333333333332,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1736208027701,
+   "height": 136759250,
+   "shard": 2,
+   "use": 0.705518,
+   "blockUse": 0.2775746666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1738000756312,
+   "height": 138348147,
+   "shard": 2,
+   "use": 0.502537,
+   "blockUse": 0.24449416666666668,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1738022406061,
+   "height": 138367270,
+   "shard": 2,
+   "use": 0.601048,
+   "blockUse": 0.1426645,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1738756756797,
+   "height": 139019022,
+   "shard": 2,
+   "use": 0.576335,
+   "blockUse": 0.16406133333333334,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1739167218493,
+   "height": 139385075,
+   "shard": 2,
+   "use": 0.701136,
+   "blockUse": 0.21449366666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1741370881084,
+   "height": 141323639,
+   "shard": 2,
+   "use": 0.518586,
+   "blockUse": 0.21372266666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1741520638623,
+   "height": 141451362,
+   "shard": 2,
+   "use": 0.505375,
+   "blockUse": 0.19617816666666665,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1741630114981,
+   "height": 141542894,
+   "shard": 2,
+   "use": 0.699562,
+   "blockUse": 0.223386,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1742299232534,
+   "height": 142131360,
+   "shard": 2,
+   "use": 0.609684,
+   "blockUse": 0.18305628571428573,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1742558345953,
+   "height": 142361084,
+   "shard": 5,
+   "use": 0.520595,
+   "blockUse": 0.097511375,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1742666337702,
+   "height": 142457179,
+   "shard": 9,
+   "use": 0.529194,
+   "blockUse": 0.1424845,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1742903965041,
+   "height": 142667925,
+   "shard": 5,
+   "use": 0.705923,
+   "blockUse": 0.235377,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1742968827532,
+   "height": 142725686,
+   "shard": 9,
+   "use": 0.583721,
+   "blockUse": 0.16719375,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1743141625321,
+   "height": 142880223,
+   "shard": 9,
+   "use": 0.610129,
+   "blockUse": 0.194375375,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1743422336175,
+   "height": 143132813,
+   "shard": 9,
+   "use": 0.570557,
+   "blockUse": 0.0965525,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1743573600284,
+   "height": 143264185,
+   "shard": 9,
+   "use": 0.689126,
+   "blockUse": 0.176078875,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1743703276882,
+   "height": 143373427,
+   "shard": 5,
+   "use": 0.738111,
+   "blockUse": 0.244471125,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1743962437440,
+   "height": 143604702,
+   "shard": 9,
+   "use": 0.70298,
+   "blockUse": 0.1905645,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1744048835188,
+   "height": 143681652,
+   "shard": 9,
+   "use": 0.55688,
+   "blockUse": 0.190987,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1744783104797,
+   "height": 144327060,
+   "shard": 9,
+   "use": 0.710901,
+   "blockUse": 0.144047125,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1744826532013,
+   "height": 144365897,
+   "shard": 9,
+   "use": 0.560803,
+   "blockUse": 0.155311875,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1745215316894,
+   "height": 144711634,
+   "shard": 9,
+   "use": 0.686427,
+   "blockUse": 0.221757625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1745258453681,
+   "height": 144750054,
+   "shard": 9,
+   "use": 0.575482,
+   "blockUse": 0.115360125,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1745409608733,
+   "height": 144886452,
+   "shard": 9,
+   "use": 0.597275,
+   "blockUse": 0.153848,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1745431225074,
+   "height": 144905686,
+   "shard": 9,
+   "use": 0.557166,
+   "blockUse": 0.108556625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1745474406559,
+   "height": 144944413,
+   "shard": 9,
+   "use": 0.566951,
+   "blockUse": 0.13997375,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1745668762662,
+   "height": 145117755,
+   "shard": 9,
+   "use": 0.554618,
+   "blockUse": 0.14233775,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1745776800375,
+   "height": 145213769,
+   "shard": 9,
+   "use": 0.632219,
+   "blockUse": 0.131577625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1746079129766,
+   "height": 145484161,
+   "shard": 9,
+   "use": 0.7373,
+   "blockUse": 0.207059875,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1746467954829,
+   "height": 145832298,
+   "shard": 5,
+   "use": 0.527912,
+   "blockUse": 0.147168625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1746532751167,
+   "height": 145890378,
+   "shard": 9,
+   "use": 0.562431,
+   "blockUse": 0.158250875,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1746691647721,
+   "height": 146033370,
+   "shard": 9,
+   "use": 0.537789,
+   "blockUse": 0.1230445,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1747720786974,
+   "height": 147510787,
+   "shard": 9,
+   "use": 0.803178,
+   "blockUse": 0.1662335,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1748411999248,
+   "height": 148634150,
+   "shard": 9,
+   "use": 0.727111,
+   "blockUse": 0.1266215,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1749535198897,
+   "height": 150467403,
+   "shard": 9,
+   "use": 0.690648,
+   "blockUse": 0.114752,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1749729597739,
+   "height": 150785719,
+   "shard": 9,
+   "use": 0.51791,
+   "blockUse": 0.110712125,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1750075205655,
+   "height": 151350793,
+   "shard": 9,
+   "use": 0.515821,
+   "blockUse": 0.11734425,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1751111987698,
+   "height": 153010414,
+   "shard": 9,
+   "use": 0.509098,
+   "blockUse": 0.105509375,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1753012770726,
+   "height": 156055708,
+   "shard": 9,
+   "use": 0.512853,
+   "blockUse": 0.095750875,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1753509627128,
+   "height": 156870159,
+   "shard": 9,
+   "use": 0.720905,
+   "blockUse": 0.183996125,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1753595961191,
+   "height": 157011793,
+   "shard": 9,
+   "use": 0.585485,
+   "blockUse": 0.177768375,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1754200799841,
+   "height": 158002463,
+   "shard": 9,
+   "use": 0.532122,
+   "blockUse": 0.113605,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1754416795835,
+   "height": 158357880,
+   "shard": 9,
+   "use": 0.62292,
+   "blockUse": 0.154473375,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1755410407321,
+   "height": 159985018,
+   "shard": 9,
+   "use": 0.648834,
+   "blockUse": 0.187801125,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1755863961117,
+   "height": 160720730,
+   "shard": 9,
+   "use": 0.812069,
+   "blockUse": 0.1499292222222222,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1756101580952,
+   "height": 161109385,
+   "shard": 9,
+   "use": 0.53204,
+   "blockUse": 0.086929,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1756144806678,
+   "height": 161179471,
+   "shard": 9,
+   "use": 0.733203,
+   "blockUse": 0.14735522222222222,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1756166429451,
+   "height": 161215087,
+   "shard": 9,
+   "use": 0.571883,
+   "blockUse": 0.08474388888888888,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1757829594627,
+   "height": 163975258,
+   "shard": 9,
+   "use": 0.603893,
+   "blockUse": 0.11134377777777778,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1758132024224,
+   "height": 164475356,
+   "shard": 9,
+   "use": 0.530133,
+   "blockUse": 0.10795333333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1759946422990,
+   "height": 167436202,
+   "shard": 9,
+   "use": 0.760023,
+   "blockUse": 0.15807377777777779,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1760508011492,
+   "height": 168353887,
+   "shard": 9,
+   "use": 0.560461,
+   "blockUse": 0.11355433333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1761112827155,
+   "height": 169333971,
+   "shard": 9,
+   "use": 0.667903,
+   "blockUse": 0.10694933333333333,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1761155956692,
+   "height": 169403130,
+   "shard": 9,
+   "use": 0.808645,
+   "blockUse": 0.16020877777777778,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1761631144166,
+   "height": 170185009,
+   "shard": 9,
+   "use": 0.514617,
+   "blockUse": 0.08785233333333334,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1762020012953,
+   "height": 170805718,
+   "shard": 9,
+   "use": 0.814227,
+   "blockUse": 0.14070688888888888,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1762257561068,
+   "height": 171194159,
+   "shard": 9,
+   "use": 0.663339,
+   "blockUse": 0.11603066666666667,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1762516801266,
+   "height": 171615509,
+   "shard": 9,
+   "use": 0.642744,
+   "blockUse": 0.116489,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1762538401292,
+   "height": 171650359,
+   "shard": 9,
+   "use": 0.515636,
+   "blockUse": 0.09539111111111111,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1763294385909,
+   "height": 172876247,
+   "shard": 9,
+   "use": 0.577613,
+   "blockUse": 0.11873144444444445,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1763467208058,
+   "height": 173154311,
+   "shard": 9,
+   "use": 0.812256,
+   "blockUse": 0.14734066666666668,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1764093609190,
+   "height": 174175833,
+   "shard": 9,
+   "use": 0.787426,
+   "blockUse": 0.14594266666666666,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1767074434635,
+   "height": 178956434,
+   "shard": 9,
+   "use": 0.509765,
+   "blockUse": 0.06826188888888889,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1767290402689,
+   "height": 179304578,
+   "shard": 9,
+   "use": 0.667202,
+   "blockUse": 0.109604625,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1767636003471,
+   "height": 179869052,
+   "shard": 9,
+   "use": 0.691256,
+   "blockUse": 0.10836544444444444,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1769018333051,
+   "height": 182127893,
+   "shard": 9,
+   "use": 0.743286,
+   "blockUse": 0.1351151111111111,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1770552005331,
+   "height": 184652644,
+   "shard": 9,
+   "use": 0.761184,
+   "blockUse": 0.14370433333333332,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1770638399851,
+   "height": 184797006,
+   "shard": 9,
+   "use": 0.671213,
+   "blockUse": 0.1521601111111111,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1771848004977,
+   "height": 186795649,
+   "shard": 9,
+   "use": 0.708278,
+   "blockUse": 0.100778125,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1772949624476,
+   "height": 188603764,
+   "shard": 9,
+   "use": 0.55632,
+   "blockUse": 0.1309471111111111,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1773057602187,
+   "height": 188784121,
+   "shard": 9,
+   "use": 0.566975,
+   "blockUse": 0.10964177777777778,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1773727201106,
+   "height": 189894755,
+   "shard": 9,
+   "use": 0.503816,
+   "blockUse": 0.07094744444444444,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1773986398053,
+   "height": 190324750,
+   "shard": 9,
+   "use": 0.757082,
+   "blockUse": 0.15139844444444445,
+   "gasPrice": "100000000"
+  },
+  {
+   "ts": 1792043997356,
+   "height": 220037917,
+   "shard": 9,
+   "use": 0.884524,
+   "blockUse": 0.1049955,
+   "gasPrice": "100000000"
+  }
+ ],
+ "above_floor_blocks": 14,
+ "price_rises": [
+  {
+   "ts": 1701286748662,
+   "height": 106823881,
+   "priceMultiple": 9.43351428,
+   "blockUse": 0.488077,
+   "fullShards": 1,
+   "shards": 4
+  },
+  {
+   "ts": 1701308412195,
+   "height": 106839606,
+   "priceMultiple": 1.0001716,
+   "blockUse": 0.5171596666666667,
+   "fullShards": 1,
+   "shards": 3
+  },
+  {
+   "ts": 1701328560830,
+   "height": 106854080,
+   "priceMultiple": 7.71680206,
+   "blockUse": 0.477902,
+   "fullShards": 1,
+   "shards": 4
+  },
+  {
+   "ts": 1701351169008,
+   "height": 106869442,
+   "priceMultiple": 5.85079488,
+   "blockUse": 0.372162,
+   "fullShards": 0,
+   "shards": 3
+  },
+  {
+   "ts": 1701372050631,
+   "height": 106884152,
+   "priceMultiple": 7.88631991,
+   "blockUse": 0.61006225,
+   "fullShards": 2,
+   "shards": 4
+  },
+  {
+   "ts": 1701391015070,
+   "height": 106898240,
+   "priceMultiple": 14.33846388,
+   "blockUse": 0.367948,
+   "fullShards": 1,
+   "shards": 3
+  },
+  {
+   "ts": 1701413298074,
+   "height": 106913983,
+   "priceMultiple": 8.0371422,
+   "blockUse": 0.43608,
+   "fullShards": 1,
+   "shards": 4
+  },
+  {
+   "ts": 1701433735866,
+   "height": 106928622,
+   "priceMultiple": 14.04133997,
+   "blockUse": 0.5424625,
+   "fullShards": 1,
+   "shards": 4
+  },
+  {
+   "ts": 1701454031113,
+   "height": 106943685,
+   "priceMultiple": 20,
+   "blockUse": 0.631385,
+   "fullShards": 2,
+   "shards": 4
+  },
+  {
+   "ts": 1701475711250,
+   "height": 106960570,
+   "priceMultiple": 7.81579436,
+   "blockUse": 0.549923,
+   "fullShards": 2,
+   "shards": 4
+  },
+  {
+   "ts": 1701497024423,
+   "height": 106977067,
+   "priceMultiple": 20,
+   "blockUse": 0.55334925,
+   "fullShards": 2,
+   "shards": 4
+  },
+  {
+   "ts": 1701518517961,
+   "height": 106993718,
+   "priceMultiple": 4.43687067,
+   "blockUse": 0.621626,
+   "fullShards": 2,
+   "shards": 4
+  },
+  {
+   "ts": 1703850492840,
+   "height": 109081808,
+   "priceMultiple": 3.12614998,
+   "blockUse": 0.52139575,
+   "fullShards": 2,
+   "shards": 4
+  },
+  {
+   "ts": 1703871664459,
+   "height": 109098257,
+   "priceMultiple": 20,
+   "blockUse": 0.5318995,
+   "fullShards": 2,
+   "shards": 4
+  }
+ ],
+ "cross_check": [
+  {
+   "month": "2023-01",
+   "oursGgasPerBlock": 59170.552,
+   "nearblocksGgasPerBlock": 84932.68586214169,
+   "ratio": 0.6966758604107087
+  },
+  {
+   "month": "2023-02",
+   "oursGgasPerBlock": 96128.02702702703,
+   "nearblocksGgasPerBlock": 89509.1589864687,
+   "ratio": 1.0739462655610352
+  },
+  {
+   "month": "2023-03",
+   "oursGgasPerBlock": 88007.19354838709,
+   "nearblocksGgasPerBlock": 85026.35690507812,
+   "ratio": 1.0350577956272633
+  },
+  {
+   "month": "2023-04",
+   "oursGgasPerBlock": 77321.59504132232,
+   "nearblocksGgasPerBlock": 88040.69683406738,
+   "ratio": 0.8782483308492249
+  },
+  {
+   "month": "2023-05",
+   "oursGgasPerBlock": 56475.93548387097,
+   "nearblocksGgasPerBlock": 83912.61448353417,
+   "ratio": 0.6730327237623256
+  },
+  {
+   "month": "2023-06",
+   "oursGgasPerBlock": 71619.75630252101,
+   "nearblocksGgasPerBlock": 77498.79684447033,
+   "ratio": 0.9241402346703812
+  },
+  {
+   "month": "2023-07",
+   "oursGgasPerBlock": 62975.824,
+   "nearblocksGgasPerBlock": 72243.38081553139,
+   "ratio": 0.871717564835518
+  },
+  {
+   "month": "2023-08",
+   "oursGgasPerBlock": 105400.93548387097,
+   "nearblocksGgasPerBlock": 90866.00261812357,
+   "ratio": 1.1599600779934425
+  },
+  {
+   "month": "2023-09",
+   "oursGgasPerBlock": 202752.46666666667,
+   "nearblocksGgasPerBlock": 250755.39040970887,
+   "ratio": 0.808566732445471
+  },
+  {
+   "month": "2023-10",
+   "oursGgasPerBlock": 219174.3306451613,
+   "nearblocksGgasPerBlock": 270204.9066284238,
+   "ratio": 0.8111411942143674
+  },
+  {
+   "month": "2023-11",
+   "oursGgasPerBlock": 339066.243697479,
+   "nearblocksGgasPerBlock": 371148.7493708193,
+   "ratio": 0.9135589013091723
+  },
+  {
+   "month": "2023-12",
+   "oursGgasPerBlock": 596766.8629032258,
+   "nearblocksGgasPerBlock": 556426.5559834169,
+   "ratio": 1.0724988886422078
+  },
+  {
+   "month": "2024-01",
+   "oursGgasPerBlock": 480468.816,
+   "nearblocksGgasPerBlock": 435703.80129122286,
+   "ratio": 1.1027418502572492
+  },
+  {
+   "month": "2024-02",
+   "oursGgasPerBlock": 774618.5603448276,
+   "nearblocksGgasPerBlock": 733791.7556417136,
+   "ratio": 1.0556381349193686
+  },
+  {
+   "month": "2024-03",
+   "oursGgasPerBlock": 983769.4634146341,
+   "nearblocksGgasPerBlock": 981677.7379961675,
+   "ratio": 1.002130765868987
+  },
+  {
+   "month": "2024-04",
+   "oursGgasPerBlock": 892372.9666666667,
+   "nearblocksGgasPerBlock": 883944.5384210241,
+   "ratio": 1.0095350193132004
+  },
+  {
+   "month": "2024-05",
+   "oursGgasPerBlock": 678924.9435483871,
+   "nearblocksGgasPerBlock": 682111.3593769738,
+   "ratio": 0.9953285987914099
+  },
+  {
+   "month": "2024-06",
+   "oursGgasPerBlock": 683503.9669421487,
+   "nearblocksGgasPerBlock": 708852.782559175,
+   "ratio": 0.9642396612657577
+  },
+  {
+   "month": "2024-07",
+   "oursGgasPerBlock": 563153.7723577236,
+   "nearblocksGgasPerBlock": 573917.8502043607,
+   "ratio": 0.9812445668961085
+  },
+  {
+   "month": "2024-08",
+   "oursGgasPerBlock": 543582.36,
+   "nearblocksGgasPerBlock": 537325.3728353344,
+   "ratio": 1.0116446895698392
+  },
+  {
+   "month": "2024-09",
+   "oursGgasPerBlock": 590879.6166666667,
+   "nearblocksGgasPerBlock": 586339.9752251602,
+   "ratio": 1.007742336585124
+  },
+  {
+   "month": "2024-10",
+   "oursGgasPerBlock": 554141.8943089431,
+   "nearblocksGgasPerBlock": 530976.347469242,
+   "ratio": 1.043628208582385
+  },
+  {
+   "month": "2024-11",
+   "oursGgasPerBlock": 565141.7520661157,
+   "nearblocksGgasPerBlock": 578436.0367962874,
+   "ratio": 0.9770168456242749
+  },
+  {
+   "month": "2024-12",
+   "oursGgasPerBlock": 660333.3333333334,
+   "nearblocksGgasPerBlock": 686995.9207503973,
+   "ratio": 0.9611895986399153
+  },
+  {
+   "month": "2025-01",
+   "oursGgasPerBlock": 572219.6,
+   "nearblocksGgasPerBlock": 616328.6753593073,
+   "ratio": 0.9284325439935232
+  },
+  {
+   "month": "2025-02",
+   "oursGgasPerBlock": 550027.5675675676,
+   "nearblocksGgasPerBlock": 607937.2169377711,
+   "ratio": 0.9047440298820673
+  },
+  {
+   "month": "2025-03",
+   "oursGgasPerBlock": 670214.8306451613,
+   "nearblocksGgasPerBlock": 598322.4135666233,
+   "ratio": 1.1201566504085723
+  },
+  {
+   "month": "2025-04",
+   "oursGgasPerBlock": 573949.1008403362,
+   "nearblocksGgasPerBlock": 585282.3163032819,
+   "ratio": 0.9806363268678134
+  },
+  {
+   "month": "2025-05",
+   "oursGgasPerBlock": 318930.17741935485,
+   "nearblocksGgasPerBlock": 330033.0902166134,
+   "ratio": 0.9663581830840924
+  },
+  {
+   "month": "2025-06",
+   "oursGgasPerBlock": 246763.19008264464,
+   "nearblocksGgasPerBlock": 269738.02318159415,
+   "ratio": 0.9148253819466813
+  },
+  {
+   "month": "2025-07",
+   "oursGgasPerBlock": 238299,
+   "nearblocksGgasPerBlock": 267270.5625677283,
+   "ratio": 0.891602119255514
+  },
+  {
+   "month": "2025-08",
+   "oursGgasPerBlock": 282174.6612903226,
+   "nearblocksGgasPerBlock": 270695.8026056341,
+   "ratio": 1.0424050117297592
+  },
+  {
+   "month": "2025-09",
+   "oursGgasPerBlock": 220993.00833333333,
+   "nearblocksGgasPerBlock": 250202.2694519887,
+   "ratio": 0.8832574093647048
+  },
+  {
+   "month": "2025-10",
+   "oursGgasPerBlock": 216115.0564516129,
+   "nearblocksGgasPerBlock": 251964.47586928154,
+   "ratio": 0.857720342147489
+  },
+  {
+   "month": "2025-11",
+   "oursGgasPerBlock": 246948.48333333334,
+   "nearblocksGgasPerBlock": 245747.03594875667,
+   "ratio": 1.0048889598197521
+  },
+  {
+   "month": "2025-12",
+   "oursGgasPerBlock": 176310.5483870968,
+   "nearblocksGgasPerBlock": 214218.8792363699,
+   "ratio": 0.8230392625318289
+  },
+  {
+   "month": "2026-01",
+   "oursGgasPerBlock": 163615.584,
+   "nearblocksGgasPerBlock": 194812.96541889347,
+   "ratio": 0.8398598299049974
+  },
+  {
+   "month": "2026-02",
+   "oursGgasPerBlock": 169399.82142857142,
+   "nearblocksGgasPerBlock": 194529.49247737572,
+   "ratio": 0.8708181945638555
+  },
+  {
+   "month": "2026-03",
+   "oursGgasPerBlock": 183496.03225806452,
+   "nearblocksGgasPerBlock": 190729.05742858278,
+   "ratio": 0.9620769626399134
+  },
+  {
+   "month": "2026-04",
+   "oursGgasPerBlock": 47522.208333333336,
+   "nearblocksGgasPerBlock": 57467.388873639364,
+   "ratio": 0.8269421886876795
+  },
+  {
+   "month": "2026-05",
+   "oursGgasPerBlock": 49967.22580645161,
+   "nearblocksGgasPerBlock": 63410.46613855497,
+   "ratio": 0.7879965067165849
+  },
+  {
+   "month": "2026-06",
+   "oursGgasPerBlock": 74740.575,
+   "nearblocksGgasPerBlock": 68769.26731018836,
+   "ratio": 1.0868310500223546
+  },
+  {
+   "month": "2026-07",
+   "oursGgasPerBlock": 57138.895161290326,
+   "nearblocksGgasPerBlock": 57405.52884430438,
+   "ratio": 0.9953552612721812
+  },
+  {
+   "month": "2026-08",
+   "oursGgasPerBlock": 47177.67741935484,
+   "nearblocksGgasPerBlock": 58372.40084347723,
+   "ratio": 0.8082188969040266
+  },
+  {
+   "month": "2026-09",
+   "oursGgasPerBlock": 59554.663865546216,
+   "nearblocksGgasPerBlock": 75895.36862285552,
+   "ratio": 0.7846943093654284
+  },
+  {
+   "month": "2026-10",
+   "oursGgasPerBlock": 80526.32258064517,
+   "nearblocksGgasPerBlock": 92470.56225621127,
+   "ratio": 0.870831977397609
+  },
+  {
+   "month": "2026-11",
+   "oursGgasPerBlock": 45167.25,
+   "nearblocksGgasPerBlock": 61014.96031660724,
+   "ratio": 0.7402651704701058
+  }
+ ],
+ "nearblocks_monthly_txns": [
+  {
+   "month": "2023-01",
+   "txns": 13011798
+  },
+  {
+   "month": "2023-02",
+   "txns": 11172596
+  },
+  {
+   "month": "2023-03",
+   "txns": 11189996
+  },
+  {
+   "month": "2023-04",
+   "txns": 11568443
+  },
+  {
+   "month": "2023-05",
+   "txns": 10352365
+  },
+  {
+   "month": "2023-06",
+   "txns": 10326078
+  },
+  {
+   "month": "2023-07",
+   "txns": 12451614
+  },
+  {
+   "month": "2023-08",
+   "txns": 17416535
+  },
+  {
+   "month": "2023-09",
+   "txns": 40991985
+  },
+  {
+   "month": "2023-10",
+   "txns": 43968584
+  },
+  {
+   "month": "2023-11",
+   "txns": 70170258
+  },
+  {
+   "month": "2023-12",
+   "txns": 117557607
+  },
+  {
+   "month": "2024-01",
+   "txns": 89106115
+  },
+  {
+   "month": "2024-02",
+   "txns": 131351920
+  },
+  {
+   "month": "2024-03",
+   "txns": 172491564
+  },
+  {
+   "month": "2024-04",
+   "txns": 227618072
+  },
+  {
+   "month": "2024-05",
+   "txns": 231823611
+  },
+  {
+   "month": "2024-06",
+   "txns": 239366849
+  },
+  {
+   "month": "2024-07",
+   "txns": 219458517
+  },
+  {
+   "month": "2024-08",
+   "txns": 197528870
+  },
+  {
+   "month": "2024-09",
+   "txns": 215693780
+  },
+  {
+   "month": "2024-10",
+   "txns": 216751919
+  },
+  {
+   "month": "2024-11",
+   "txns": 216072469
+  },
+  {
+   "month": "2024-12",
+   "txns": 255882809
+  },
+  {
+   "month": "2025-01",
+   "txns": 222309266
+  },
+  {
+   "month": "2025-02",
+   "txns": 192353815
+  },
+  {
+   "month": "2025-03",
+   "txns": 204459064
+  },
+  {
+   "month": "2025-04",
+   "txns": 187849986
+  },
+  {
+   "month": "2025-05",
+   "txns": 162672900
+  },
+  {
+   "month": "2025-06",
+   "txns": 146815770
+  },
+  {
+   "month": "2025-07",
+   "txns": 148950170
+  },
+  {
+   "month": "2025-08",
+   "txns": 155580573
+  },
+  {
+   "month": "2025-09",
+   "txns": 140330930
+  },
+  {
+   "month": "2025-10",
+   "txns": 140982405
+  },
+  {
+   "month": "2025-11",
+   "txns": 128032427
+  },
+  {
+   "month": "2025-12",
+   "txns": 119122904
+  },
+  {
+   "month": "2026-01",
+   "txns": 108680994
+  },
+  {
+   "month": "2026-02",
+   "txns": 97681097
+  },
+  {
+   "month": "2026-03",
+   "txns": 107857335
+  },
+  {
+   "month": "2026-04",
+   "txns": 28398312
+  },
+  {
+   "month": "2026-05",
+   "txns": 24893046
+  },
+  {
+   "month": "2026-06",
+   "txns": 24415046
+  },
+  {
+   "month": "2026-07",
+   "txns": 22874925
+  },
+  {
+   "month": "2026-08",
+   "txns": 21131379
+  },
+  {
+   "month": "2026-09",
+   "txns": 24004533
+  },
+  {
+   "month": "2026-10",
+   "txns": 22627935
+  },
+  {
+   "month": "2026-11",
+   "txns": 7950900
+  }
+ ]
+}

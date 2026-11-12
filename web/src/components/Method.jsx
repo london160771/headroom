@@ -20,7 +20,7 @@ export default function Method({ d }) {
               <li><b>Per shard:</b> each chunk header gives gas used and its gas limit ({d.chunk_gas_limit_tgas.toLocaleString('en-US')} Tgas). Only chunks included at that height count; a missing chunk is skipped, never counted as 0%.</li>
               <li><b>Whole chain:</b> gas used ÷ gas limit, summed over all chunks and blocks in the period.</li>
               <li><b>Fee multiple:</b> 50% ÷ whole-chain use (last {d.recent.days} days). NEAR raises the next gas price only when a block's summed gas passes half its summed limit (<a href="https://github.com/near/nearcore/blob/master/core/primitives/src/block.rs" target="_blank" rel="noreferrer">nearcore compute_next_gas_price</a>).</li>
-              <li><b>Shard multiple:</b> 100% ÷ the busiest shard's 95th percentile (last {d.recent.days} days).</li>
+              <li><b>Shard multiple:</b> 100% ÷ the busiest shard's own 95th percentile use (last {d.recent.days} days: shard {d.recent.busiest.shard}, {pct(d.recent.busiest.p95)}).</li>
               <li><b>Floor price:</b> {gasPrice(d.floor_gas_price)}, the lowest price in the sample.</li>
             </ul>
             <h3 className="h6 mt-3">Cross-check (Gate 0)</h3>

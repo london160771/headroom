@@ -18,8 +18,9 @@ export default function Thesis({ d }) {
             <h3 className="h6 mt-1">The scaling is already built and paid for.</h3>
             <p className="small mb-0">
               NEAR went from {first.shards} shards ({month(first.month)}) to {r.shards} today. Demand could grow about <b>{times(r.feeMultiple)}</b> before
-              anyone pays a higher gas price, and about <b>{times(r.shardMultiple)}</b> before even the busiest shard is full at its busy hours. A big new app or
-              a wave of AI agents would not hit a fee spike or a full chain first.
+              anyone pays a higher gas price, and about <b>{times(r.shardMultiple)}</b> before even the busiest shard is full at its busy hours. In the{' '}
+              {month(new Date(d.price_rises[0]?.ts ?? 0).toISOString().slice(0, 7))} inscription rush NEAR had {d.price_rises[0]?.shards} shards, and 2 full ones
+              were enough to raise the price. With {r.shards} shards it would take about {Math.ceil(r.shards / 2)} full shards at once.
             </p>
           </div>
         </div>
@@ -40,7 +41,7 @@ export default function Thesis({ d }) {
       <ol className="small">
         <li>Through 31 Dec 2027, NEAR's gas price stays at the floor in at least 99% of sampled blocks. <span className="hr-muted">(So far: {d.above_floor_blocks} of {d.sampling.blocks.toLocaleString('en-US')} sampled blocks above the floor.)</span></li>
         <li>No calendar month in 2027 averages more than {pct(pk.use)} of capacity, the highest month since 2023 ({month(pk.month)}).</li>
-        <li>In every month of 2027, the busiest shard's 95th percentile stays under 50%.</li>
+        <li>In every month of 2027, the busiest shard in a block stays under 50% at the 95th percentile (the orange line in the chart).</li>
       </ol>
       <p className="small hr-muted mb-0">If statement 1 or 2 fails, the bear reading is wrong: blockspace is getting scarce. If 3 fails while 1 holds, NEAR has a hot shard problem that its fee rule cannot see.</p>
     </section>
