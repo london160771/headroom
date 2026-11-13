@@ -6,16 +6,16 @@ export default function Thesis({ d }) {
   const first = d.monthly[0];
   const pk = d.peak_month;
   return (
-    <section className="mb-5">
+    <section id="thesis" className="hr-section">
       <h2 className="h4">The thesis</h2>
-      <p className="hr-muted">
+      <p className="hr-dek">
         NEAR sells blockspace. For three years it has had far more than it sells, and the gap is now very wide. That fact cuts both ways.
       </p>
       <div className="row g-3">
         <div className="col-md-6">
           <div className="hr-panel hr-card-bull h-100">
-            <div className="hr-kicker">BULL READING</div>
-            <h3 className="h6 mt-1">The scaling is already built and paid for.</h3>
+            <div className="small hr-ink-2"><span className="hr-reading-dot" />Bull reading</div>
+            <h3 className="h5 mt-2 mb-3">The scaling is already built and paid for</h3>
             <p className="small mb-0">
               NEAR went from {first.shards} shards ({month(first.month)}) to {r.shards} today. Demand could grow about <b>{times(r.feeMultiple)}</b> before
               anyone pays a higher gas price, and about <b>{times(r.shardMultiple)}</b> before even the busiest shard is full at its busy hours. In the{' '}
@@ -27,8 +27,8 @@ export default function Thesis({ d }) {
         </div>
         <div className="col-md-6">
           <div className="hr-panel hr-card-bear h-100">
-            <div className="hr-kicker">BEAR READING</div>
-            <h3 className="h6 mt-1">Blockspace is not scarce, so it cannot carry the token's value.</h3>
+            <div className="small hr-ink-2"><span className="hr-reading-dot" />Bear reading</div>
+            <h3 className="h5 mt-2 mb-3">Blockspace is not scarce, so it cannot carry the token's value</h3>
             <p className="small mb-0">
               In the last {r.days} days NEAR used <b>{pct(r.use)}</b> of its capacity, down from {pct(pk.use)} in {month(pk.month)}. The gas price was at the
               floor in {pct(r.atFloor)} of sampled blocks, and gas burn offset {d.economics ? pct(d.economics.coverageToday) : '–'} of new NEAR. With this much room,

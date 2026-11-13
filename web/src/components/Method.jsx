@@ -9,7 +9,7 @@ export default function Method({ d }) {
   const sorted = [...cc].map((c) => c.ratio).sort((a, b) => a - b);
   const median = sorted[Math.floor(sorted.length / 2)];
   return (
-    <section className="mb-5">
+    <section id="method" className="hr-section">
       <h2 className="h4">How it was measured</h2>
       <div className="row g-3">
         <div className="col-lg-6">
