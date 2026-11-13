@@ -32,7 +32,7 @@
 
 | Check | Command | Result |
 |---|---|---|
-| Node tests | `node --test test/*.test.js` | 43 of 43 pass |
+| Node tests | `node --test test/*.test.js` | 44 of 44 pass |
 | Web tests | `vitest run` | 4 of 4 pass |
 | Build | `npm run build` | pass |
 | Re-check vs mainnet | `npm run check` | 20 of 20 random blocks match evidence/ field by field |
