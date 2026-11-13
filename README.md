@@ -1,8 +1,18 @@
 # Headroom
 
-**How much room does NEAR have left, and can that room ever pay for the chain?**
+<!-- story:start -->
+**NEAR built a highway for 76× today's traffic. That's exactly why its fees can't pay for the token.**
 
-Headroom is a re-runnable census of NEAR's blockspace. Shard by shard, it measures how full NEAR is, how much growth fits before fees move, and whether gas burn could ever offset the NEAR the protocol mints. Every number comes from public mainnet block data, and one command rebuilds it.
+| 0.66% | 76× | 0.95% |
+|:---:|:---:|:---:|
+| of NEAR's gas capacity used, last 30 days | growth before NEAR's fee rule raises the gas price | of newly minted NEAR offset by gas burn |
+
+Headroom is a re-runnable census of NEAR's blockspace, read shard by shard from 5,649 mainnet blocks since 1 Jan 2023. It finds a chain built far ahead of its demand. That is good for users, but it means blockspace cannot become scarce, so gas fees cannot offset the NEAR the protocol mints: load must grow about 105× for burn to match issuance. On the last year's trend that never happens; even if demand doubled every year, fees would only start to rise in 6.2 years. **NEAR is a volume bet, not a scarcity bet.**
+
+**Why it matters next to the other theses.** Most entries in this track measure NEAR Intents, and many take for granted that ordinary L1 fees cannot carry NEAR's value. Headroom measures that directly, from the protocol's own fee rule (nearcore `compute_next_gas_price`): the price rises only when a whole block is more than half full, so one busy shard never moves it. In the Nov 2023 inscription rush, 2 full shards out of 4 were enough to raise the price; with 10 shards it would take about 5 at once.
+
+**Don't trust it, re-run it:** `npm install && npm run verify` rebuilds every number and ends in `ALL OK`, and the evidence hashes are stored on NEAR mainnet in [`headroom-anchor.near`](https://nearblocks.io/address/headroom-anchor.near).
+<!-- story:end -->
 
 Built for NEAR HACKATHON, **Investment Thesis** track. Sister project by the same builder: **[AgentGate](https://github.com/london160771/agentgate)**, spending limits for AI agents on NEAR (Function Call Keys + a vault contract).
 
