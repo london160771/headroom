@@ -31,7 +31,7 @@ The track: *"Build a long-term investment thesis for NEAR and back it with data:
 
 | The track asks for | Where it is | How to check it | Honest note |
 |---|---|---|---|
-| A long-term investment thesis | [THESIS.md](THESIS.md): claim, evidence for, evidence against, what would change my mind | `npm test` fails if THESIS.md differs from the data | It answers the gas half of NEAR's value. Intents fees and buybacks are out of scope (other entries cover them). |
+| A long-term investment thesis | [THESIS.md](THESIS.md): claim, a long-term view (years to each bar at measured and reference growth paces), gas next to NEAR Intents as the two value channels, evidence for, evidence against, what would change my mind | `npm test` fails if THESIS.md differs from the data | Headroom measures the gas channel. The Intents buyback share is an external figure with its source, not recomputed (other entries measure it). |
 | Onchain analytics | `evidence/samples.jsonl`: one mainnet block in every 6-hour slot since 1 Jan 2023, read from archival RPC, plus a 30-minute check over the last 30 days | `npm run check` re-reads random blocks from mainnet and diffs every field | Sampled, not every block. The 30-minute check measures what sampling misses. |
 | Live dashboards | The [live page](https://headroom-delta.vercel.app): live shard gauges from mainnet RPC; the data refreshes every day at 00:30 UTC | Actions tab, `daily` workflow | Daily, not hourly: a census of months does not move by the hour. |
 | Models anyone can re-run | Fee rule (`lib/metrics.js`), burn vs issuance (`lib/economics.js`), the ×N slider and the HSP-029 scenario, all labelled as models | `npm run data` rebuilds `headroom.json`; `git status` stays clean | The ×N model scales load evenly; real growth is lumpy. |
@@ -52,6 +52,9 @@ Numbers from `web/public/data/headroom.json`, data as of 13 Nov 2026: 5,649 main
 | NEAR minted per year (from total_supply + burn) | 32,257,468 NEAR (2.52% of supply) |
 | Gas burn as a share of issuance (burn rule since 4 Nov 2026) | **0.95%** today; 72.2% at the 50% fee trigger; 144.5% with every block full |
 | Growth needed for burn to match issuance | about 105× (90%: 84× to 130×); about 67× if HSP-029's 1.60% cap lands |
+| Gas used per day, last 30 days vs the same 30 days a year earlier | **0.28×** (fastest 12 months since 2023: 10.3×, to 27 Feb 2024) |
+| Years until fees move if gas demand doubles every year (model) | 6.2 years; at the fastest pace seen, 1.9 years |
+| NEAR Intents buybacks as a share of issuance (external, not recomputed) | about 14.6% (30 days before 6 Oct 2026); with gas burn, about 15.6% together |
 | Peak month since 2023 | 20.6% (Mar 2024) |
 | Sampled blocks with one shard more than half full | 493, of which 478 stayed at the floor price |
 | Sampled blocks priced above the floor | 15, all from 29 Nov 2023 to 29 Dec 2023, up to 20× the floor |
@@ -85,6 +88,9 @@ predictions/predictions.json (frozen, hashed, timestamped) ───────
 | `lib/predictions.js` | Scores frozen predictions and a backtest |
 | `lib/report.js` | Builds the page data from evidence (pure, tested) |
 | `lib/thesis.js` | Renders THESIS.md and the README findings table from the page data |
+| `lib/longterm.js` | Gas per day, year-over-year growth, years to each headroom bar at a given pace (a model) |
+| `lib/protocol.js` | Bisects archival protocol configs for the block where a parameter changed |
+| `lib/independent.js` | A second recompute of the headline numbers that imports nothing from the pipeline |
 
 ## How it uses NEAR
 
@@ -138,7 +144,7 @@ Node 20+. No keys, no wallet, no `.env`. `ots` (Python `opentimestamps-client`) 
 
 ## Tested, not claimed
 
-`npm test` on 2026-11-13: **53 passing** (49 with `node:test`, 4 with vitest), plus **6 passing** Rust tests for the anchor contract (`cd contract && cargo test`). They cover:
+`npm test` on 2026-11-13: **64 passing** (59 with `node:test`, 5 with vitest), plus **6 passing** Rust tests for the anchor contract (`cd contract && cargo test`). They cover:
 
 - Block records: missing chunks are skipped, never 0%; burn is not double-counted from repeated chunk headers.
 - Metrics: block and shard use, percentiles, monthly grouping, multiples, recent window, hot-shard events, price rises, congestion, the ×N model, cross-check.
@@ -147,7 +153,9 @@ Node 20+. No keys, no wallet, no `.env`. `ots` (Python `opentimestamps-client`) 
 - Predictions: waiting / holding / failed / passed rules, backtest windows, unknown metrics rejected, the frozen file still matches its SHA-256.
 - RPC and evidence check, against a mock `fetch`: skipped heights, retry after HTTP 429, block-at-time correction, a tampered stored row is caught field by field.
 - Whole pipeline: the committed page data is rebuilt byte for byte from `evidence/`; THESIS.md and this README's findings table match the data; no typed-in % or × in page components.
-- Verify: the independent recompute agrees with all 14 published headline numbers; the manifest matches every file; the NEAR proof readers decode a contract view and an anchor transaction (mock RPC).
+- Long-term model: gas per day from ordinals, year-over-year growth, fastest year, years to each bar (never without growth); gas burn next to the Intents buyback share.
+- Protocol bisection (`lib/protocol.js`): finds the exact first block of a parameter change, returns nothing when there is none, survives heights the node cannot serve.
+- Verify: the independent recompute agrees with all 15 published headline numbers; the manifest matches every file; the NEAR proof readers decode a contract view and an anchor transaction (mock RPC).
 - Anchor contract: only the account itself can add a hash, first write wins, bad hashes and long labels are rejected, listing pages in order.
 
 `npm run check` re-reads random stored blocks from mainnet and compares every field (result in PROJECT_STATE.md).

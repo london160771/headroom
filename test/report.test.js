@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { test } from 'node:test';
 import { pageData } from '../lib/pagedata.js';
-import { buildReport, busiestP95, headlineIntervals, offsets } from '../lib/report.js';
+import { buildReport, busiestP95, headlineIntervals, offsets, valueChannels } from '../lib/report.js';
 import { blockStats } from '../lib/metrics.js';
 import { targetTime } from '../lib/slots.js';
 
@@ -95,4 +95,12 @@ test('economics measures burn under the current burn rule only, and scales issua
   assert.equal(e.burnRule.blocks, 200);
   assert.ok(Math.abs(e.hsp029.mintedPerYear / e.issuance.mintedPerYear - 0.64) < 1e-9);
   assert.ok(Math.abs(e.hsp029.loadNeeded / e.loadNeeded - 0.64) < 1e-9);
+});
+
+test('valueChannels puts measured gas burn next to the external Intents buyback share', () => {
+  const v = valueChannels({ coverageToday: 0.01 }, { intents_buybacks: { buyback_usd_30d: 2, issuance_usd_30d: 10, window: 'w', said_by: 's', sources: ['u'], status: 'x' } });
+  assert.equal(v.intentsBuybackShare, 0.2);
+  assert.ok(Math.abs(v.combinedShare - 0.21) < 1e-12);
+  assert.equal(valueChannels({ coverageToday: 0.01 }, {}), null);
+  assert.equal(valueChannels(null, { intents_buybacks: {} }), null);
 });

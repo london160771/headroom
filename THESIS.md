@@ -12,6 +12,28 @@ If governance's 1.60% issuance cap (HSP-029, approved but not yet in effect) lan
 
 **Investment reading.** Holding NEAR is a bet on transaction volume at the floor price, plus the option that whole blocks fill and the price (and burn) rise. The signal to watch is whole-block use crossing 50%, not any single busy shard or app.
 
+## Long-term view (a model)
+
+How long the headroom lasts depends on one thing: how fast gas demand grows. Measured from the sample, gas used per day over the last 30 days was **0.28×** the level of the same 30 days a year earlier, so on the current trend no bar below is ever reached. The fastest 12 months since 2023 (to 27 Feb 2024, from a low base) grew **10.3×**; at that pace fees would start to move in 1.9 years.
+
+| Yearly growth in gas demand | Busiest shard full at its busy hours (14×) | NEAR's fee rule raises the price (76×) | Burn matches issuance if HSP-029 lands (67×) | Burn matches issuance today (105×) |
+|---|---|---|---|---|
+| Last 12 months (measured): 0.28× | never | never | never | never |
+| Reference pace (model input): 1.5× | 6.5 years | 10.7 years | 10.4 years | 11.5 years |
+| Reference pace (model input): 2× | 3.8 years | 6.2 years | 6.1 years | 6.7 years |
+| Reference pace (model input): 3× | 2.4 years | 3.9 years | 3.8 years | 4.2 years |
+| Fastest 12 months since 2023 (measured): 10.3× | 1.1 years | 1.9 years | 1.8 years | 2.0 years |
+
+Model: years = ln(multiple) / ln(yearly pace); capacity held at today's level; steady growth. NEAR adding shards would push every bar further out: good for users, but it delays the point where usage pays for issuance.
+
+**Long-term reading.** A five-year holder is betting that NEAR finds another demand wave like 2023-24 and keeps it: doubling every year reaches the fee trigger (76×) in about 6.2 years. On the last year's trend, blockspace never becomes scarce and the token's value rests on other channels.
+
+## Gas is one of two value channels
+
+Headroom measures one way usage pays for NEAR: gas burn, **0.95%** of issuance today. The other is NEAR Intents: fees on cross-chain swaps fund NEAR buybacks. Those fees are mostly never paid as gas, so block headers cannot see them. An external figure puts the buybacks at about **14.6%** of the new NEAR issued in the 30 days before 6 Oct 2026 (Sal Ternullo, CEO of the NEAR treasury company SVRN, on the Bankless podcast, reported by Stocktwits on 6 Oct 2026; [source](https://stocktwits.com/news-articles/markets/cryptocurrency/near-treasury-firm-ceo-says-buybacks-are-still-real-but-issuance-runs-six-times-higher/cZDteDIRBl3)). Not recomputed here.
+
+Together, usage covered roughly **15.6%** of issuance. The two channels behave differently. Intents buybacks depend on swap volume and fee policy, and they are already the larger channel. Gas burn is set by the protocol and grows on its own as blocks fill, but it needs the growth shown above. Signals to watch: whole-block use crossing 50% (here, daily) and the Intents buyback share of issuance (outside Headroom).
+
 ## Evidence for
 
 1. **Capacity is mostly empty.** 0.66% used in the last 30 days, across 10 shards of 1,000 Tgas per chunk. The gas price was at the floor (0.0001 NEAR per Tgas) in 100.0% of recent sampled blocks. Source: `evidence/samples.jsonl`, `lib/metrics.js`.
@@ -25,7 +47,7 @@ If governance's 1.60% issuance cap (HSP-029, approved but not yet in effect) lan
 2. **Local scarcity is real.** 151 of 5,649 sampled blocks (2.67%) had delayed receipts in some shard: congestion control was holding back work the price never showed. In 2026, the account leading the most hot-shard chunks was `earn.kaiching`. Apps on a hot shard can feel full while the chain is empty.
 3. **Gas is not the only limit.** State size, chunk and state-witness size, and receipt bandwidth can bind before gas. If one of them binds first, real headroom is smaller than these multiples.
 4. **It is a sample.** One block per 6-hour slot, at a seeded random moment so every hour of the day is covered. Against NearBlocks' every-block daily totals the monthly median ratio is 0.99 (45 of 47 months within 0.8 to 1.2). A 12× denser read of the last 30 days gave 0.58% use (sampled: 0.68%) and a busiest-shard p95 of 4.77% (sampled: 7.54%).
-5. **The rules are moving.** NEAR began burning 100.0% of gas fees on 4 Nov 2026 (found by bisecting archival protocol configs: `evidence/protocol.json`), so burn per Tgas rose from 0.0000773 to 0.0000869 NEAR and the burn estimate rests on 433 blocks since then. Governance can also change issuance (HSP-029 would cap it at 1.60%). Either moves the burn-to-issuance bar without any change in use.
+5. **The rules are moving.** NEAR began burning 100.0% of gas fees on 4 Nov 2026 (governance proposal HSP-027; we found the exact block by bisecting archival protocol configs: `evidence/protocol.json`), so burn per Tgas rose from 0.0000773 to 0.0000869 NEAR and the burn estimate rests on 433 blocks since then. Governance can also change issuance (HSP-029 would cap it at 1.60%). Either moves the burn-to-issuance bar without any change in use.
 
 ## What would change my mind
 

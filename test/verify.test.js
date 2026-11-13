@@ -22,7 +22,7 @@ test('the independent recompute agrees with every published headline number', ()
     scenarios: JSON.parse(read('evidence/scenarios.json')),
   });
   const rows = compare(mine, published(JSON.parse(read('web/public/data/headroom.json'))));
-  assert.equal(rows.length, 14);
+  assert.equal(rows.length, 15);
   assert.deepEqual(rows.filter((r) => !r.ok), []);
 });
 

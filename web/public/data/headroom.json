@@ -5283,6 +5283,108 @@
    "fitsBeforeFeesMove": true
   }
  },
+ "long_term": {
+  "model": "years = ln(multiple) / ln(yearly pace); capacity held at today's level; steady growth",
+  "gasPerDayTgas": 9637772.388753299,
+  "bars": [
+   {
+    "id": "busiest_shard",
+    "label": "Busiest shard full at its busy hours",
+    "multiple": 14.223132502702397
+   },
+   {
+    "id": "fees_move",
+    "label": "NEAR's fee rule raises the price",
+    "multiple": 75.74424863153502
+   },
+   {
+    "id": "burn_matches_hsp029",
+    "label": "Burn matches issuance if HSP-029 lands",
+    "multiple": 67.11419466912176
+   },
+   {
+    "id": "burn_matches",
+    "label": "Burn matches issuance today",
+    "multiple": 104.86592917050272
+   }
+  ],
+  "rows": [
+   {
+    "id": "last_year",
+    "label": "Last 12 months (measured)",
+    "pace": 0.2802231312468548,
+    "measured": true,
+    "years": {
+     "busiest_shard": null,
+     "fees_move": null,
+     "burn_matches_hsp029": null,
+     "burn_matches": null
+    }
+   },
+   {
+    "id": "pace_1.5",
+    "label": "Reference pace (model input)",
+    "pace": 1.5,
+    "measured": false,
+    "years": {
+     "busiest_shard": 6.5477143052300715,
+     "fees_move": 10.67258915580051,
+     "burn_matches_hsp029": 10.374247950029249,
+     "burn_matches": 11.474927376455664
+    }
+   },
+   {
+    "id": "pace_2",
+    "label": "Reference pace (model input)",
+    "pace": 2,
+    "measured": false,
+    "years": {
+     "busiest_shard": 3.8301673339950706,
+     "fees_move": 6.24306444174656,
+     "burn_matches_hsp029": 6.068546023950438,
+     "burn_matches": 6.712402213725162
+    }
+   },
+   {
+    "id": "pace_3",
+    "label": "Reference pace (model input)",
+    "pace": 3,
+    "measured": false,
+    "years": {
+     "busiest_shard": 2.416566532174956,
+     "fees_move": 3.9389351097618857,
+     "burn_matches_hsp029": 3.8288262474280974,
+     "burn_matches": 4.235054274578122
+    }
+   },
+   {
+    "id": "fastest_year",
+    "label": "Fastest 12 months since 2023 (measured)",
+    "pace": 10.303611597382577,
+    "measured": true,
+    "to": "2024-02-27T00:16:05.320Z",
+    "years": {
+     "busiest_shard": 1.1382104943379725,
+     "fees_move": 1.8552509185055142,
+     "burn_matches_hsp029": 1.8033892954302593,
+     "burn_matches": 1.994723983484647
+    }
+   }
+  ]
+ },
+ "value_channels": {
+  "gasBurnShare": 0.009535985690586772,
+  "intentsBuybackShare": 0.14615384615384616,
+  "combinedShare": 0.15568983184443294,
+  "intents": {
+   "window": "30 days before 6 Oct 2026",
+   "saidBy": "Sal Ternullo, CEO of the NEAR treasury company SVRN, on the Bankless podcast, reported by Stocktwits on 6 Oct 2026",
+   "sources": [
+    "https://stocktwits.com/news-articles/markets/cryptocurrency/near-treasury-firm-ceo-says-buybacks-are-still-real-but-issuance-runs-six-times-higher/cZDteDIRBl3"
+   ],
+   "status": "External figure, not recomputed by Headroom. Intents fees are taken on swaps and mostly never appear as NEAR gas, so block headers cannot measure them. Other thesis-track entries that compute Intents revenue on-chain report a similar order (roughly a sixth of issuance)."
+  }
+ },
  "protocol": {
   "source": "NEAR RPC EXPERIMENTAL_protocol_config (live and archival, bisected)",
   "fetched_at": "2026-11-13T05:58:24.733Z",

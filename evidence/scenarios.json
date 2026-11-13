@@ -9,5 +9,33 @@
    "https://gov.near.org/t/reduce-inflation-for-near-protocol/41140"
   ],
   "use": "Scenario only: issuance scaled by max_inflation / current max_inflation (the end state after the phase-in)."
+ },
+ "growth_paces": {
+  "paces": [
+   1.5,
+   2,
+   3
+  ],
+  "use": "Reference yearly growth paces for the long-term table (a model, not a forecast). The table also shows two paces measured from the sample: the last 12 months and the fastest 12 months since 2023."
+ },
+ "intents_buybacks": {
+  "name": "NEAR Intents fee buybacks",
+  "buyback_usd_30d": 1900000,
+  "issuance_usd_30d": 13000000,
+  "window": "30 days before 6 Oct 2026",
+  "said_by": "Sal Ternullo, CEO of the NEAR treasury company SVRN, on the Bankless podcast, reported by Stocktwits on 6 Oct 2026",
+  "sources": [
+   "https://stocktwits.com/news-articles/markets/cryptocurrency/near-treasury-firm-ceo-says-buybacks-are-still-real-but-issuance-runs-six-times-higher/cZDteDIRBl3"
+  ],
+  "status": "External figure, not recomputed by Headroom. Intents fees are taken on swaps and mostly never appear as NEAR gas, so block headers cannot measure them. Other thesis-track entries that compute Intents revenue on-chain report a similar order (roughly a sixth of issuance).",
+  "use": "Shown next to gas burn as the second value channel: buyback share of issuance = buyback_usd_30d / issuance_usd_30d."
+ },
+ "hsp027": {
+  "name": "HSP-027",
+  "summary": "House of Stake proposal that ends the developer gas rebate, so gas fees are burned instead of partly paid to contracts.",
+  "status": "Passed. Headroom finds the change on chain at protocol 87 (evidence/protocol.json).",
+  "sources": [
+   "https://thedefiant.io/news/blockchains/near-governance-votes-to-scrap-developer-gas-rebate"
+  ]
  }
 }

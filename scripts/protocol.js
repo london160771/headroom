@@ -5,6 +5,7 @@
 // It was 3/10 for years; the archival bisection below finds the block where it changed.
 import fs from 'node:fs';
 import path from 'node:path';
+import { burnShare, findChange } from '../lib/protocol.js';
 import { rpc } from '../lib/rpc.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
@@ -21,39 +22,27 @@ async function config(blockId) {
     protocol_reward_rate: c.protocol_reward_rate,
   };
 }
-const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-
 const tip = (await rpc('block', { finality: 'final' })).header;
 const now = await config();
-// Walk back 1M heights at a time until the burn rule differs, then bisect to the first new block.
-let hi = tip.height;
-let lo = null;
-for (let k = 1; k <= 40; k++) {
-  const h = tip.height - k * 1_000_000;
-  const c = await config(h).catch(() => null);
-  if (c && !same(c.burnt_gas_reward, now.burnt_gas_reward)) { lo = h; break; }
-  hi = h;
-}
+const found = await findChange({
+  config: (h) => (h === tip.height ? Promise.resolve(now) : config(h)),
+  tipHeight: tip.height,
+  pick: (c) => c.burnt_gas_reward,
+});
 let change = null;
-if (lo) {
-  const before = (await config(lo)).burnt_gas_reward;
-  while (hi - lo > 1) {
-    const mid = Math.floor((lo + hi) / 2);
-    const c = await config(mid).catch(() => null);
-    if (c && same(c.burnt_gas_reward, now.burnt_gas_reward)) hi = mid; else lo = mid;
-  }
-  const b = await rpc('block', { block_id: hi });
+if (found) {
+  const b = await rpc('block', { block_id: found.firstHeight });
   change = {
-    param: 'burnt_gas_reward', from: before, to: now.burnt_gas_reward,
-    first_height: hi, ts: Number(BigInt(b.header.timestamp) / 1_000_000n),
-    protocol_version: (await config(hi)).protocol_version,
+    param: 'burnt_gas_reward', from: found.from, to: found.to,
+    first_height: found.firstHeight, ts: Number(BigInt(b.header.timestamp) / 1_000_000n),
+    protocol_version: (await config(found.firstHeight)).protocol_version,
   };
 }
 const out = {
   source: 'NEAR RPC EXPERIMENTAL_protocol_config (live and archival, bisected)',
   fetched_at: new Date().toISOString(),
   tip_height: tip.height,
-  now: { ...now, burn_share: 1 - ratio(now.burnt_gas_reward), max_inflation: ratio(now.max_inflation_rate) },
+  now: { ...now, burn_share: burnShare(now.burnt_gas_reward), max_inflation: ratio(now.max_inflation_rate) },
   burn_rule_change: change,
 };
 console.log(JSON.stringify(out, null, 1));

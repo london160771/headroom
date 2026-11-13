@@ -44,11 +44,11 @@ Any step can be previewed with `--dry-run` (prints the commands, sends nothing).
 
 | Check | Command | Result |
 |---|---|---|
-| Node tests | `node --test test/*.test.js` | 49 of 49 pass (2026-11-13) |
-| Web tests | `vitest run` | 4 of 4 pass |
+| Node tests | `node --test test/*.test.js` | 59 of 59 pass (2026-11-13) |
+| Web tests | `vitest run` | 5 of 5 pass |
 | Contract | `cd contract && cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test` | clean; 6 of 6 pass |
 | Contract wasm | `cargo near build non-reproducible-wasm` | 115,821 bytes |
-| Verify | `npm run verify` | ALL OK (manifest 9 files, predictions hash, byte-identical page data + THESIS + README table, 14 of 14 independent numbers agree; NEAR anchors not recorded yet) |
+| Verify | `npm run verify` | ALL OK (manifest 9 files, predictions hash, byte-identical page data + THESIS + README table, 15 of 15 independent numbers agree; NEAR anchors not recorded yet) |
 | Byte-clean rebuild | `npm run data && npm run thesis` twice | page data byte-identical (`cmp`) |
 | Anchor script | `bash scripts/anchor-mainnet.sh <step> --dry-run` | key, create, anchor print the expected near-cli commands |
 | Build | `npm run build` | pass |
@@ -101,6 +101,8 @@ All real. Slider is a labelled model. Test fixtures and the mock `fetch` stay in
 - Never edit `predictions/predictions.json`: a test checks it against `predictions/SHA256`.
 
 ## 10. Build log
+
+- **2026-11-13** phase-4c: long-term view (years to each bar at measured and reference paces; gas per day 0.28× a year earlier is shown, not hidden), gas vs NEAR Intents as two value channels (Intents share external, sourced), HSP-027 cited for the burn rule, protocol bisection moved to `lib/protocol.js` and tested (re-run on mainnet gives the same block 223,012,337). New page section "How long does the room last?" (table on desktop, cards on phones; checked at 1280 and 390 px, no horizontal scroll, no console errors).
 
 - **2026-11-13** phase-4b: proof gap closed after the rival review. `npm run verify` (ALL OK), independent recompute (`lib/independent.js`), byte-identical rebuild (no `generated_at`), manifest of every input/output file (`npm run manifest`), README judging map, NEAR mainnet anchor contract + `scripts/anchor-mainnet.sh` (Adesope runs it). CI also runs verify and the contract tests.
 

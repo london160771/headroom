@@ -4,6 +4,7 @@ import Culprits from './components/Culprits.jsx';
 import HistoryChart from './components/HistoryChart.jsx';
 import HotEvents from './components/HotEvents.jsx';
 import LivePanel from './components/LivePanel.jsx';
+import LongTerm from './components/LongTerm.jsx';
 import Method from './components/Method.jsx';
 import Predictions from './components/Predictions.jsx';
 import Source from './components/Source.jsx';
@@ -52,6 +53,11 @@ export default function App() {
           <section className="mb-5">
             <h2 className="h4">Can blockspace pay for NEAR?</h2>
             <div className="hr-panel"><Bridge e={d.economics} recent={d.recent} /></div>
+          </section>
+
+          <section className="mb-5">
+            <h2 className="h4">How long does the room last?</h2>
+            <div className="hr-panel"><LongTerm lt={d.long_term} v={d.value_channels} /></div>
           </section>
 
           <section className="mb-5"><StressSlider recent={d.recent} /></section>

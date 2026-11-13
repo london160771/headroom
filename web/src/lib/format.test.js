@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { day, gasPrice, month, pct, tgas, times } from './format.js';
+import { day, gasPrice, month, pace, pct, tgas, times, years } from './format.js';
 
 describe('format', () => {
   test('pct keeps small shares readable', () => {
@@ -14,6 +14,14 @@ describe('format', () => {
     expect(times(4.26)).toBe('4.3×');
     expect(times(1234.5)).toBe('1,235×');
     expect(times(null)).toBe('–');
+  });
+  test('pace keeps two decimals below 10, and years says never for no growth', () => {
+    expect(pace(0.2802)).toBe('0.28×');
+    expect(pace(2)).toBe('2×');
+    expect(pace(1.5)).toBe('1.5×');
+    expect(pace(10.3036)).toBe('10.3×');
+    expect(years(6.243)).toBe('6.2 years');
+    expect(years(null)).toBe('never');
   });
   test('dates are UTC', () => {
     expect(month('2024-03')).toBe('Mar 2024');

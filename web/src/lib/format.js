@@ -44,3 +44,15 @@ export function gasPrice(yoctoPerGas) {
   const nearPerTgas = (Number(yoctoPerGas) * 1e12) / 1e24;
   return `${nearPerTgas} NEAR per Tgas`;
 }
+
+/** A yearly growth pace: 0.28 -> "0.28×", 10.3 -> "10.3×". */
+export function pace(x) {
+  if (x == null || !Number.isFinite(x)) return '–';
+  return x < 10 ? `${x.toFixed(2).replace(/\.?0+$/, '')}×` : `${x.toFixed(1)}×`;
+}
+
+/** Years to a bar: null means the pace is not growth, so the bar is never reached. */
+export function years(x) {
+  if (x == null) return 'never';
+  return `${x.toFixed(1)} years`;
+}
