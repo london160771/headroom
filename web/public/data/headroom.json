@@ -5387,8 +5387,8 @@
  },
  "protocol": {
   "source": "NEAR RPC EXPERIMENTAL_protocol_config (live and archival, bisected)",
-  "fetched_at": "2026-11-13T05:58:24.733Z",
-  "tip_height": 224322831,
+  "fetched_at": "2026-11-13T07:08:05.609Z",
+  "tip_height": 224330016,
   "now": {
    "protocol_version": 88,
    "max_inflation_rate": [
@@ -20867,7 +20867,7 @@
   "culprits": "evidence/culprits.json (scripts/culprits.js)",
   "protocol": "evidence/protocol.json (scripts/protocol.js)",
   "scenarios": "evidence/scenarios.json (HSP-029, typed from the sources it lists)",
-  "nearblocks": "evidence/nearblocks-daily.json (https://api.nearblocks.io/v1/charts, fetched 2026-11-13T05:31:00.387Z)",
+  "nearblocks": "evidence/nearblocks-daily.json (https://api.nearblocks.io/v1/charts, fetched 2026-11-13T07:08:07.210Z)",
   "predictions": "predictions/predictions.json (frozen; SHA-256 in predictions/SHA256)"
  }
 }

@@ -1,7 +1,7 @@
 {
  "source": "NEAR RPC EXPERIMENTAL_protocol_config (live and archival, bisected)",
- "fetched_at": "2026-11-13T05:58:24.733Z",
- "tip_height": 224322831,
+ "fetched_at": "2026-11-13T07:08:05.609Z",
+ "tip_height": 224330016,
  "now": {
   "protocol_version": 88,
   "max_inflation_rate": [
