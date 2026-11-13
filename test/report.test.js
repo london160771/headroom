@@ -1,9 +1,9 @@
 // Tests for lib/report.js (the page data) and for the rule "no typed-in numbers in the page".
 import assert from 'node:assert/strict';
-import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { test } from 'node:test';
+import { pageData } from '../lib/pagedata.js';
 import { buildReport, busiestP95, headlineIntervals, offsets } from '../lib/report.js';
 import { blockStats } from '../lib/metrics.js';
 import { targetTime } from '../lib/slots.js';
@@ -63,24 +63,9 @@ test('dense check compares with sampled blocks in the same window, only when den
   assert.equal(d.useInInterval, true);
 });
 
-test('the committed page data is rebuilt exactly from evidence/ (except generated_at)', () => {
+test('the committed page data is rebuilt exactly from evidence/, byte for byte', () => {
   const file = path.join(ROOT, 'web', 'public', 'data', 'headroom.json');
-  const stored = JSON.parse(fs.readFileSync(file, 'utf8'));
-  const jsonl = (f) => fs.readFileSync(f, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
-  const maybe = (f, parse) => (fs.existsSync(f) ? parse(f) : null);
-  const r = buildReport({
-    rows: jsonl(path.join(ROOT, 'evidence', 'samples.jsonl')),
-    nb: JSON.parse(fs.readFileSync(path.join(ROOT, 'evidence', 'nearblocks-daily.json'), 'utf8')),
-    denseRows: maybe(path.join(ROOT, 'evidence', 'dense-30d.jsonl'), jsonl),
-    culprits: maybe(path.join(ROOT, 'evidence', 'culprits.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
-    predictions: maybe(path.join(ROOT, 'predictions', 'predictions.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
-    predictionsSha256: maybe(path.join(ROOT, 'predictions', 'predictions.json'), (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex')),
-    protocol: maybe(path.join(ROOT, 'evidence', 'protocol.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
-    scenarios: maybe(path.join(ROOT, 'evidence', 'scenarios.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
-    nowMs: Date.parse(stored.generated_at),
-  });
-  const rebuilt = JSON.parse(JSON.stringify({ ...r, sources: stored.sources }, (k, v) => (typeof v === 'bigint' ? v.toString() : v)));
-  assert.deepEqual(rebuilt, stored);
+  assert.equal(pageData(ROOT).text, fs.readFileSync(file, 'utf8'));
 });
 
 test('no typed-in percentages or multiples in page components (numbers come from headroom.json)', () => {

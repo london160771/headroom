@@ -34,11 +34,13 @@ jobs:
         run: npm run culprits
       - name: Rebuild page data and THESIS.md
         run: npm run data && npm run thesis
+      - name: Evidence manifest (one SHA-256 per input and output file)
+        run: npm run manifest
       - run: npm test
       - name: Upgrade the OpenTimestamps proof once Bitcoin has confirmed it
         run: pip install -q opentimestamps-client && (ots upgrade predictions/predictions.json.ots || true) && rm -f predictions/*.bak
-      - name: Evidence manifest
-        run: (cd evidence && sha256sum anchors.json samples.jsonl nearblocks-daily.json culprits.json dense-30d.jsonl 2>/dev/null) > evidence/MANIFEST.sha256
+      - name: Verify everything (offline; the NEAR anchors are checked by npm run verify)
+        run: npm run verify -- --offline
       - name: Commit if anything changed
         run: |
           git config user.name "headroom-bot"

@@ -49,6 +49,7 @@ export default function Method({ d }) {
             <h3 className="h6">Re-run it</h3>
             <div className="hr-code mb-2">{`git clone ${REPO}
 cd headroom && npm install
+npm run verify    # every check in one command; ends in ALL OK
 npm run check     # re-read 20 random sampled blocks, compare with evidence/
 npm run sample    # add new 6-hour slots up to now
 npm run data      # rebuild the numbers on this page

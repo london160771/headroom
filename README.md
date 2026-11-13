@@ -18,11 +18,26 @@ SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → PRICE IT AGAIN
 |---|---|---|
 | Read the thesis | Claim, evidence for, evidence against, what would change my mind | [THESIS.md](THESIS.md) (generated from the data) |
 | Open the [live page](https://headroom-delta.vercel.app) | Headline with 90% intervals, live shard gauges, 3-year chart | `web/` |
-| `npm install && npm test` | All tests pass, including "the page data rebuilds exactly from `evidence/`" and "THESIS.md matches the data" | `test/` |
+| `npm install && npm run verify` | One line per check, ending in `ALL OK`: every file matches `evidence/MANIFEST.sha256`, the page data and THESIS.md rebuild byte for byte, every headline number recomputed a second way agrees, and the hashes are found on NEAR mainnet | `scripts/verify.js` |
+| `npm test` | All tests pass, including "the page data rebuilds byte for byte from `evidence/`" and "THESIS.md matches the data" | `test/`, `contract/src/tests.rs` |
 | `npm run check` | 20 random sampled blocks re-read from mainnet match `evidence/` field by field | `scripts/check.js` |
 | `sha256sum predictions/predictions.json` | The hash in `predictions/SHA256` and in the git tag `predictions-v1` | `predictions/` |
 | `ots verify predictions/predictions.json.ots` | A Bitcoin timestamp for that hash (OpenTimestamps) | `predictions/` |
 | Open the Actions tab | `ci` on every push; `daily` adds new mainnet slots each day at 00:30 UTC | `.github/workflows/` |
+
+## Judging map: what the track asks for, and where it is
+
+The track: *"Build a long-term investment thesis for NEAR and back it with data: onchain analytics, live dashboards and models anyone can re-run. Judged on the evidence, not the conviction."*
+
+| The track asks for | Where it is | How to check it | Honest note |
+|---|---|---|---|
+| A long-term investment thesis | [THESIS.md](THESIS.md): claim, evidence for, evidence against, what would change my mind | `npm test` fails if THESIS.md differs from the data | It answers the gas half of NEAR's value. Intents fees and buybacks are out of scope (other entries cover them). |
+| Onchain analytics | `evidence/samples.jsonl`: one mainnet block in every 6-hour slot since 1 Jan 2023, read from archival RPC, plus a 30-minute check over the last 30 days | `npm run check` re-reads random blocks from mainnet and diffs every field | Sampled, not every block. The 30-minute check measures what sampling misses. |
+| Live dashboards | The [live page](https://headroom-delta.vercel.app): live shard gauges from mainnet RPC; the data refreshes every day at 00:30 UTC | Actions tab, `daily` workflow | Daily, not hourly: a census of months does not move by the hour. |
+| Models anyone can re-run | Fee rule (`lib/metrics.js`), burn vs issuance (`lib/economics.js`), the ×N slider and the HSP-029 scenario, all labelled as models | `npm run data` rebuilds `headroom.json`; `git status` stays clean | The ×N model scales load evenly; real growth is lumpy. |
+| Judged on the evidence | 90% intervals, the sampling check, the NearBlocks cross-check, and a second recompute in `lib/independent.js` that shares no code with the main pipeline | `npm run verify` ends in `ALL OK` | The busiest-shard number is the noisiest; its interval is wide and the page says so. |
+| Not the conviction | Six predictions, frozen before their windows open: SHA-256, git tag `predictions-v1`, a Bitcoin timestamp and a NEAR mainnet anchor | `sha256sum`, `ots verify`, `npm run verify` | Frozen after we built the page, so a backtest is shown next to them. |
+| NEAR used for a reason | Block headers, chunk headers and `EXPERIMENTAL_protocol_config` are the only data sources; hashes are stored in a NEAR mainnet contract | [How it uses NEAR](#how-it-uses-near) | Gas is one of NEAR's limits; state and witness size are not measured. |
 
 ## What we found
 
@@ -80,6 +95,7 @@ predictions/predictions.json (frozen, hashed, timestamped) ───────
 | RPC `chunk` | Which accounts fill the hot shard | `scripts/culprits.js` |
 | RPC `EXPERIMENTAL_protocol_config` (live + archival, bisected) | Current burn rule and inflation cap; the exact block where NEAR switched to burning 100% of gas | `scripts/protocol.js` |
 | Mainnet RPC `block` (final), from the browser | Live shard gauges | `web/src/lib/live.js` |
+| Mainnet contract `headroom-anchor.near` (`anchor`, `get`, `list`) | Stores the SHA-256 of the evidence manifest and of the frozen predictions; first write wins | `contract/`, `scripts/anchor-mainnet.sh`, `lib/nearproof.js` |
 | nearcore fee rule (sums all chunks, 50% trigger) | The fee multiple | `lib/metrics.js` |
 | NearBlocks daily charts (third-party indexer) | Cross-check only | `scripts/nearblocks.js` |
 
@@ -89,6 +105,9 @@ predictions/predictions.json (frozen, hashed, timestamped) ───────
 - **Sampling check:** a 12× denser read of the last 30 days compared with the 6-hour sample over the same window.
 - **90% intervals:** day-clustered bootstrap, fixed seed, so anyone gets the same interval.
 - **Evidence check:** `npm run check` re-reads random stored blocks from mainnet and diffs every field.
+- **Second recompute:** `lib/independent.js` recomputes every headline number straight from the raw rows, without importing the main pipeline. `npm run verify` and a test compare the two answers.
+- **Byte-identical rebuild:** the page data is built as of the last sampled block, not the wall clock, so the same evidence always gives the same bytes.
+- **Proof on NEAR mainnet:** `evidence/MANIFEST.sha256` lists a SHA-256 for every input and output file; its own hash and the predictions hash go into a small contract on NEAR mainnet (`contract/`, run by `scripts/anchor-mainnet.sh`). `npm run verify` reads them back, and reads the original transactions too. **Status: contract written and tested; mainnet anchoring pending.** `proof/near-mainnet.json` appears once it is done.
 - **Frozen predictions:** six dated, numeric statements that would prove the thesis wrong, hashed, tagged and timestamped before their windows open; scored on every build, with a backtest that shows where they would have failed in the past.
 - **Daily refresh:** a GitHub Action adds new mainnet slots, re-checks old ones, rebuilds everything and commits with a SHA-256 manifest (`evidence/MANIFEST.sha256`).
 
@@ -101,6 +120,7 @@ Everything. No mocked numbers, no demo mode. The ×N slider is a model on real d
 ```bash
 git clone https://github.com/london160771/headroom && cd headroom
 npm install
+npm run verify       # every check below in one command; ends in ALL OK
 npm test             # unit tests + data-rebuild test + THESIS test, then vitest
 npm run check        # re-read 20 random sampled blocks from mainnet, compare every field
 npm run sample       # add new 6-hour slots up to now (resumable)
@@ -110,6 +130,7 @@ npm run protocol     # burn rule + inflation cap, bisect the last burn-rule chan
 npm run nearblocks   # refresh the NearBlocks series
 npm run data         # rebuild web/public/data/headroom.json
 npm run thesis       # rebuild THESIS.md and the README findings table
+npm run manifest     # rewrite evidence/MANIFEST.sha256
 npm run dev          # the page at http://localhost:5173
 ```
 
@@ -117,7 +138,7 @@ Node 20+. No keys, no wallet, no `.env`. `ots` (Python `opentimestamps-client`) 
 
 ## Tested, not claimed
 
-`npm test` on 2026-11-12: **48 passing** (44 with `node:test`, 4 with vitest). They cover:
+`npm test` on 2026-11-13: **53 passing** (49 with `node:test`, 4 with vitest), plus **6 passing** Rust tests for the anchor contract (`cd contract && cargo test`). They cover:
 
 - Block records: missing chunks are skipped, never 0%; burn is not double-counted from repeated chunk headers.
 - Metrics: block and shard use, percentiles, monthly grouping, multiples, recent window, hot-shard events, price rises, congestion, the ×N model, cross-check.
@@ -125,7 +146,9 @@ Node 20+. No keys, no wallet, no `.env`. `ots` (Python `opentimestamps-client`) 
 - Statistics: seeded PRNG, day-clustered bootstrap is reproducible.
 - Predictions: waiting / holding / failed / passed rules, backtest windows, unknown metrics rejected, the frozen file still matches its SHA-256.
 - RPC and evidence check, against a mock `fetch`: skipped heights, retry after HTTP 429, block-at-time correction, a tampered stored row is caught field by field.
-- Whole pipeline: the committed page data is rebuilt exactly from `evidence/`; THESIS.md and this README's findings table match the data; no typed-in % or × in page components.
+- Whole pipeline: the committed page data is rebuilt byte for byte from `evidence/`; THESIS.md and this README's findings table match the data; no typed-in % or × in page components.
+- Verify: the independent recompute agrees with all 14 published headline numbers; the manifest matches every file; the NEAR proof readers decode a contract view and an anchor transaction (mock RPC).
+- Anchor contract: only the account itself can add a hash, first write wins, bad hashes and long labels are rejected, listing pages in order.
 
 `npm run check` re-reads random stored blocks from mainnet and compares every field (result in PROJECT_STATE.md).
 

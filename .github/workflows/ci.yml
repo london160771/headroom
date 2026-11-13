@@ -1,5 +1,6 @@
-# Every push: unit tests, the "page data rebuilds exactly from evidence/" test,
-# the THESIS.md-matches-data test, and the production build.
+# Every push: unit tests (including "page data rebuilds byte for byte from evidence/" and
+# "THESIS.md matches the data"), `npm run verify` offline, the production build, and the
+# anchor contract's Rust tests.
 name: ci
 on:
   push:
@@ -17,4 +18,13 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - run: npm run verify -- --offline
       - run: npm run build
+  contract:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: contract
+    steps:
+      - uses: actions/checkout@v4
+      - run: cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test

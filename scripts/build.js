@@ -1,41 +1,15 @@
 // Build the page data from evidence/: web/public/data/headroom.json.
 //   node scripts/build.js
 // All formulas live in lib/; this file only reads evidence and writes the result.
-import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { buildReport } from '../lib/report.js';
+import { pageData } from '../lib/pagedata.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-const file = (...p) => path.join(ROOT, ...p);
-const jsonl = (f) => fs.readFileSync(f, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
-const maybe = (f, parse) => (fs.existsSync(f) ? parse(f) : null);
-export const sha256 = (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
-
-const report = buildReport({
-  rows: jsonl(file('evidence', 'samples.jsonl')),
-  nb: JSON.parse(fs.readFileSync(file('evidence', 'nearblocks-daily.json'), 'utf8')),
-  denseRows: maybe(file('evidence', 'dense-30d.jsonl'), jsonl),
-  culprits: maybe(file('evidence', 'culprits.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
-  predictions: maybe(file('predictions', 'predictions.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
-  predictionsSha256: maybe(file('predictions', 'predictions.json'), sha256),
-  protocol: maybe(file('evidence', 'protocol.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
-  scenarios: maybe(file('evidence', 'scenarios.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
-});
-const nb = JSON.parse(fs.readFileSync(file('evidence', 'nearblocks-daily.json'), 'utf8'));
-report.sources = {
-  samples: 'evidence/samples.jsonl (NEAR mainnet archival RPC, scripts/sample.js)',
-  dense: report.dense_check ? 'evidence/dense-30d.jsonl (scripts/dense.js)' : null,
-  culprits: report.culprits ? 'evidence/culprits.json (scripts/culprits.js)' : null,
-  protocol: report.protocol ? 'evidence/protocol.json (scripts/protocol.js)' : null,
-  scenarios: 'evidence/scenarios.json (HSP-029, typed from the sources it lists)',
-  nearblocks: `evidence/nearblocks-daily.json (${nb.source}, fetched ${nb.fetched_at})`,
-  predictions: report.predictions ? 'predictions/predictions.json (frozen; SHA-256 in predictions/SHA256)' : null,
-};
-
-const out = file('web', 'public', 'data', 'headroom.json');
+const { report, text } = pageData(ROOT);
+const out = path.join(ROOT, 'web', 'public', 'data', 'headroom.json');
 fs.mkdirSync(path.dirname(out), { recursive: true });
-fs.writeFileSync(out, JSON.stringify(report, (k, v) => (typeof v === 'bigint' ? v.toString() : v), 1) + '\n');
+fs.writeFileSync(out, text);
 
 const pc = (x) => `${(x * 100).toFixed(2)}%`;
 const r = report.recent;

@@ -77,7 +77,7 @@ export default function App() {
       <footer className="small hr-muted border-top pt-3">
         Built for NEAR HACKATHON (Investment Thesis track) by Ayyoweb3. Sister project:{' '}
         <a href="https://github.com/london160771/agentgate" target="_blank" rel="noreferrer">AgentGate</a>, spending limits for AI agents on NEAR.
-        {d && ` Data as of ${d.data_as_of.slice(0, 16).replace('T', ' ')} UTC (built ${d.generated_at.slice(0, 16).replace('T', ' ')} UTC).`}
+        {d && ` Data as of ${d.data_as_of.slice(0, 16).replace('T', ' ')} UTC.`}
       </footer>
     </main>
   );

@@ -152,6 +152,8 @@ SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → STRESS IT (×N
 | FR-CUL-001 | P0 | Hot-shard culprits: for each hot-shard block, read that chunk and rank receiving accounts | `evidence/culprits.json`; ranking unit tested |
 | FR-CON-001 | P0 | Congestion: count sampled blocks with delayed receipts in any shard, per month | Unit test |
 | FR-CI-001 | P0 | GitHub Actions: CI on push (tests + build); daily refresh at 00:30 UTC (sample, check 10, culprits, data, thesis, test, evidence manifest, commit) with only GITHUB_TOKEN | Workflows in `.github/workflows/` |
+| FR-VER-001 | P0 | `npm run verify`: manifest hashes, predictions hash, byte-identical rebuild of page data + THESIS + README table, an independent recompute of the headline numbers (`lib/independent.js`, no imports from the pipeline), and the NEAR mainnet anchors; ends in `ALL OK` | Exit 0 only if every check passes; runs in CI and the daily workflow (offline) |
+| FR-ANC-001 | P0 | Anchor contract on NEAR mainnet (`headroom-anchor.near`): only the account itself adds a SHA-256, first write wins, free views `get`/`list`/`count`. `scripts/anchor-mainnet.sh` (run by Adesope) stores the manifest hash and the predictions hash; transaction IDs go in `proof/near-mainnet.json` | Rust unit tests; `npm run verify` reads state and transactions back |
 | FR-WEB-007 | P0 | Page: "Can blockspace pay for NEAR?", interval bands, predictions scoreboard, culprits + congestion, a "Show the source" note per chart, data-as-of date | Every number read from `headroom.json`; test rejects typed-in % or × in components |
 
 ---
@@ -223,6 +225,8 @@ web (React + Vite + Bootstrap) ──> headroom.json + live mainnet RPC read
 | 2026-11-12 | Bootstrap resamples whole UTC days | Blocks on one day are correlated; resampling blocks would understate the interval |
 | 2026-11-12 | Sample at a seeded random moment inside each 6-hour slot, not at 00/06/12/18 UTC | Fixed clock times saw the same 4 hours every day: the 30-min dense read showed the fixed-time sample read low (Gate 0 median fell to 0.89 once slot times were exact). Random moments cover all 24 hours and stay reproducible |
 | 2026-11-13 | Burn per Tgas measured only under the current burn rule (protocol 87, block 223,012,337: burnt_gas_reward 3/10 → 0); HSP-029 (1.6% cap) shown as a scenario | Rival review found both; verified by our own archival bisection (`scripts/protocol.js`). The old 365-day average understated burn by about 12% |
+| 2026-11-13 | Page data built as of the last sampled block, not the wall clock (`generated_at` removed) | Same evidence, same bytes: `npm run data && git status` stays clean (rival near-thesis does this) |
+| 2026-11-13 | Hashes anchored on NEAR mainnet by hand, not by the daily bot | Adesope chose mainnet ("our proof will be on mainnet"). Anchoring by hand keeps every key on Adesope's machine; a bot would need a key in GitHub secrets |
 | 2026-11-12 | OpenTimestamps (Python `opentimestamps-client`, used once by hand) for the predictions hash | Keyless, free, anchors in Bitcoin; not a runtime dependency |
 
 ---

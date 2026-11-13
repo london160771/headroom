@@ -2,7 +2,19 @@
 
 > Where the project stands. Requirements live in PRD.md. Only verified facts here.
 
-**Last updated:** 2026-11-12 · **By:** Claude Code
+**Last updated:** 2026-11-13 · **By:** Claude Code
+
+## ⛔ MANUAL STOP (Phase 4b): put the proof on NEAR mainnet
+
+Run in WSL. Needs about 2 NEAR and near-cli-rs (already installed for AgentGate). `ayyoweb3.near` holds 0 NEAR (checked 2026-11-13), so the 2 NEAR comes from an exchange or another wallet.
+
+1. `cd ~/headroom && git pull` (public repo, no token needed).
+2. `bash scripts/anchor-mainnet.sh key`: makes a fresh payer key and prints its account id (64 characters). If it asks for a signature scheme, pick ed25519.
+3. Send **2 NEAR** to that id from any wallet or exchange.
+4. `bash scripts/anchor-mainnet.sh create`: creates `headroom-anchor.near` with 1.5 NEAR, deploys `contract/res/headroom_anchor.wasm`, prints `count` = 0.
+5. `bash scripts/anchor-mainnet.sh anchor`: stores the predictions hash and the evidence manifest hash. Send Claude the two `Transaction ID` lines; Claude writes `proof/near-mainnet.json` and runs `npm run verify` against mainnet.
+
+Any step can be previewed with `--dry-run` (prints the commands, sends nothing).
 
 ## ⛔ MANUAL STOP (Phase 4): what Adesope must do
 
@@ -28,12 +40,17 @@
 | 3, depth (economics, intervals, sampling check, predictions, THESIS, culprits, congestion, CI) | Done | 2026-11-12 | see build log |
 | 4, ship | Waiting on manual stop | | |
 
-## 3. Last verification (2026-11-12)
+## 3. Last verification (2026-11-13)
 
 | Check | Command | Result |
 |---|---|---|
-| Node tests | `node --test test/*.test.js` | 44 of 44 pass |
+| Node tests | `node --test test/*.test.js` | 49 of 49 pass (2026-11-13) |
 | Web tests | `vitest run` | 4 of 4 pass |
+| Contract | `cd contract && cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test` | clean; 6 of 6 pass |
+| Contract wasm | `cargo near build non-reproducible-wasm` | 115,821 bytes |
+| Verify | `npm run verify` | ALL OK (manifest 9 files, predictions hash, byte-identical page data + THESIS + README table, 14 of 14 independent numbers agree; NEAR anchors not recorded yet) |
+| Byte-clean rebuild | `npm run data && npm run thesis` twice | page data byte-identical (`cmp`) |
+| Anchor script | `bash scripts/anchor-mainnet.sh <step> --dry-run` | key, create, anchor print the expected near-cli commands |
 | Build | `npm run build` | pass |
 | Re-check vs mainnet | `npm run check` | 20 of 20 random blocks match evidence/ field by field |
 | Page data rebuilds exactly | test in `test/report.test.js` | pass |
@@ -79,10 +96,13 @@ All real. Slider is a labelled model. Test fixtures and the mock `fetch` stay in
 
 - Sandbox Node needs `NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt`.
 - Dependencies: react, react-dom, bootstrap, vite, @vitejs/plugin-react, vitest. Nothing else in package.json.
+- Anchor contract (`contract/`, Rust): near-sdk 5.30.1 only. Built with `cargo near build non-reproducible-wasm`; the wasm is committed at `contract/res/headroom_anchor.wasm` (SHA-256 `48974b03c1b51d577ece58fd6cc061815cc3f873a853c2dd7717965c1aebe751`) so Adesope needs no Rust to deploy it.
 - Tool used once by hand, not a dependency: Python `opentimestamps-client` (`ots`) to stamp the predictions hash. The daily workflow installs it to upgrade the proof.
 - Never edit `predictions/predictions.json`: a test checks it against `predictions/SHA256`.
 
 ## 10. Build log
+
+- **2026-11-13** phase-4b: proof gap closed after the rival review. `npm run verify` (ALL OK), independent recompute (`lib/independent.js`), byte-identical rebuild (no `generated_at`), manifest of every input/output file (`npm run manifest`), README judging map, NEAR mainnet anchor contract + `scripts/anchor-mainnet.sh` (Adesope runs it). CI also runs verify and the contract tests.
 
 - **2026-11-13** phase-3c: a prediction with too little data waits instead of showing "not holding" (P5 after the first daily run).
 - **2026-11-12** phase-3b: seeded random moment per slot (Gate 0 median 0.96 → 0.99), full re-sample, mobile predictions cards.

@@ -22,11 +22,11 @@ Stop only when: a ⛔ MANUAL STOP is reached (write the checklist at the top of 
 
 ## 3. Hard rules
 
-- **Never deploy.** Adesope deploys to Vercel himself.
+- **Never deploy or sign.** Adesope deploys to Vercel and runs `scripts/anchor-mainnet.sh` himself (writing and dry-running it is fine).
 - **No fake data.** No mocked or typed-in numbers in the page, README or video. Test fixtures stay in test files and are named as fixtures.
 - **No claims without proof.** Test counts only after they pass.
 - **One source for numbers:** `evidence/` → `web/public/data/headroom.json`. Never hardcode a percentage, multiple or count in UI text.
-- **No secrets exist in this project.** No keys, no wallet, no `.env`. Check `git diff --cached` anyway before each commit.
+- **No secrets in this repo or in CI.** The only key is for `headroom-anchor.near` (mainnet) and it stays in Adesope's legacy keychain; only he runs `scripts/anchor-mainnet.sh`. No `.env`. Check `git diff --cached` before each commit.
 - **Bootstrap 5, no Tailwind.**
 - **Dependencies:** React, Vite, Bootstrap, vitest only (plus Node built-ins). Note any other in PROJECT_STATE.
 - Keep code simple. Small files, clear names, comments where NEAR behaviour is surprising.
