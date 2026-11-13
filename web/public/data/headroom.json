@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-11-12T22:56:12.465Z",
- "data_as_of": "2026-11-12T20:14:38.779Z",
+ "generated_at": "2026-11-13T05:31:01.746Z",
+ "data_as_of": "2026-11-13T00:16:05.320Z",
  "sampling": {
-  "slots": 5648,
-  "blocks": 5648,
+  "slots": 5649,
+  "blocks": 5649,
   "first": "2023-01-01T02:51:21.478Z",
-  "last": "2026-11-12T20:14:38.779Z",
+  "last": "2026-11-13T00:16:05.320Z",
   "rule": "one block in every 6-hour UTC slot since 2023-01-01, at a seeded random moment inside the slot",
   "offsetSeconds": {
    "median": 9.793,
@@ -16,17 +16,17 @@
  "floor_gas_price": "100000000",
  "chunk_gas_limit_tgas": 1000,
  "recent": {
-  "from": "2026-10-13T20:14:38.779Z",
-  "to": "2026-11-12T20:14:38.779Z",
+  "from": "2026-10-14T00:16:05.320Z",
+  "to": "2026-11-13T00:16:05.320Z",
   "days": 30,
   "blocks": 121,
   "shards": 10,
-  "use": 0.006741267886855242,
-  "hottestP50": 0.016695,
-  "hottestP95": 0.099674,
+  "use": 0.006601161263507897,
+  "hottestP50": 0.015915,
+  "hottestP95": 0.08064,
   "hottestMax": 0.884788,
   "atFloor": 1,
-  "missingChunks": 8,
+  "missingChunks": 7,
   "perShard": [
    {
     "shard": 1,
@@ -35,76 +35,76 @@
    },
    {
     "shard": 4,
-    "avg": 0.007796661157024795,
+    "avg": 0.007860834710743803,
     "p95": 0.027412
    },
    {
     "shard": 6,
-    "avg": 0.0021109666666666665,
+    "avg": 0.0021378666666666667,
     "p95": 0.008292
    },
    {
     "shard": 7,
-    "avg": 0.008199421487603305,
-    "p95": 0.031373
+    "avg": 0.007071537190082643,
+    "p95": 0.030542
    },
    {
     "shard": 8,
-    "avg": 0.016217625000000006,
+    "avg": 0.016111727272727278,
     "p95": 0.070308
    },
    {
     "shard": 9,
-    "avg": 0.009231600000000006,
+    "avg": 0.009294300000000007,
     "p95": 0.008552
    },
    {
     "shard": 10,
-    "avg": 0.004572273504273501,
-    "p95": 0.024925
+    "avg": 0.004373222222222219,
+    "p95": 0.012577
    },
    {
     "shard": 11,
-    "avg": 0.004981074380165289,
+    "avg": 0.005034636363636363,
     "p95": 0.020095
    },
    {
     "shard": 12,
-    "avg": 0.011304363636363635,
+    "avg": 0.011319999999999995,
     "p95": 0.049289
    },
    {
     "shard": 13,
-    "avg": 0.002654636363636361,
-    "p95": 0.012987
+    "avg": 0.002387380165289254,
+    "p95": 0.009592
    }
   ],
   "busiest": {
    "shard": 8,
-   "avg": 0.016217625000000006,
+   "avg": 0.016111727272727278,
    "p95": 0.070308
   },
-  "feeMultiple": 74.17002385781865,
+  "feeMultiple": 75.74424863153502,
   "shardMultiple": 14.223132502702397
  },
  "intervals": {
   "method": "day-clustered bootstrap, 2000 draws, seed 42, 31 days",
   "level": 0.9,
   "use": [
-   0.005356559825327511,
-   0.008438380462724935
+   0.005313209610604806,
+   0.008285184538653366
   ],
   "busiestP95": [
-   0.058481,
+   0.058667,
    0.082599
   ],
   "feeMultiple": [
-   59.253076133348365,
-   93.34349214879329
+   60.34868597884817,
+   94.10507708975643
   ],
   "shardMultiple": [
    12.106684100291771,
-   17.099570800772902
+   17.045357696831267
   ]
  },
  "monthly": [
@@ -800,17 +800,17 @@
   },
   {
    "month": "2026-11",
-   "blocks": 48,
+   "blocks": 49,
    "shards": 10,
-   "use": 0.005128331941544885,
+   "use": 0.005124854805725971,
    "hottestP50": 0.014535,
    "hottestP95": 0.075765,
    "hottestMax": 0.150803,
    "atFloor": 1,
    "missingChunks": 1,
    "useBand": [
-    0.004307310416666666,
-    0.005925739583333333
+    0.004363065217391304,
+    0.0059633
    ]
   }
  ],
@@ -5224,43 +5224,43 @@
    },
    {
     "month": "2026-11",
-    "blocks": 48,
+    "blocks": 49,
     "congested": 0,
     "maxDelayedTgas": 0,
     "share": 0
    }
   ],
   "congestedBlocks": 151,
-  "blocks": 5648
+  "blocks": 5649
  },
  "economics": {
-  "blocksPerDay": 146550.2460321358,
-  "capacityTgasPerDay": 1465502460.321358,
-  "burnPerTgasNear": 0.00007732698347701795,
+  "blocksPerDay": 146850.71520567354,
+  "capacityTgasPerDay": 1468507152.0567355,
+  "burnPerTgasNear": 0.00007732540969784917,
   "issuance": {
    "from": "2025-11-13T05:11:18.325Z",
-   "to": "2026-11-12T20:14:38.779Z",
+   "to": "2026-11-13T00:16:05.320Z",
    "supplyStart": 1279811015.9289114,
-   "supplyEnd": 1311523829.1663077,
-   "burnedEstimate": 479153.96840308263,
-   "minted": 32191967.205799326,
-   "mintedPerYear": 32246941.94521363,
-   "ratePerYear": 0.025196643523034672
+   "supplyEnd": 1311549111.9874225,
+   "burnedEstimate": 479187.42462650605,
+   "minted": 32217283.483137283,
+   "mintedPerYear": 32257468.351904422,
+   "ratePerYear": 0.025204868492627663
   },
-  "burnPerYearToday": 279029.05664207897,
-  "coverageToday": 0.008652884267790076,
-  "coverageAtTrigger": 0.6417846325809337,
-  "coverageFull": 1.2835692651618673,
-  "loadNeeded": 115.56840113099044,
+  "burnPerYearToday": 273784.50343248143,
+  "coverageToday": 0.008487476464231505,
+  "coverageAtTrigger": 0.6428775275610528,
+  "coverageFull": 1.2857550551221055,
+  "loadNeeded": 117.82065072159757,
   "fitsBeforeFeesMove": false,
-  "priceNeededAtFull": 0.7790775512795508,
+  "priceNeededAtFull": 0.7777531155847037,
   "coverageTodayBand": [
-   0.006875515558791214,
-   0.010831245809696105
+   0.006831486115758483,
+   0.010652717903193075
   ],
   "loadNeededBand": [
-   92.32548291949966,
-   145.44363858232765
+   93.87275708298417,
+   146.38103379779358
   ]
  },
  "dense_check": {
@@ -20068,9 +20068,9 @@
     "from": "2026-11-13",
     "to": "2027-12-31",
     "if_wrong": "Blockspace is getting scarce. The bear reading (fees can't rise from demand) is wrong.",
-    "blocks": 0,
-    "value_so_far": null,
-    "status": "waiting"
+    "blocks": 1,
+    "value_so_far": 1,
+    "status": "holding"
    },
    {
     "id": "P2",
@@ -20081,9 +20081,9 @@
     "from": "2026-11-13",
     "to": "2027-12-31",
     "if_wrong": "Demand has returned to the March 2024 peak or beyond, with 10 shards instead of 4.",
-    "blocks": 0,
-    "value_so_far": null,
-    "status": "waiting"
+    "blocks": 1,
+    "value_so_far": 0.0049583,
+    "status": "holding"
    },
    {
     "id": "P3",
@@ -20094,9 +20094,9 @@
     "from": "2026-11-13",
     "to": "2027-12-31",
     "if_wrong": "If P1 still holds, NEAR has a hot-shard problem its fee rule can't see, and congestion control is doing the work.",
-    "blocks": 0,
-    "value_so_far": null,
-    "status": "waiting"
+    "blocks": 1,
+    "value_so_far": 0.012716,
+    "status": "holding"
    },
    {
     "id": "P4",
@@ -20107,9 +20107,9 @@
     "from": "2026-11-13",
     "to": "2027-12-31",
     "if_wrong": "Whole blocks are filling. The fee multiple is not a far-off number any more.",
-    "blocks": 0,
-    "value_so_far": null,
-    "status": "waiting"
+    "blocks": 1,
+    "value_so_far": 0.0049583,
+    "status": "holding"
    },
    {
     "id": "P5",
@@ -20120,9 +20120,9 @@
     "from": "2026-11-13",
     "to": "2027-12-31",
     "if_wrong": "Usage is starting to pay for security. Burn is becoming a real sink, which is bullish for the token.",
-    "blocks": 0,
+    "blocks": 1,
     "value_so_far": null,
-    "status": "waiting"
+    "status": "not holding"
    },
    {
     "id": "P6",
@@ -20145,8 +20145,8 @@
     "metric": "at_floor_share",
     "op": ">=",
     "value": 0.99,
-    "from": "2025-09-24",
-    "to": "2026-11-11",
+    "from": "2025-09-25",
+    "to": "2026-11-12",
     "if_wrong": "Blockspace is getting scarce. The bear reading (fees can't rise from demand) is wrong.",
     "blocks": 1656,
     "value_so_far": 1,
@@ -20158,11 +20158,11 @@
     "metric": "max_month_use",
     "op": "<=",
     "value": 0.2,
-    "from": "2025-09-24",
-    "to": "2026-11-11",
+    "from": "2025-09-25",
+    "to": "2026-11-12",
     "if_wrong": "Demand has returned to the March 2024 peak or beyond, with 10 shards instead of 4.",
     "blocks": 1656,
-    "value_so_far": 0.03307619841269841,
+    "value_so_far": 0.030976018034265102,
     "status": "passed"
    },
    {
@@ -20171,8 +20171,8 @@
     "metric": "max_month_hottest_p95",
     "op": "<",
     "value": 0.5,
-    "from": "2025-09-24",
-    "to": "2026-11-11",
+    "from": "2025-09-25",
+    "to": "2026-11-12",
     "if_wrong": "If P1 still holds, NEAR has a hot-shard problem its fee rule can't see, and congestion control is doing the work.",
     "blocks": 1656,
     "value_so_far": 0.675136,
@@ -20184,8 +20184,8 @@
     "metric": "max_block_use",
     "op": "<=",
     "value": 0.5,
-    "from": "2025-09-24",
-    "to": "2026-11-11",
+    "from": "2025-09-25",
+    "to": "2026-11-12",
     "if_wrong": "Whole blocks are filling. The fee multiple is not a far-off number any more.",
     "blocks": 1656,
     "value_so_far": 0.18109,
@@ -20197,11 +20197,11 @@
     "metric": "burn_to_issuance",
     "op": "<",
     "value": 0.05,
-    "from": "2025-09-24",
-    "to": "2026-11-11",
+    "from": "2025-09-25",
+    "to": "2026-11-12",
     "if_wrong": "Usage is starting to pay for security. Burn is becoming a real sink, which is bullish for the token.",
     "blocks": 1656,
-    "value_so_far": 0.015475455536760425,
+    "value_so_far": 0.015340634740258551,
     "status": "passed"
    },
    {
@@ -20210,11 +20210,11 @@
     "metric": "use",
     "op": "<",
     "value": 0.05,
-    "from": "2026-10-13",
-    "to": "2026-11-11",
+    "from": "2026-10-14",
+    "to": "2026-11-12",
     "if_wrong": "Load grew about 9x or more in seven months. The headroom is being used up faster than the thesis says.",
     "blocks": 120,
-    "value_so_far": 0.006907143456375839,
+    "value_so_far": 0.006614932103939648,
     "status": "passed"
    }
   ]
@@ -20498,9 +20498,9 @@
   },
   {
    "month": "2026-11",
-   "oursGgasPerBlock": 51176.479166666664,
-   "nearblocksGgasPerBlock": 61014.96031660724,
-   "ratio": 0.8387529697816962
+   "oursGgasPerBlock": 51143.95918367347,
+   "nearblocksGgasPerBlock": 61983.22575082058,
+   "ratio": 0.8251258072511075
   }
  ],
  "nearblocks_monthly_txns": [
@@ -20690,24 +20690,24 @@
   },
   {
    "month": "2026-11",
-   "txns": 7950900
+   "txns": 8842423
   }
  ],
  "all_time": {
-  "blocks": 5648,
+  "blocks": 5649,
   "shards": 10,
-  "use": 0.051149769486526345,
+  "use": 0.0511373873743466,
   "hottestP50": 0.077371,
   "hottestP95": 0.605843,
   "hottestMax": 1.014257,
-  "atFloor": 0.9973441926345609,
+  "atFloor": 0.997344662772172,
   "missingChunks": 162
  },
  "sources": {
   "samples": "evidence/samples.jsonl (NEAR mainnet archival RPC, scripts/sample.js)",
   "dense": "evidence/dense-30d.jsonl (scripts/dense.js)",
   "culprits": "evidence/culprits.json (scripts/culprits.js)",
-  "nearblocks": "evidence/nearblocks-daily.json (https://api.nearblocks.io/v1/charts, fetched 2026-11-12T20:02:48.315Z)",
+  "nearblocks": "evidence/nearblocks-daily.json (https://api.nearblocks.io/v1/charts, fetched 2026-11-13T05:31:00.387Z)",
   "predictions": "predictions/predictions.json (frozen; SHA-256 in predictions/SHA256)"
  }
 }

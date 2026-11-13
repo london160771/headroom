@@ -27,20 +27,20 @@ SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → PRICE IT AGAIN
 ## What we found
 
 <!-- findings:start -->
-Numbers from `web/public/data/headroom.json`, data as of 12 Nov 2026: 5,648 mainnet blocks, one in every 6-hour slot (at a seeded random moment) since 1 Jan 2023. This table is written by `npm run thesis`.
+Numbers from `web/public/data/headroom.json`, data as of 13 Nov 2026: 5,649 mainnet blocks, one in every 6-hour slot (at a seeded random moment) since 1 Jan 2023. This table is written by `npm run thesis`.
 
 | | |
 |---|---|
-| Capacity used, last 30 days | **0.67%** (90%: 0.54% to 0.84%), 10 shards × 1,000 Tgas per chunk |
-| Growth before NEAR's fee rule raises the price | **about 74×** (90%: 59× to 93×) |
+| Capacity used, last 30 days | **0.66%** (90%: 0.53% to 0.83%), 10 shards × 1,000 Tgas per chunk |
+| Growth before NEAR's fee rule raises the price | **about 76×** (90%: 60× to 94×) |
 | Growth before the busiest shard is full at its busy hours | about 14× (shard 8, p95 7.03%; 90%: 12× to 17×) |
-| NEAR minted per year (from total_supply + burn) | 32,246,942 NEAR (2.52% of supply) |
-| Gas burn as a share of issuance | **0.87%** today; 64.2% at the 50% fee trigger; 128.4% with every block full |
-| Growth needed for burn to match issuance | about 116× (90%: 92× to 145×) |
+| NEAR minted per year (from total_supply + burn) | 32,257,468 NEAR (2.52% of supply) |
+| Gas burn as a share of issuance | **0.85%** today; 64.3% at the 50% fee trigger; 128.6% with every block full |
+| Growth needed for burn to match issuance | about 118× (90%: 94× to 146×) |
 | Peak month since 2023 | 20.6% (Mar 2024) |
 | Sampled blocks with one shard more than half full | 493, of which 478 stayed at the floor price |
 | Sampled blocks priced above the floor | 15, all from 29 Nov 2023 to 29 Dec 2023, up to 20× the floor |
-| Sampled blocks with delayed receipts (congestion control at work) | 151 of 5,648 |
+| Sampled blocks with delayed receipts (congestion control at work) | 151 of 5,649 |
 | Sampling check (one block per 30 min, 13 Oct 2026 to 12 Nov 2026) | use 0.58% dense vs 0.68% sampled; busiest-shard p95 4.77% vs 7.54% |
 | Frozen predictions | 6, made 12 Nov 2026; backtest over the last window: 5 of 6 would have held |
 <!-- findings:end -->
