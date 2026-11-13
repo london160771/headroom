@@ -126,3 +126,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 /* On phones the 3-year chart keeps a readable width and scrolls sideways inside its panel */
 .hr-chart-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 @media (max-width: 575px) { .hr-chart-scroll .hr-chart { min-width: 680px; } }
+.hr-holder { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+@media (max-width: 991px) { .hr-holder { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 575px) { .hr-holder { grid-template-columns: 1fr; gap: 16px; } }

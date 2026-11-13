@@ -1,4 +1,5 @@
-// The thesis: the same numbers read both ways.
+// The thesis: what it means for a holder, then the same numbers read both ways.
+import Holder from './Holder.jsx';
 import { month, pct, times } from '../lib/format.js';
 
 export default function Thesis({ d }) {
@@ -11,6 +12,7 @@ export default function Thesis({ d }) {
       <p className="hr-dek">
         NEAR sells blockspace. For three years it has had far more than it sells, and the gap is now very wide. That fact cuts both ways.
       </p>
+      <Holder d={d} />
       <div className="row g-3">
         <div className="col-md-6">
           <div className="hr-panel hr-card-bull h-100">

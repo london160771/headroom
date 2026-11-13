@@ -108,6 +108,7 @@ All real. Slider is a labelled model. Test fixtures and the mock `fetch` stay in
 
 ## 10. Build log
 
+- **2026-11-13** phase-4h: holder reading on the page (`web/src/components/Holder.jsx`, top of the thesis section; same data as THESIS.md). Checks: 59 node + 5 vitest pass, build OK.
 - **2026-11-13** phase-4g: "What this means for a NEAR holder" section, generated from the data by `lib/thesis.js` (`holderLines`), at the top of THESIS.md and README (between holder markers; `verify` and `npm test` check it rebuilds exactly). Frames gas as the channel Headroom rules out and Intents as where value must come from. Checks: 59 node + 5 vitest pass; verify --offline ALL OK.
 - **2026-11-13** phase-4f: NEAR mainnet anchor recorded (proof/near-mainnet.json); verify online ALL OK; README pending wording removed.
 - **2026-11-13** phase-4e: light paper-and-ink redesign of the page (unslop pass): sticky section nav, split hero (headline + 4 stats beside the live block), sentence-case labels, shard gauges on a CSS grid (5 per row on phone), phone chart scrolls sideways, light code block, quiet badges, flat logo, IBM Plex Sans/Mono via Google Fonts link (no new npm dependency). No section, order or number changed; checks: 59 node + 5 vitest pass, build OK.
