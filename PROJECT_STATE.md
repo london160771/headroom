@@ -4,7 +4,12 @@
 
 **Last updated:** 2026-11-13 · **By:** Claude Code
 
-## ⛔ MANUAL STOP (Phase 4b): put the proof on NEAR mainnet
+## ✅ DONE 2026-11-13 (Phase 4b): proof on NEAR mainnet
+
+headroom-anchor.near created (BNMdAZS4…), wasm deployed (62nyMmgV…, code hash 5tNACPaK… = committed wasm), predictions hash (CDZ8Eg3P…) and manifest @ c2ecdbe (EXHoz5ay…) anchored. `npm run verify` against mainnet: ALL OK, 4 anchor checks OK. Recorded in proof/near-mainnet.json. Spare NEAR on the payer implicit account can be sent back.
+
+<details><summary>Original steps</summary>
+
 
 Run in WSL. Needs about 2 NEAR and near-cli-rs (already installed for AgentGate). `ayyoweb3.near` holds 0 NEAR (checked 2026-11-13), so the 2 NEAR comes from an exchange or another wallet.
 
@@ -15,6 +20,7 @@ Run in WSL. Needs about 2 NEAR and near-cli-rs (already installed for AgentGate)
 5. `bash scripts/anchor-mainnet.sh anchor`: stores the predictions hash and the evidence manifest hash. Send Claude the two `Transaction ID` lines; Claude writes `proof/near-mainnet.json` and runs `npm run verify` against mainnet.
 
 Any step can be previewed with `--dry-run` (prints the commands, sends nothing).
+</details>
 
 ## ⛔ MANUAL STOP (Phase 4): what Adesope must do
 
@@ -102,6 +108,7 @@ All real. Slider is a labelled model. Test fixtures and the mock `fetch` stay in
 
 ## 10. Build log
 
+- **2026-11-13** phase-4f: NEAR mainnet anchor recorded (proof/near-mainnet.json); verify online ALL OK; README pending wording removed.
 - **2026-11-13** phase-4e: light paper-and-ink redesign of the page (unslop pass): sticky section nav, split hero (headline + 4 stats beside the live block), sentence-case labels, shard gauges on a CSS grid (5 per row on phone), phone chart scrolls sideways, light code block, quiet badges, flat logo, IBM Plex Sans/Mono via Google Fonts link (no new npm dependency). No section, order or number changed; checks: 59 node + 5 vitest pass, build OK.
 - **2026-11-13** phase-4d: README "Proof at a glance" for reviewers and AI screeners; `verify` skips the NEAR anchor check with a note (not a failure) when mainnet RPC is unreachable.
 - **2026-11-13** phase-4c: long-term view (years to each bar at measured and reference paces; gas per day 0.28× a year earlier is shown, not hidden), gas vs NEAR Intents as two value channels (Intents share external, sourced), HSP-027 cited for the burn rule, protocol bisection moved to `lib/protocol.js` and tested (re-run on mainnet gives the same block 223,012,337). New page section "How long does the room last?" (table on desktop, cards on phones; checked at 1280 and 390 px, no horizontal scroll, no console errors).

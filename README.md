@@ -20,10 +20,10 @@ SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → PRICE IT AGAIN
   2. the frozen predictions match their hash;
   3. the page data, THESIS.md and this README's findings table rebuild **byte for byte** from `evidence/`;
   4. **15 headline numbers are recomputed a second way** by `lib/independent.js`, which imports nothing from the main pipeline, and all agree;
-  5. the hashes are read back from NEAR mainnet, contract `headroom-anchor.near` (anchoring pending; skipped with a clear note when there is no network).
+  5. the hashes are read back from NEAR mainnet, contract [`headroom-anchor.near`](https://nearblocks.io/address/headroom-anchor.near), anchored 13 Nov 2026 (skipped with a clear note when there is no network).
 - **70 tests, all passing:** 59 `node:test` + 5 vitest + 6 Rust for the anchor contract. Each checks one behaviour: missing chunks are never 0%, the fee rule, the bootstrap, the burn-rule bisection, the long-term model, that the committed data rebuilds exactly, and more ([list](#tested-not-claimed)).
 - **Raw evidence, re-readable:** every sampled block is stored field by field; `npm run check` re-reads random ones from mainnet and diffs every field.
-- **Pre-committed:** six predictions frozen before their windows, with a SHA-256, a git tag, a Bitcoin timestamp and (pending) a NEAR mainnet anchor; scored on every build, with a backtest that shows where they would have failed.
+- **Pre-committed:** six predictions frozen before their windows, with a SHA-256, a git tag, a Bitcoin timestamp and a NEAR mainnet anchor; scored on every build, with a backtest that shows where they would have failed.
 - **Live and maintained:** a GitHub Action adds new mainnet blocks every day and re-runs all of the above; CI runs tests, `verify` and the contract checks on every push.
 - **Honest limits:** gas only (not state or witness size); sampled, not every block; NEAR Intents revenue is shown as an external, sourced figure, not measured. See [Known limits](#known-limits).
 
@@ -128,7 +128,7 @@ predictions/predictions.json (frozen, hashed, timestamped) ───────
 - **Evidence check:** `npm run check` re-reads random stored blocks from mainnet and diffs every field.
 - **Second recompute:** `lib/independent.js` recomputes every headline number straight from the raw rows, without importing the main pipeline. `npm run verify` and a test compare the two answers.
 - **Byte-identical rebuild:** the page data is built as of the last sampled block, not the wall clock, so the same evidence always gives the same bytes.
-- **Proof on NEAR mainnet:** `evidence/MANIFEST.sha256` lists a SHA-256 for every input and output file; its own hash and the predictions hash go into a small contract on NEAR mainnet (`contract/`, run by `scripts/anchor-mainnet.sh`). `npm run verify` reads them back, and reads the original transactions too. **Status: contract written and tested; mainnet anchoring pending.** `proof/near-mainnet.json` appears once it is done.
+- **Proof on NEAR mainnet:** `evidence/MANIFEST.sha256` lists a SHA-256 for every input and output file; its own hash and the predictions hash go into a small contract on NEAR mainnet (`contract/`, run by `scripts/anchor-mainnet.sh`). `npm run verify` reads them back, and reads the original transactions too. **Done 13 Nov 2026** ([`proof/near-mainnet.json`](proof/near-mainnet.json)): predictions hash in [CDZ8Eg3P…](https://nearblocks.io/txns/CDZ8Eg3PenPNdRsz2UMxsABn32378ai3cMc3icjdKCac) (block 224,338,687), evidence manifest @ `c2ecdbe` in [EXHoz5ay…](https://nearblocks.io/txns/EXHoz5ayd6whrnd95tBBCeAywHpaW6mrWREoNGho9CF4) (block 224,338,707). The deployed code hash `5tNACPaK…` is the SHA-256 of the committed `contract/res/headroom_anchor.wasm`. The daily refresh changes the manifest, so `verify` names the anchored commit to check out for that snapshot.
 - **Frozen predictions:** six dated, numeric statements that would prove the thesis wrong, hashed, tagged and timestamped before their windows open; scored on every build, with a backtest that shows where they would have failed in the past.
 - **Daily refresh:** a GitHub Action adds new mainnet slots, re-checks old ones, rebuilds everything and commits with a SHA-256 manifest (`evidence/MANIFEST.sha256`).
 

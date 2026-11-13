@@ -1,0 +1,30 @@
+{
+  "network": "mainnet",
+  "contract": "headroom-anchor.near",
+  "code_hash": "5tNACPaK6aic8gCtvM3tpebFbwdL1qrKXiPDwZU5PC1v",
+  "wasm_sha256": "48974b03c1b51d577ece58fd6cc061815cc3f873a853c2dd7717965c1aebe751",
+  "setup": [
+    { "step": "create_account via near", "tx": "BNMdAZS4NqFCMWwonWQJ9QCip7PkybHZxJhbJtPhoqJ" },
+    { "step": "deploy contract/res/headroom_anchor.wasm", "tx": "62nyMmgVuWqcKmZB2zpTusnvkreJYpD3ra7agJXGMfo3" }
+  ],
+  "anchors": [
+    {
+      "file": "predictions/predictions.json",
+      "label": "predictions/predictions.json (tag predictions-v1)",
+      "sha256": "8229c89e7f27f92f8e59b2c6aa6d2e8747a8d5917839579f793df4f5a4b2c933",
+      "commit": "d3c0f60",
+      "tx": "CDZ8Eg3PenPNdRsz2UMxsABn32378ai3cMc3icjdKCac",
+      "block_height": 224338687,
+      "timestamp_ms": 1794558673131
+    },
+    {
+      "file": "evidence/MANIFEST.sha256",
+      "label": "evidence/MANIFEST.sha256 @ c2ecdbe",
+      "sha256": "e49d31ddc2657fd982363681e8cb86eaf8714ea0ab8042b564c89094df9106e6",
+      "commit": "c2ecdbe",
+      "tx": "EXHoz5ayd6whrnd95tBBCeAywHpaW6mrWREoNGho9CF4",
+      "block_height": 224338707,
+      "timestamp_ms": 1794558684318
+    }
+  ]
+}
