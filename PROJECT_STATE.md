@@ -7,7 +7,7 @@
 ## ⛔ MANUAL STOP (Phase 4): what Adesope must do
 
 1. ✅ DONE (first daily run committed c8c438e). **Let the daily workflow push:** GitHub → `london160771/headroom` → Settings → Actions → General → Workflow permissions → **Read and write permissions** → Save. (The workflow also asks for `contents: write` itself; this setting makes sure it is allowed.) Then Actions → `daily` → **Run workflow** once to confirm it commits.
-2. **Deploy on Vercel:** New Project → import `london160771/headroom` → keep the defaults (`vercel.json` sets build `npm run build`, output `web/dist`). No env vars. Every daily commit redeploys the page with fresh data.
+2. ✅ DONE https://headroom-delta.vercel.app. **Deploy on Vercel:** New Project → import `london160771/headroom` → keep the defaults (`vercel.json` sets build `npm run build`, output `web/dist`). No env vars. Every daily commit redeploys the page with fresh data.
 3. Send the live URL; Claude fills it into README.
 4. Record the video (script: /mnt/project-files/headroom/VIDEO-SCRIPT.md) and post on X (draft: /mnt/project-files/headroom/X-POST.md).
 5. Submit (track `thesis`) once README links are filled.
@@ -65,7 +65,7 @@ All real. Slider is a labelled model. Test fixtures and the mock `fetch` stay in
 
 | Item | Value |
 |---|---|
-| Live URL | [pending Vercel deploy] |
+| Live URL | https://headroom-delta.vercel.app (deployed by Adesope 2026-11-13; loads with no console errors, checked headless) |
 | Network | NEAR mainnet (read only) |
 | Contracts | none |
 

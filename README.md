@@ -6,7 +6,7 @@ Headroom is a re-runnable census of NEAR's blockspace. Shard by shard, it measur
 
 Built for NEAR HACKATHON, **Investment Thesis** track. Sister project by the same builder: **[AgentGate](https://github.com/london160771/agentgate)**, spending limits for AI agents on NEAR (Function Call Keys + a vault contract).
 
-[Live page](#) · [Demo video](#) · [X post](#) · [THESIS.md](THESIS.md) · [![ci](https://github.com/london160771/headroom/actions/workflows/ci.yml/badge.svg)](https://github.com/london160771/headroom/actions/workflows/ci.yml) · MIT
+[Live page](https://headroom-delta.vercel.app) · [Demo video](#) · [X post](#) · [THESIS.md](THESIS.md) · [![ci](https://github.com/london160771/headroom/actions/workflows/ci.yml/badge.svg)](https://github.com/london160771/headroom/actions/workflows/ci.yml) · MIT
 
 ```
 SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → PRICE IT AGAINST ISSUANCE → FREEZE PREDICTIONS → RE-RUN IT YOURSELF
