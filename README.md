@@ -17,7 +17,7 @@ SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → PRICE IT AGAIN
 | Do this | You should see | Where |
 |---|---|---|
 | Read the thesis | Claim, evidence for, evidence against, what would change my mind | [THESIS.md](THESIS.md) (generated from the data) |
-| Open the live page | Headline with 90% intervals, live shard gauges, 3-year chart | `web/` |
+| Open the [live page](https://headroom-delta.vercel.app) | Headline with 90% intervals, live shard gauges, 3-year chart | `web/` |
 | `npm install && npm test` | All tests pass, including "the page data rebuilds exactly from `evidence/`" and "THESIS.md matches the data" | `test/` |
 | `npm run check` | 20 random sampled blocks re-read from mainnet match `evidence/` field by field | `scripts/check.js` |
 | `sha256sum predictions/predictions.json` | The hash in `predictions/SHA256` and in the git tag `predictions-v1` | `predictions/` |
