@@ -27,6 +27,7 @@ export default function HistoryChart({ monthly, level }) {
 
   return (
     <figure className="mb-0">
+      <div className="hr-chart-scroll">
       <svg viewBox={`0 0 ${W} ${H}`} className="hr-chart w-100" role="img" aria-label="Monthly capacity use, whole chain and busiest shard">
         {TICKS.map((t) => (
           <g key={t}>
@@ -51,6 +52,7 @@ export default function HistoryChart({ monthly, level }) {
           </circle>
         ))}
       </svg>
+      </div>
       <figcaption className="d-flex flex-wrap gap-3 mt-1">
         <span className="hr-legend"><span className="hr-swatch" style={{ background: 'var(--hr-used)' }} /> Whole chain: gas used ÷ gas limit, all shards (shaded: {pct(level)} band)</span>
         <span className="hr-legend"><span className="hr-swatch" style={{ background: 'var(--hr-hot)' }} /> Busiest shard in a block, 95th percentile</span>
