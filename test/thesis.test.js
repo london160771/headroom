@@ -13,9 +13,9 @@ test('THESIS.md matches the page data (run npm run thesis after npm run data)', 
   assert.equal(fs.readFileSync(path.join(ROOT, 'THESIS.md'), 'utf8'), renderThesis(d));
 });
 
-test('THESIS.md has the four sections the track asks for', () => {
+test('THESIS.md has the holder reading and the four sections the track asks for', () => {
   const t = fs.readFileSync(path.join(ROOT, 'THESIS.md'), 'utf8');
-  for (const h of ['## Claim', '## Evidence for', '## Evidence against', '## What would change my mind']) assert.ok(t.includes(h), h);
+  for (const h of ['## What this means for a NEAR holder', '## Claim', '## Evidence for', '## Evidence against', '## What would change my mind']) assert.ok(t.includes(h), h);
 });
 
 test('README findings table matches the page data', () => {

@@ -2,6 +2,15 @@
 
 Generated from `web/public/data/headroom.json` by `npm run thesis`. Data as of 13 Nov 2026 (5,649 sampled mainnet blocks since 1 Jan 2023). Do not edit by hand: `npm test` fails if this file and the data disagree.
 
+## What this means for a NEAR holder
+
+- **Do not count on blockspace scarcity.** NEAR used 0.66% of its gas capacity in the last 30 days. Load must grow about 76× before the gas price moves, and about 105× before gas burn (0.95% of issuance today) matches the NEAR the protocol mints. On the last year's trend (gas per day 0.28× a year earlier) neither happens. If demand doubled every year, fees would start to move in 6.2 years and burn would match issuance in 6.7 years; even at the fastest pace since 2023 (10.3×), fees move in 1.9 years.
+- **Dilution is the cost of waiting.** Net of burn, supply grows about 2.50% a year (issuance 2.52%, burn offsets 0.95% of it). Governance's HSP-029 would cap issuance at 1.60%, the biggest single change to that number.
+- **So the value case rests on other channels, mainly NEAR Intents.** Together, usage offset about 15.6% of issuance: 14.6% from Intents buybacks (external figure, not recomputed here) and 0.95% from gas burn. Holding NEAR is a bet that Intents-style revenue keeps growing, not that L1 fees rise. Headroom's job is to rule out the gas channel for the next several years; other entries measure Intents.
+- **What would flip this reading:** whole-block use crossing 50.0% (the fee rule starts raising the price); gas per day growing faster than 2× a year for a full year; or gas burn overtaking the Intents buyback share (14.6% of issuance), so gas becomes the larger value channel. Headroom tracks the first two every day. Until one of these happens, blockspace is a cost of running NEAR, not a source of its value.
+
+This is a reading of public data, not investment advice.
+
 ## Claim
 
 NEAR has built far more blockspace than it sells. Over the 30 days to 13 Nov 2026 it used **0.66%** of its gas capacity (90% interval 0.53% to 0.83%), so load can grow about **76×** (60× to 94×) before NEAR's fee rule raises the gas price.
