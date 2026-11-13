@@ -102,6 +102,7 @@ All real. Slider is a labelled model. Test fixtures and the mock `fetch` stay in
 
 ## 10. Build log
 
+- **2026-11-13** phase-4d: README "Proof at a glance" for reviewers and AI screeners; `verify` skips the NEAR anchor check with a note (not a failure) when mainnet RPC is unreachable.
 - **2026-11-13** phase-4c: long-term view (years to each bar at measured and reference paces; gas per day 0.28× a year earlier is shown, not hidden), gas vs NEAR Intents as two value channels (Intents share external, sourced), HSP-027 cited for the burn rule, protocol bisection moved to `lib/protocol.js` and tested (re-run on mainnet gives the same block 223,012,337). New page section "How long does the room last?" (table on desktop, cards on phones; checked at 1280 and 390 px, no horizontal scroll, no console errors).
 
 - **2026-11-13** phase-4b: proof gap closed after the rival review. `npm run verify` (ALL OK), independent recompute (`lib/independent.js`), byte-identical rebuild (no `generated_at`), manifest of every input/output file (`npm run manifest`), README judging map, NEAR mainnet anchor contract + `scripts/anchor-mainnet.sh` (Adesope runs it). CI also runs verify and the contract tests.

@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { compare, published, recompute } from '../lib/independent.js';
 import { MANIFEST, manifestMismatches } from '../lib/manifest.js';
-import { anchorTx, viewAnchor } from '../lib/nearproof.js';
+import { anchorTx, mainnetReachable, viewAnchor } from '../lib/nearproof.js';
 import { pageData, sha256File } from '../lib/pagedata.js';
 import { renderThesis, withFindings } from '../lib/thesis.js';
 
@@ -17,6 +17,7 @@ const jsonl = (f) => read(f).split('\n').filter(Boolean).map((l) => JSON.parse(l
 const offline = process.argv.includes('--offline');
 
 let failed = 0;
+let skipped = null;
 const line = (ok, text) => {
   if (!ok) failed++;
   console.log(`${ok ? 'OK  ' : 'FAIL'} ${text}`);
@@ -50,7 +51,11 @@ console.log('5. Hashes anchored on NEAR mainnet');
 const proofFile = file('proof', 'near-mainnet.json');
 if (offline) info('skipped (--offline)');
 else if (!fs.existsSync(proofFile)) info('no anchors recorded yet (proof/near-mainnet.json)');
-else {
+else if (!(await mainnetReachable())) {
+  // A sandbox without network is not a failed check: say plainly what was not checked.
+  skipped = 'NEAR mainnet RPC unreachable from here, so the anchors were not checked';
+  info(`skipped: ${skipped}`);
+} else {
   const proof = JSON.parse(fs.readFileSync(proofFile, 'utf8'));
   for (const a of proof.anchors) {
     const onChain = await viewAnchor(proof.contract, a.sha256).catch((e) => ({ error: e.message }));
@@ -64,5 +69,5 @@ else {
     : `evidence has been refreshed since the last anchor; check out commit ${proof.anchors.at(-1).commit} to verify that snapshot`);
 }
 
-console.log(failed ? `\n${failed} check(s) FAILED` : '\nALL OK');
+console.log(failed ? `\n${failed} check(s) FAILED` : `\nALL OK${skipped ? ` (${skipped})` : ''}`);
 process.exit(failed ? 1 : 0);

@@ -12,6 +12,21 @@ Built for NEAR HACKATHON, **Investment Thesis** track. Sister project by the sam
 SAMPLE THE CHAIN → MEASURE EACH SHARD → FIND THE HEADROOM → PRICE IT AGAINST ISSUANCE → FREEZE PREDICTIONS → RE-RUN IT YOURSELF
 ```
 
+## Proof at a glance
+
+- **Thesis:** NEAR is a volume bet, not a scarcity bet. Its blockspace is mostly empty, gas burn covers a small share of the NEAR it mints, and the fee rule needs whole blocks half full before scarcity can pay. The full case, both sides and a long-term view: [THESIS.md](THESIS.md).
+- **One command:** `npm install && npm run verify` prints one line per check and ends in `ALL OK`:
+  1. every input and output file matches its SHA-256 in `evidence/MANIFEST.sha256`;
+  2. the frozen predictions match their hash;
+  3. the page data, THESIS.md and this README's findings table rebuild **byte for byte** from `evidence/`;
+  4. **15 headline numbers are recomputed a second way** by `lib/independent.js`, which imports nothing from the main pipeline, and all agree;
+  5. the hashes are read back from NEAR mainnet, contract `headroom-anchor.near` (anchoring pending; skipped with a clear note when there is no network).
+- **70 tests, all passing:** 59 `node:test` + 5 vitest + 6 Rust for the anchor contract. Each checks one behaviour: missing chunks are never 0%, the fee rule, the bootstrap, the burn-rule bisection, the long-term model, that the committed data rebuilds exactly, and more ([list](#tested-not-claimed)).
+- **Raw evidence, re-readable:** every sampled block is stored field by field; `npm run check` re-reads random ones from mainnet and diffs every field.
+- **Pre-committed:** six predictions frozen before their windows, with a SHA-256, a git tag, a Bitcoin timestamp and (pending) a NEAR mainnet anchor; scored on every build, with a backtest that shows where they would have failed.
+- **Live and maintained:** a GitHub Action adds new mainnet blocks every day and re-runs all of the above; CI runs tests, `verify` and the contract checks on every push.
+- **Honest limits:** gas only (not state or witness size); sampled, not every block; NEAR Intents revenue is shown as an external, sourced figure, not measured. See [Known limits](#known-limits).
+
 ## For reviewers: check it in this order
 
 | Do this | You should see | Where |
@@ -144,7 +159,7 @@ Node 20+. No keys, no wallet, no `.env`. `ots` (Python `opentimestamps-client`) 
 
 ## Tested, not claimed
 
-`npm test` on 2026-11-13: **64 passing** (59 with `node:test`, 5 with vitest), plus **6 passing** Rust tests for the anchor contract (`cd contract && cargo test`). They cover:
+**70 tests, all passing** on 2026-11-13: `npm test` runs 64 (59 with `node:test`, 5 with vitest) and `cd contract && cargo test` runs 6 for the anchor contract. On top of the tests, `npm run verify` recomputes the 15 headline numbers with separate code and checks every file hash. The tests cover:
 
 - Block records: missing chunks are skipped, never 0%; burn is not double-counted from repeated chunk headers.
 - Metrics: block and shard use, percentiles, monthly grouping, multiples, recent window, hot-shard events, price rises, congestion, the ×N model, cross-check.
