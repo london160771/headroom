@@ -123,3 +123,4 @@ All real. Slider is a labelled model. Test fixtures and the mock `fetch` stay in
 - **2026-11-12** `d3c0f60` phase-3: depth (see PRD §10 FR-ECO … FR-WEB-007, §16 decisions).
 - **2026-11-12** `4cda730` phases 1–2: full sample, data, page, README.
 - **2026-11-12** `0e9ae99` phase-0: docs, sampler, metrics, page skeleton.
+- **2026-11-13** phase-4j: demo video (2:14, posted on X by Adesope) and X post linked in README and PRD: https://x.com/ayyoweb3/status/2121249227862901073. Checks: 59 node + 5 vitest pass; verify --offline ALL OK.

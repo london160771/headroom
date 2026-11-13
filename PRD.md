@@ -11,7 +11,7 @@
 | **Hackathon / track** | NEAR HACKATHON, Investment Thesis (`thesis`): "Build a long-term investment thesis for NEAR and back it with data: onchain analytics, live dashboards and models anyone can re-run. Judged on the evidence, not the conviction." |
 | **Official deadline** | 2026-11-14 23:59 UTC |
 | **Internal cutoff** | 2026-11-14 16:00 UTC |
-| **Links** | Repo: https://github.com/london160771/headroom · Live: [ ] · Video: [ ] · X post: [ ] |
+| **Links** | Repo: https://github.com/london160771/headroom · Live: https://headroom-delta.vercel.app · Video: https://x.com/ayyoweb3/status/2121249227862901073 (attached to the X post) · X post: https://x.com/ayyoweb3/status/2121249227862901073 |
 | **Sister project** | AgentGate (https://github.com/london160771/agentgate). Hackathon rule: a person may submit 2 independent projects, and each README must name the other. |
 
 > **This file is the only source of truth for requirements.** Cite sections (e.g. "PRD §10"). When reality disagrees, fix this file and log it in §16.
