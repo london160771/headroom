@@ -1,7 +1,7 @@
 // From capacity to value: does gas burn offset the NEAR the protocol mints?
 // Burn per Tgas and issuance are read from block headers (lib/economics.js).
 import { FEE_TRIGGER } from '../../../lib/metrics.js';
-import { pct, times } from '../lib/format.js';
+import { day, pct, times } from '../lib/format.js';
 import Source from './Source.jsx';
 
 const near = (x) => `${Math.round(x).toLocaleString('en-US')} NEAR`;
@@ -42,10 +42,18 @@ export default function Bridge({ e, recent }) {
           ? 'So filling the spare room at today’s floor price would be enough on its own.'
           : `So the spare room alone, at today's floor price, can't do it: even at the fee trigger, burn covers ${pct(e.coverageAtTrigger)} of issuance. Past the trigger the gas price rises, and so does the burn per Tgas. That is where blockspace starts to pay for NEAR.`}
       </p>
+      {e.burnRule && (
+        <p className="small mt-3 mb-0">
+          <b>The rules just moved.</b> Since protocol {e.burnRule.protocolVersion} ({day(e.burnRule.since)}), NEAR burns {pct(e.burnRule.burnShare)} of gas fees instead of
+          paying part to contracts. We found the exact block by bisecting archival protocol configs, and measure burn on the {e.burnRule.blocks.toLocaleString('en-US')} sampled
+          blocks since then. {e.hsp029 && <>If HSP-029's {pct(e.hsp029.maxInflation)} issuance cap lands (approved by governance, not yet in effect), the growth needed falls to about{' '}
+          <b>{times(e.hsp029.loadNeeded)}</b> ({times(e.hsp029.loadNeededBand[0])} to {times(e.hsp029.loadNeededBand[1])}), {e.hsp029.fitsBeforeFeesMove ? 'around where the fee rule starts to bite' : 'still past the fee trigger'}.</>}
+        </p>
+      )}
       <Source
-        rpc={'block → header.total_supply, header.block_ordinal, chunks[].balance_burnt, chunks[].gas_used'}
-        code={['lib/economics.js', 'lib/report.js']}
-        plain={`Minted per year = change in total supply + NEAR burned, over the last year (${e.issuance.from.slice(0, 10)} to ${e.issuance.to.slice(0, 10)}). Burned per Tgas = sampled balance_burnt ÷ sampled gas used. Capacity = ${Math.round(e.blocksPerDay).toLocaleString('en-US')} blocks a day × ${recent.shards} shards × 1,000 Tgas.`}
+        rpc={'block → header.total_supply, header.block_ordinal, chunks[].balance_burnt, chunks[].gas_used; EXPERIMENTAL_protocol_config → burnt_gas_reward, max_inflation_rate'}
+        code={['lib/economics.js', 'lib/report.js', 'scripts/protocol.js', 'evidence/scenarios.json']}
+        plain={`Minted per year = change in total supply + NEAR burned, over the last year (${e.issuance.from.slice(0, 10)} to ${e.issuance.to.slice(0, 10)}). Burned per Tgas = balance_burnt ÷ gas used, over sampled and dense blocks under the current burn rule. Capacity = ${Math.round(e.blocksPerDay).toLocaleString('en-US')} blocks a day × ${recent.shards} shards × 1,000 Tgas.`}
       />
     </div>
   );

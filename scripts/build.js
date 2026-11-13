@@ -19,12 +19,16 @@ const report = buildReport({
   culprits: maybe(file('evidence', 'culprits.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
   predictions: maybe(file('predictions', 'predictions.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
   predictionsSha256: maybe(file('predictions', 'predictions.json'), sha256),
+  protocol: maybe(file('evidence', 'protocol.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
+  scenarios: maybe(file('evidence', 'scenarios.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
 });
 const nb = JSON.parse(fs.readFileSync(file('evidence', 'nearblocks-daily.json'), 'utf8'));
 report.sources = {
   samples: 'evidence/samples.jsonl (NEAR mainnet archival RPC, scripts/sample.js)',
   dense: report.dense_check ? 'evidence/dense-30d.jsonl (scripts/dense.js)' : null,
   culprits: report.culprits ? 'evidence/culprits.json (scripts/culprits.js)' : null,
+  protocol: report.protocol ? 'evidence/protocol.json (scripts/protocol.js)' : null,
+  scenarios: 'evidence/scenarios.json (HSP-029, typed from the sources it lists)',
   nearblocks: `evidence/nearblocks-daily.json (${nb.source}, fetched ${nb.fetched_at})`,
   predictions: report.predictions ? 'predictions/predictions.json (frozen; SHA-256 in predictions/SHA256)' : null,
 };
@@ -42,5 +46,6 @@ console.log(`fee x${r.feeMultiple.toFixed(0)} [${iv.feeMultiple.map((x) => x.toF
 console.log(`peak month ${report.peak_month.month}: ${pc(report.peak_month.use)}; hot-shard events ${report.hot_shard_events.length}; above floor ${report.above_floor_blocks}; congested blocks ${report.congestion.congestedBlocks}`);
 const e = report.economics;
 if (e) console.log(`economics: ${e.blocksPerDay.toFixed(0)} blocks/day, burn ${e.burnPerTgasNear.toExponential(3)} NEAR/Tgas, minted ${e.issuance.mintedPerYear.toFixed(0)} NEAR/yr (${pc(e.issuance.ratePerYear)}), burn covers ${pc(e.coverageToday)} today, ${pc(e.coverageAtTrigger)} at 50%, ${pc(e.coverageFull)} full; load needed x${e.loadNeeded.toFixed(0)}`);
+if (e?.hsp029) console.log(`burn rule since ${e.burnRule?.since} (${e.burnRule?.blocks} blocks): ${e.burnPerTgasNear.toExponential(3)} NEAR/Tgas vs last year ${e.burnPerTgasLastYear.toExponential(3)}; HSP-029: covers ${pc(e.hsp029.coverageToday)}, load needed x${e.hsp029.loadNeeded.toFixed(0)}, fits before fees move: ${e.hsp029.fitsBeforeFeesMove}`);
 if (report.dense_check) console.log('dense check:', JSON.stringify(report.dense_check));
 if (report.predictions) for (const p of report.predictions.scored) console.log(`${p.id} ${p.status} (${p.metric} ${p.value_so_far ?? '-'} ${p.op} ${p.value})`);

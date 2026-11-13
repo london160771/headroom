@@ -1,0 +1,13 @@
+{
+ "hsp029": {
+  "name": "HSP-029",
+  "max_inflation": 0.016,
+  "summary": "Cut NEAR's maximum annual issuance from 2.5% to 1.6%, phased in over 24 months after a 90-day buffer.",
+  "status": "Approved by House of Stake vote (closed 2026-11-02, 99.97% of participating voting power in favour). Not in effect: needs ratification and a validator-adopted protocol upgrade. Live protocol config still reads 2.5% (evidence/protocol.json).",
+  "sources": [
+   "https://www.theblock.co/news/defi/2026-11-03-near-governance-approves-token-issuance-432378",
+   "https://gov.near.org/t/reduce-inflation-for-near-protocol/41140"
+  ],
+  "use": "Scenario only: issuance scaled by max_inflation / current max_inflation (the end state after the phase-in)."
+ }
+}

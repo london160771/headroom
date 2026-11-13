@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-13T05:41:57.335Z",
+ "generated_at": "2026-11-13T05:59:28.887Z",
  "data_as_of": "2026-11-13T00:16:05.320Z",
  "sampling": {
   "slots": 5649,
@@ -5236,7 +5236,15 @@
  "economics": {
   "blocksPerDay": 146850.71520567354,
   "capacityTgasPerDay": 1468507152.0567355,
-  "burnPerTgasNear": 0.00007732540969784917,
+  "burnPerTgasNear": 0.00008687788455201501,
+  "burnRule": {
+   "since": "2026-11-04T11:46:29.014Z",
+   "height": 223012337,
+   "protocolVersion": 87,
+   "blocks": 433,
+   "burnShare": 1
+  },
+  "burnPerTgasLastYear": 0.00007732540969784917,
   "issuance": {
    "from": "2025-11-13T05:11:18.325Z",
    "to": "2026-11-13T00:16:05.320Z",
@@ -5247,21 +5255,70 @@
    "mintedPerYear": 32257468.351904422,
    "ratePerYear": 0.025204868492627663
   },
-  "burnPerYearToday": 273784.50343248143,
-  "coverageToday": 0.008487476464231505,
-  "coverageAtTrigger": 0.6428775275610528,
-  "coverageFull": 1.2857550551221055,
-  "loadNeeded": 117.82065072159757,
+  "burnPerYearToday": 307606.7566183162,
+  "coverageToday": 0.009535985690586772,
+  "coverageAtTrigger": 0.7222960710945645,
+  "coverageFull": 1.444592142189129,
+  "loadNeeded": 104.86592917050272,
   "fitsBeforeFeesMove": false,
-  "priceNeededAtFull": 0.7777531155847037,
+  "priceNeededAtFull": 0.6922369095020855,
   "coverageTodayBand": [
-   0.006831486115758483,
-   0.010652717903193075
+   0.0076754208532834635,
+   0.011968712481125517
   ],
   "loadNeededBand": [
-   93.87275708298417,
-   146.38103379779358
-  ]
+   83.5511757490194,
+   130.28601546613703
+  ],
+  "hsp029": {
+   "maxInflation": 0.016,
+   "status": "Approved by House of Stake vote (closed 2026-11-02, 99.97% of participating voting power in favour). Not in effect: needs ratification and a validator-adopted protocol upgrade. Live protocol config still reads 2.5% (evidence/protocol.json).",
+   "mintedPerYear": 20644779.745218832,
+   "coverageToday": 0.01489997764154183,
+   "coverageAtTrigger": 1.128587611085257,
+   "loadNeeded": 67.11419466912176,
+   "loadNeededBand": [
+    53.47275247937241,
+    83.3830498983277
+   ],
+   "fitsBeforeFeesMove": true
+  }
+ },
+ "protocol": {
+  "source": "NEAR RPC EXPERIMENTAL_protocol_config (live and archival, bisected)",
+  "fetched_at": "2026-11-13T05:58:24.733Z",
+  "tip_height": 224322831,
+  "now": {
+   "protocol_version": 88,
+   "max_inflation_rate": [
+    1,
+    40
+   ],
+   "burnt_gas_reward": [
+    0,
+    1
+   ],
+   "protocol_reward_rate": [
+    0,
+    1
+   ],
+   "burn_share": 1,
+   "max_inflation": 0.025
+  },
+  "burn_rule_change": {
+   "param": "burnt_gas_reward",
+   "from": [
+    3,
+    10
+   ],
+   "to": [
+    0,
+    1
+   ],
+   "first_height": 223012337,
+   "ts": 1793792789014,
+   "protocol_version": 87
+  }
  },
  "dense_check": {
   "from": "2026-10-13T18:00:00.000Z",
@@ -20707,6 +20764,8 @@
   "samples": "evidence/samples.jsonl (NEAR mainnet archival RPC, scripts/sample.js)",
   "dense": "evidence/dense-30d.jsonl (scripts/dense.js)",
   "culprits": "evidence/culprits.json (scripts/culprits.js)",
+  "protocol": "evidence/protocol.json (scripts/protocol.js)",
+  "scenarios": "evidence/scenarios.json (HSP-029, typed from the sources it lists)",
   "nearblocks": "evidence/nearblocks-daily.json (https://api.nearblocks.io/v1/charts, fetched 2026-11-13T05:31:00.387Z)",
   "predictions": "predictions/predictions.json (frozen; SHA-256 in predictions/SHA256)"
  }

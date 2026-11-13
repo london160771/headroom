@@ -75,6 +75,8 @@ test('the committed page data is rebuilt exactly from evidence/ (except generate
     culprits: maybe(path.join(ROOT, 'evidence', 'culprits.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
     predictions: maybe(path.join(ROOT, 'predictions', 'predictions.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
     predictionsSha256: maybe(path.join(ROOT, 'predictions', 'predictions.json'), (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex')),
+    protocol: maybe(path.join(ROOT, 'evidence', 'protocol.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
+    scenarios: maybe(path.join(ROOT, 'evidence', 'scenarios.json'), (f) => JSON.parse(fs.readFileSync(f, 'utf8'))),
     nowMs: Date.parse(stored.generated_at),
   });
   const rebuilt = JSON.parse(JSON.stringify({ ...r, sources: stored.sources }, (k, v) => (typeof v === 'bigint' ? v.toString() : v)));
@@ -95,4 +97,17 @@ test('slot offsets: median and max gap between slot time and stored block', () =
   const at = targetTime(0);
   const rows = [{ t: 0, blocks: [{ ts: at + 1000 }] }, { t: 0, blocks: [{ ts: at - 3000 }] }, { t: 0, blocks: [{ ts: at + 120_000 }] }];
   assert.deepEqual(offsets(rows), { median: 3, max: 120, over60: 1 });
+});
+
+test('economics measures burn under the current burn rule only, and scales issuance for the HSP-029 scenario', () => {
+  const rows = fixtureRows();
+  // FIXTURE: the burn rule changed at the block with ordinal 1_400_000 (day 350); afterwards 0.02 NEAR burnt per block.
+  for (const r of rows) if (r.blocks[0].height >= 1_400_000) r.blocks[0].burnt = Y(0.02);
+  const protocol = { now: { burn_share: 1, max_inflation: 0.025 }, burn_rule_change: { first_height: 1_400_000, ts: T0 + 350 * DAY, protocol_version: 87 } };
+  const scenarios = { hsp029: { max_inflation: 0.016, status: 'fixture' } };
+  const e = buildReport({ rows, nb, protocol, scenarios }).economics;
+  assert.ok(e.burnPerTgasNear > 1.9 * e.burnPerTgasLastYear / 1.2); // only post-change blocks count
+  assert.equal(e.burnRule.blocks, 200);
+  assert.ok(Math.abs(e.hsp029.mintedPerYear / e.issuance.mintedPerYear - 0.64) < 1e-9);
+  assert.ok(Math.abs(e.hsp029.loadNeeded / e.loadNeeded - 0.64) < 1e-9);
 });

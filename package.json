@@ -17,7 +17,8 @@
     "preview": "vite preview",
     "thesis": "node scripts/thesis.js",
     "dense": "NODE_NO_WARNINGS=1 node scripts/dense.js",
-    "culprits": "NODE_NO_WARNINGS=1 node scripts/culprits.js"
+    "culprits": "NODE_NO_WARNINGS=1 node scripts/culprits.js",
+    "protocol": "node scripts/protocol.js"
   },
   "dependencies": {
     "bootstrap": "5.3.8",

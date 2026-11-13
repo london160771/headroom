@@ -35,8 +35,8 @@ Numbers from `web/public/data/headroom.json`, data as of 13 Nov 2026: 5,649 main
 | Growth before NEAR's fee rule raises the price | **about 76×** (90%: 60× to 94×) |
 | Growth before the busiest shard is full at its busy hours | about 14× (shard 8, p95 7.03%; 90%: 12× to 17×) |
 | NEAR minted per year (from total_supply + burn) | 32,257,468 NEAR (2.52% of supply) |
-| Gas burn as a share of issuance | **0.85%** today; 64.3% at the 50% fee trigger; 128.6% with every block full |
-| Growth needed for burn to match issuance | about 118× (90%: 94× to 146×) |
+| Gas burn as a share of issuance (burn rule since 4 Nov 2026) | **0.95%** today; 72.2% at the 50% fee trigger; 144.5% with every block full |
+| Growth needed for burn to match issuance | about 105× (90%: 84× to 130×); about 67× if HSP-029's 1.60% cap lands |
 | Peak month since 2023 | 20.6% (Mar 2024) |
 | Sampled blocks with one shard more than half full | 493, of which 478 stayed at the floor price |
 | Sampled blocks priced above the floor | 15, all from 29 Nov 2023 to 29 Dec 2023, up to 20× the floor |
@@ -78,6 +78,7 @@ predictions/predictions.json (frozen, hashed, timestamped) ───────
 | Archival RPC `block`: chunk `gas_used`, `gas_limit`, `shard_id`, `height_included`, `balance_burnt`, `congestion_info` | Per-shard gas use, burn and congestion since 2023 | `scripts/sample.js`, `lib/block.js` |
 | Archival RPC `block`: header `total_supply`, `block_ordinal`, `gas_price` | Issuance, blocks per day, price state | `lib/economics.js` |
 | RPC `chunk` | Which accounts fill the hot shard | `scripts/culprits.js` |
+| RPC `EXPERIMENTAL_protocol_config` (live + archival, bisected) | Current burn rule and inflation cap; the exact block where NEAR switched to burning 100% of gas | `scripts/protocol.js` |
 | Mainnet RPC `block` (final), from the browser | Live shard gauges | `web/src/lib/live.js` |
 | nearcore fee rule (sums all chunks, 50% trigger) | The fee multiple | `lib/metrics.js` |
 | NearBlocks daily charts (third-party indexer) | Cross-check only | `scripts/nearblocks.js` |
@@ -105,6 +106,7 @@ npm run check        # re-read 20 random sampled blocks from mainnet, compare ev
 npm run sample       # add new 6-hour slots up to now (resumable)
 npm run dense        # the 30-minute sampling check (resumable)
 npm run culprits     # read chunks for hot-shard blocks
+npm run protocol     # burn rule + inflation cap, bisect the last burn-rule change
 npm run nearblocks   # refresh the NearBlocks series
 npm run data         # rebuild web/public/data/headroom.json
 npm run thesis       # rebuild THESIS.md and the README findings table

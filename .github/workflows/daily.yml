@@ -24,6 +24,8 @@ jobs:
       - run: npm ci
       - name: Sample new slots from mainnet
         run: npm run sample
+      - name: Read protocol parameters (burn rule, inflation cap)
+        run: npm run protocol
       - name: Refresh NearBlocks cross-check series
         run: npm run nearblocks
       - name: Re-read 10 random stored blocks and compare every field

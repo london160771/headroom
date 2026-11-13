@@ -222,6 +222,7 @@ web (React + Vite + Bootstrap) ──> headroom.json + live mainnet RPC read
 | 2026-11-12 | Issuance from headers, not from a stated inflation rate | Δ total_supply + burn is measured; a stated rate can be stale |
 | 2026-11-12 | Bootstrap resamples whole UTC days | Blocks on one day are correlated; resampling blocks would understate the interval |
 | 2026-11-12 | Sample at a seeded random moment inside each 6-hour slot, not at 00/06/12/18 UTC | Fixed clock times saw the same 4 hours every day: the 30-min dense read showed the fixed-time sample read low (Gate 0 median fell to 0.89 once slot times were exact). Random moments cover all 24 hours and stay reproducible |
+| 2026-11-13 | Burn per Tgas measured only under the current burn rule (protocol 87, block 223,012,337: burnt_gas_reward 3/10 → 0); HSP-029 (1.6% cap) shown as a scenario | Rival review found both; verified by our own archival bisection (`scripts/protocol.js`). The old 365-day average understated burn by about 12% |
 | 2026-11-12 | OpenTimestamps (Python `opentimestamps-client`, used once by hand) for the predictions hash | Keyless, free, anchors in Bitcoin; not a runtime dependency |
 
 ---

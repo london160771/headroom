@@ -1,0 +1,36 @@
+{
+ "source": "NEAR RPC EXPERIMENTAL_protocol_config (live and archival, bisected)",
+ "fetched_at": "2026-11-13T05:58:24.733Z",
+ "tip_height": 224322831,
+ "now": {
+  "protocol_version": 88,
+  "max_inflation_rate": [
+   1,
+   40
+  ],
+  "burnt_gas_reward": [
+   0,
+   1
+  ],
+  "protocol_reward_rate": [
+   0,
+   1
+  ],
+  "burn_share": 1,
+  "max_inflation": 0.025
+ },
+ "burn_rule_change": {
+  "param": "burnt_gas_reward",
+  "from": [
+   3,
+   10
+  ],
+  "to": [
+   0,
+   1
+  ],
+  "first_height": 223012337,
+  "ts": 1793792789014,
+  "protocol_version": 87
+ }
+}
