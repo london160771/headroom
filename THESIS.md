@@ -35,7 +35,7 @@ Six predictions, frozen on 12 Nov 2026 (SHA-256 `8229c89e7f27f92f8e59b2c6aa6d2e8
 | P2 | No calendar month averages more than 20% of NEAR's gas capacity. | 13 Nov 2026 to 31 Dec 2027 | holding | Demand has returned to the March 2024 peak or beyond, with 10 shards instead of 4. |
 | P3 | In every month, the hottest shard in a block stays under 50% of its limit at the 95th percentile. | 13 Nov 2026 to 31 Dec 2027 | holding | If P1 still holds, NEAR has a hot-shard problem its fee rule can't see, and congestion control is doing the work. |
 | P4 | No sampled block crosses NEAR's 50% fee trigger (gas used summed over all chunks vs the summed limit). | 13 Nov 2026 to 31 Dec 2027 | holding | Whole blocks are filling. The fee multiple is not a far-off number any more. |
-| P5 | Gas burn offsets less than 5% of the new NEAR minted over the window. | 13 Nov 2026 to 31 Dec 2027 | not holding | Usage is starting to pay for security. Burn is becoming a real sink, which is bullish for the token. |
+| P5 | Gas burn offsets less than 5% of the new NEAR minted over the window. | 13 Nov 2026 to 31 Dec 2027 | waiting | Usage is starting to pay for security. Burn is becoming a real sink, which is bullish for the token. |
 | P6 | In June 2027, NEAR uses less than 5% of its gas capacity. | 1 Jun 2027 to 30 Jun 2027 | waiting | Load grew about 9x or more in seven months. The headroom is being used up faster than the thesis says. |
 
 Backtest over the most recent window of the same length: 5 of 6 would have held (P3 would have failed, so these are not safe bets).

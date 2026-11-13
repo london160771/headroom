@@ -115,7 +115,7 @@ Node 20+. No keys, no wallet, no `.env`. `ots` (Python `opentimestamps-client`) 
 
 ## Tested, not claimed
 
-`npm test` on 2026-11-12: **46 passing** (42 with `node:test`, 4 with vitest). They cover:
+`npm test` on 2026-11-12: **47 passing** (43 with `node:test`, 4 with vitest). They cover:
 
 - Block records: missing chunks are skipped, never 0%; burn is not double-counted from repeated chunk headers.
 - Metrics: block and shard use, percentiles, monthly grouping, multiples, recent window, hot-shard events, price rises, congestion, the ×N model, cross-check.

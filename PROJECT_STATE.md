@@ -6,12 +6,12 @@
 
 ## ⛔ MANUAL STOP (Phase 4): what Adesope must do
 
-1. **Let the daily workflow push:** GitHub → `london160771/headroom` → Settings → Actions → General → Workflow permissions → **Read and write permissions** → Save. (The workflow also asks for `contents: write` itself; this setting makes sure it is allowed.) Then Actions → `daily` → **Run workflow** once to confirm it commits.
+1. ✅ DONE (first daily run committed c8c438e). **Let the daily workflow push:** GitHub → `london160771/headroom` → Settings → Actions → General → Workflow permissions → **Read and write permissions** → Save. (The workflow also asks for `contents: write` itself; this setting makes sure it is allowed.) Then Actions → `daily` → **Run workflow** once to confirm it commits.
 2. **Deploy on Vercel:** New Project → import `london160771/headroom` → keep the defaults (`vercel.json` sets build `npm run build`, output `web/dist`). No env vars. Every daily commit redeploys the page with fresh data.
 3. Send the live URL; Claude fills it into README.
 4. Record the video (script: /mnt/project-files/headroom/VIDEO-SCRIPT.md) and post on X (draft: /mnt/project-files/headroom/X-POST.md).
 5. Submit (track `thesis`) once README links are filled.
-6. **Push the predictions tag** (the cloud session could not push tags): `git clone https://github.com/london160771/headroom ~/headroom; cd ~/headroom && git pull && git tag -a predictions-v1 d3c0f60 -m "Frozen Headroom predictions" && git push origin predictions-v1`
+6. ✅ DONE 2026-11-13. **Push the predictions tag** (the cloud session could not push tags): `git clone https://github.com/london160771/headroom ~/headroom; cd ~/headroom && git pull && git tag -a predictions-v1 d3c0f60 -m "Frozen Headroom predictions" && git push origin predictions-v1`
 
 ## 1. Right now
 
@@ -32,14 +32,16 @@
 
 | Check | Command | Result |
 |---|---|---|
-| Node tests | `node --test test/*.test.js` | 42 of 42 pass |
+| Node tests | `node --test test/*.test.js` | 43 of 43 pass |
 | Web tests | `vitest run` | 4 of 4 pass |
 | Build | `npm run build` | pass |
 | Re-check vs mainnet | `npm run check` | 20 of 20 random blocks match evidence/ field by field |
 | Page data rebuilds exactly | test in `test/report.test.js` | pass |
 | THESIS.md + README table match data | `test/thesis.test.js` | pass |
 | Predictions hash | `sha256sum predictions/predictions.json` | `8229c89e7f27f92f8e59b2c6aa6d2e8747a8d5917839579f793df4f5a4b2c933` (= `predictions/SHA256`, tag `predictions-v1`) |
-| OpenTimestamps | `ots stamp` | submitted to 4 calendars; the proof is pending until Bitcoin confirms; the daily workflow runs `ots upgrade` |
+| OpenTimestamps | `ots info predictions/predictions.json.ots` | anchored in Bitcoin block 975619 (upgraded by the daily workflow on 2026-11-13) |
+| Predictions tag | `git ls-remote origin` | `predictions-v1` → `d3c0f60` (pushed by Adesope via a GitHub release, 2026-11-13) |
+| Daily workflow | GitHub Actions | first run committed `c8c438e` (data: daily refresh 2026-11-13) |
 | Gate 0 | `npm run data` (cross_check) | median monthly ratio 0.99; 45 of 47 months within 0.8–1.2 |
 | Sampling check | `npm run dense` + `npm run data` | use: dense 0.58% vs sampled 0.68%, inside the sampled 90% interval; busiest-shard p95: dense 4.77% vs sampled 7.54%, outside it (stated on the page as a limit) |
 | UI at 1280 px and 390 px | Playwright screenshot | no horizontal scroll, no console errors |
@@ -82,6 +84,7 @@ All real. Slider is a labelled model. Test fixtures and the mock `fetch` stay in
 
 ## 10. Build log
 
+- **2026-11-13** phase-3c: a prediction with too little data waits instead of showing "not holding" (P5 after the first daily run).
 - **2026-11-12** phase-3b: seeded random moment per slot (Gate 0 median 0.96 → 0.99), full re-sample, mobile predictions cards.
 - **2026-11-12** `d3c0f60` phase-3: depth (see PRD §10 FR-ECO … FR-WEB-007, §16 decisions).
 - **2026-11-12** `4cda730` phases 1–2: full sample, data, page, README.

@@ -70,3 +70,8 @@ test('the frozen predictions file still matches its recorded SHA-256', () => {
   const hash = crypto.createHash('sha256').update(fs.readFileSync(path.join(dir, 'predictions.json'))).digest('hex');
   assert.equal(fs.readFileSync(path.join(dir, 'SHA256'), 'utf8').split(/\s+/)[0], hash);
 });
+
+test('a metric that needs more data waits instead of failing', () => {
+  const [s] = score([P({ metric: 'burn_to_issuance', op: '<', value: 0.05 })], [b('2027-01-02T00:00:00Z', [1])], FLOOR, Date.parse('2027-01-03'));
+  assert.equal(s.status, 'waiting');
+});
