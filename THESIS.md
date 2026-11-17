@@ -1,10 +1,10 @@
 # THESIS: NEAR is a volume bet, not a scarcity bet
 
-Generated from `web/public/data/headroom.json` by `npm run thesis`. Data as of 16 Nov 2026 (5,662 sampled mainnet blocks since 1 Jan 2023). Do not edit by hand: `npm test` fails if this file and the data disagree.
+Generated from `web/public/data/headroom.json` by `npm run thesis`. Data as of 17 Nov 2026 (5,666 sampled mainnet blocks since 1 Jan 2023). Do not edit by hand: `npm test` fails if this file and the data disagree.
 
 ## What this means for a NEAR holder
 
-- **Do not count on blockspace scarcity.** NEAR used 0.59% of its gas capacity in the last 30 days. Load must grow about 85× before the gas price moves, and about 116× before gas burn (0.86% of issuance today) matches the NEAR the protocol mints. On the last year's trend (gas per day 0.26× a year earlier) neither happens. If demand doubled every year, fees would start to move in 6.4 years and burn would match issuance in 6.9 years; even at the fastest pace since 2023 (9.93×), fees move in 1.9 years.
+- **Do not count on blockspace scarcity.** NEAR used 0.59% of its gas capacity in the last 30 days. Load must grow about 85× before the gas price moves, and about 116× before gas burn (0.86% of issuance today) matches the NEAR the protocol mints. On the last year's trend (gas per day 0.25× a year earlier) neither happens. If demand doubled every year, fees would start to move in 6.4 years and burn would match issuance in 6.9 years; even at the fastest pace since 2023 (10.0×), fees move in 1.9 years.
 - **Dilution is the cost of waiting.** Net of burn, supply grows about 2.50% a year (issuance 2.52%, burn offsets 0.86% of it). Governance's HSP-029 would cap issuance at 1.60%, the biggest single change to that number.
 - **So the value case rests on other channels, mainly NEAR Intents.** Together, usage offset about 15.5% of issuance: 14.6% from Intents buybacks (external figure, not recomputed here) and 0.86% from gas burn. Holding NEAR is a bet that Intents-style revenue keeps growing, not that L1 fees rise. Headroom's job is to rule out the gas channel for the next several years; other entries measure Intents.
 - **What would flip this reading:** whole-block use crossing 50.0% (the fee rule starts raising the price); gas per day growing faster than 2× a year for a full year; or gas burn overtaking the Intents buyback share (14.6% of issuance), so gas becomes the larger value channel. Headroom tracks the first two every day. Until one of these happens, blockspace is a cost of running NEAR, not a source of its value.
@@ -13,9 +13,9 @@ This is a reading of public data, not investment advice.
 
 ## Claim
 
-NEAR has built far more blockspace than it sells. Over the 30 days to 16 Nov 2026 it used **0.59%** of its gas capacity (90% interval 0.51% to 0.69%), so load can grow about **85×** (73× to 98×) before NEAR's fee rule raises the gas price.
+NEAR has built far more blockspace than it sells. Over the 30 days to 17 Nov 2026 it used **0.59%** of its gas capacity (90% interval 0.51% to 0.68%), so load can grow about **85×** (73× to 98×) before NEAR's fee rule raises the gas price.
 
-So for the next one to two years, the token's value cannot come from scarce blockspace. NEAR mints about 32,252,554 NEAR a year (2.52% of supply), and gas burn offsets **0.86%** of it (measured under the current burn rule: since protocol 87 on 4 Nov 2026, 100.0% of gas fees are burned). For burn alone to match issuance, load would have to grow about **116×**, past the point where fees start to rise (85×). Even at that trigger, burn covers 73.0% of issuance.
+So for the next one to two years, the token's value cannot come from scarce blockspace. NEAR mints about 32,251,900 NEAR a year (2.52% of supply), and gas burn offsets **0.86%** of it (measured under the current burn rule: since protocol 87 on 4 Nov 2026, 100.0% of gas fees are burned). For burn alone to match issuance, load would have to grow about **116×**, past the point where fees start to rise (85×). Even at that trigger, burn covers 73.1% of issuance.
 
 If governance's 1.60% issuance cap (HSP-029, approved but not yet in effect) lands, that bar falls to about **74×** (90%: 64× to 86×), roughly where the fee rule starts to bite. Either way burn needs tens of times today's load: a volume bet.
 
@@ -23,15 +23,15 @@ If governance's 1.60% issuance cap (HSP-029, approved but not yet in effect) lan
 
 ## Long-term view (a model)
 
-How long the headroom lasts depends on one thing: how fast gas demand grows. Measured from the sample, gas used per day over the last 30 days was **0.26×** the level of the same 30 days a year earlier, so on the current trend no bar below is ever reached. The fastest 12 months since 2023 (to 31 Mar 2024, from a low base) grew **9.93×**; at that pace fees would start to move in 1.9 years.
+How long the headroom lasts depends on one thing: how fast gas demand grows. Measured from the sample, gas used per day over the last 30 days was **0.25×** the level of the same 30 days a year earlier, so on the current trend no bar below is ever reached. The fastest 12 months since 2023 (to 1 Apr 2024, from a low base) grew **10.0×**; at that pace fees would start to move in 1.9 years.
 
 | Yearly growth in gas demand | Busiest shard full at its busy hours (13×) | NEAR's fee rule raises the price (85×) | Burn matches issuance if HSP-029 lands (74×) | Burn matches issuance today (116×) |
 |---|---|---|---|---|
-| Last 12 months (measured): 0.26× | never | never | never | never |
+| Last 12 months (measured): 0.25× | never | never | never | never |
 | Reference pace (model input): 1.5× | 6.4 years | 10.9 years | 10.6 years | 11.7 years |
 | Reference pace (model input): 2× | 3.7 years | 6.4 years | 6.2 years | 6.9 years |
 | Reference pace (model input): 3× | 2.4 years | 4.0 years | 3.9 years | 4.3 years |
-| Fastest 12 months since 2023 (measured): 9.93× | 1.1 years | 1.9 years | 1.9 years | 2.1 years |
+| Fastest 12 months since 2023 (measured): 10.0× | 1.1 years | 1.9 years | 1.9 years | 2.1 years |
 
 Model: years = ln(multiple) / ln(yearly pace); capacity held at today's level; steady growth. NEAR adding shards would push every bar further out: good for users, but it delays the point where usage pays for issuance.
 
@@ -48,15 +48,15 @@ Together, usage covered roughly **15.5%** of issuance. The two channels behave d
 1. **Capacity is mostly empty.** 0.59% used in the last 30 days, across 10 shards of 1,000 Tgas per chunk. The gas price was at the floor (0.0001 NEAR per Tgas) in 100.0% of recent sampled blocks. Source: `evidence/samples.jsonl`, `lib/metrics.js`.
 2. **The scaling is built.** NEAR went from 4 shards (Jan 2023) to 10. Even the busiest shard (shard 8, 95th percentile 7.54%) could take about 13× more before it is full at its busy hours (90%: 10× to 15×).
 3. **One hot shard cannot move the price.** nearcore's `compute_next_gas_price` sums gas over all chunks. 493 sampled blocks had a shard more than half full; 478 of them stayed at the floor price. With 10 shards, about 5 full shards at once are needed.
-4. **Burn grows faster than use once fees move.** At every block full and the floor price, burn would be 146.0% of issuance. Past the 50% trigger the price rises each block, and burn per Tgas with it. Burn per Tgas today: 0.0000870 NEAR, measured from `balance_burnt`.
+4. **Burn grows faster than use once fees move.** At every block full and the floor price, burn would be 146.1% of issuance. Past the 50% trigger the price rises each block, and burn per Tgas with it. Burn per Tgas today: 0.0000870 NEAR, measured from `balance_burnt`.
 
 ## Evidence against
 
 1. **Demand can arrive fast.** Use peaked at 20.6% in Mar 2024. From 29 Nov 2023 to 29 Dec 2023 (the `inscription.near` rush), 15 sampled blocks were priced above the floor, up to 20× it, with 2 of 4 shards full. The 85× headroom is large, not infinite.
-2. **Local scarcity is real.** 151 of 5,662 sampled blocks (2.67%) had delayed receipts in some shard: congestion control was holding back work the price never showed. In 2026, the account leading the most hot-shard chunks was `earn.kaiching`. Apps on a hot shard can feel full while the chain is empty.
+2. **Local scarcity is real.** 151 of 5,666 sampled blocks (2.67%) had delayed receipts in some shard: congestion control was holding back work the price never showed. In 2026, the account leading the most hot-shard chunks was `earn.kaiching`. Apps on a hot shard can feel full while the chain is empty.
 3. **Gas is not the only limit.** State size, chunk and state-witness size, and receipt bandwidth can bind before gas. If one of them binds first, real headroom is smaller than these multiples.
-4. **It is a sample.** One block per 6-hour slot, at a seeded random moment so every hour of the day is covered. Against NearBlocks' every-block daily totals the monthly median ratio is 0.99 (45 of 47 months within 0.8 to 1.2). A 12× denser read of the last 30 days gave 0.58% use (sampled: 0.68%) and a busiest-shard p95 of 4.77% (sampled: 7.54%).
-5. **The rules are moving.** NEAR began burning 100.0% of gas fees on 4 Nov 2026 (governance proposal HSP-027; we found the exact block by bisecting archival protocol configs: `evidence/protocol.json`), so burn per Tgas rose from 0.0000774 to 0.0000870 NEAR and the burn estimate rests on 446 blocks since then. Governance can also change issuance (HSP-029 would cap it at 1.60%). Either moves the burn-to-issuance bar without any change in use.
+4. **It is a sample.** One block per 6-hour slot, at a seeded random moment so every hour of the day is covered. Against NearBlocks' every-block daily totals the monthly median ratio is 0.99 (44 of 47 months within 0.8 to 1.2). A 12× denser read of the last 30 days gave 0.58% use (sampled: 0.68%) and a busiest-shard p95 of 4.77% (sampled: 7.54%).
+5. **The rules are moving.** NEAR began burning 100.0% of gas fees on 4 Nov 2026 (governance proposal HSP-027; we found the exact block by bisecting archival protocol configs: `evidence/protocol.json`), so burn per Tgas rose from 0.0000774 to 0.0000870 NEAR and the burn estimate rests on 450 blocks since then. Governance can also change issuance (HSP-029 would cap it at 1.60%). Either moves the burn-to-issuance bar without any change in use.
 
 ## What would change my mind
 
